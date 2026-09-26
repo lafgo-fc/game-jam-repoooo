@@ -1,9 +1,12 @@
 extends CharacterBody2D
-@onready var red_light = $"traffic light front/red"
-@onready var green_light = $"traffic light front/green"
-@onready var timer = $Timer
+@onready var red_light_front_back = $"traffic light front back/red"
+@onready var red_light_left = $"traffic light left/red3"
+@onready var red_light_right = $"traffic light right/red2"
+@onready var green_light_front_back = $"traffic light front back/green"
+@onready var green_light_left = $"traffic light left/green2"
+@onready var green_light_right = $"traffic light right/green3"
 var light : String = "red"
-var timer_stopped : bool =  false
+
 var direction_signal : String = "left"
 
 func _process(delta: float) -> void:
@@ -18,19 +21,9 @@ func _process(delta: float) -> void:
 
 func _light_color():
 	if light == "red":
-		red_light.show()
-		green_light.hide()
-
-		if timer.is_stopped():
-			timer.start(3.0)
-			await timer.timeout
-			light = "green"
+		red_light_front_back.show()
+		green_light_front_back.hide()
 
 	elif light == "green":
-		green_light.show()
-		red_light.hide()
-
-		if timer.is_stopped():
-			timer.start(3.0)
-			await timer.timeout
-			light = "red"
+		green_light_front_back.show()
+		red_light_front_back.hide()
