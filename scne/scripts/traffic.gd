@@ -1,4 +1,6 @@
 extends CharacterBody2D
+@onready var red_light = $red
+@onready var green_light = $green
 var light : String = "red"
 
 func _process(delta: float) -> void:
@@ -12,6 +14,8 @@ func _process(delta: float) -> void:
 
 func _light_color() -> void:
 	if light == "red":
-		print("red")
+		red_light.show()
+		green_light.hide()
 	elif light == "green":
-		print("green")
+		green_light.show()
+		red_light.hide()

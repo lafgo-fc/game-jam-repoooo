@@ -30,6 +30,13 @@ gradient = SubResource("Gradient_0o7pd")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="Gradient" id="Gradient_ad1rp"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_454ae"]
+gradient = SubResource("Gradient_ad1rp")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="TrafficLighttt" type="CharacterBody2D" unique_id=24907968]
 script = ExtResource("1_0o7pd")
 
@@ -41,9 +48,16 @@ disabled = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1375415450]
 sprite_frames = SubResource("SpriteFrames_s7rlf")
 
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1624427706]
+[node name="red" type="PointLight2D" parent="." unique_id=1624427706]
 position = Vector2(-8, 5)
 scale = Vector2(0.070312545, 0.07812501)
 color = Color(1, 0, 0, 1)
 energy = 9.97
 texture = SubResource("GradientTexture2D_74c84")
+
+[node name="green" type="PointLight2D" parent="." unique_id=1808266612]
+position = Vector2(-8, 13)
+scale = Vector2(0.07812507, 0.07421878)
+color = Color(0.019607844, 1, 0, 1)
+energy = 3.84
+texture = SubResource("GradientTexture2D_454ae")
