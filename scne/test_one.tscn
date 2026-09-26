@@ -1131,7 +1131,7 @@ exit_point = NodePath("../target 2")
 fuckoff = NodePath("../fuckoffpoint")
 
 [node name="CrossPoint" type="Marker2D" parent="." unique_id=2107428172]
-position = Vector2(-77, 79)
+position = Vector2(-146, 79)
 
 [node name="fuckoffpoint" type="Marker2D" parent="." unique_id=2014639924]
 position = Vector2(535, 82)

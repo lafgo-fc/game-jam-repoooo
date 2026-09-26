@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ybpupcwugdkb" path="res://assets/cars/Redcar-1.png" id="2_vceqa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7wsd"]
-size = Vector2(65, 31)
+size = Vector2(70, 31)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s7wsd"]
 
@@ -16,7 +16,7 @@ position = Vector2(10, -2)
 texture = ExtResource("2_vceqa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1023565779]
-position = Vector2(8.5, -4.5)
+position = Vector2(6, -4.5)
 shape = SubResource("RectangleShape2D_s7wsd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=613896747]
