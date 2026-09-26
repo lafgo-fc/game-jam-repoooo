@@ -1270,26 +1270,26 @@ format = 2
 layer_0/tile_data = PackedInt32Array(-2, 2031616, 23, 65534, 2031616, 24, -65536, 1900544, 23, 0, 1900544, 24)
 
 [node name="green left" type="PointLight2D" parent="traffic light left" unique_id=1631106780]
-position = Vector2(-26, -2)
+position = Vector2(-27, -2)
 scale = Vector2(0.07812507, 0.05273439)
 color = Color(0.019607844, 1, 0, 1)
 energy = 3.84
 texture = SubResource("GradientTexture2D_454ae")
 
 [node name="green right" type="PointLight2D" parent="traffic light left" unique_id=1115987328]
-position = Vector2(9, -2)
+position = Vector2(10, -2)
 scale = Vector2(0.07812507, 0.05273439)
 color = Color(0.019607844, 1, 0, 1)
 energy = 3.84
 texture = SubResource("GradientTexture2D_454ae")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="traffic light left" unique_id=432736431]
-position = Vector2(-25, 0)
+position = Vector2(-25, 1)
 shape = SubResource("CapsuleShape2D_74c84")
 disabled = true
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="traffic light left" unique_id=1223263571]
-position = Vector2(8, 2)
+position = Vector2(8, 1)
 shape = SubResource("CapsuleShape2D_74c84")
 disabled = true
 
