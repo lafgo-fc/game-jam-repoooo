@@ -65,3 +65,4 @@ texture = SubResource("GradientTexture2D_454ae")
 [node name="Timer" type="Timer" parent="." unique_id=1521652953]
 wait_time = 3.0
 one_shot = true
+autostart = true
