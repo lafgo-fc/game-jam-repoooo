@@ -1,10 +1,10 @@
 extends CharacterBody2D
 @onready var red_light_front_back = $"traffic light front back/red"
-@onready var red_light_left = $"traffic light left/red3"
-@onready var red_light_right = $"traffic light right/red2"
+@onready var red_light_right = $"traffic light left/red right"
 @onready var green_light_front_back = $"traffic light front back/green"
-@onready var green_light_left = $"traffic light left/green2"
-@onready var green_light_right = $"traffic light right/green3"
+@onready var green_light_left = $"traffic light left/green left"
+@onready var red_light_left = $"traffic light left/red left"
+@onready var green_light_right = $"traffic light left/green right"
 var light : String = "red"
 
 var direction_signal : String = "left"
