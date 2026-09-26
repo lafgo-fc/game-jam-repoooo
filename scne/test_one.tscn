@@ -629,8 +629,8 @@ position = Vector2(689, 71)
 
 [node name="TrafficLighttt" parent="." unique_id=24907968 instance=ExtResource("3_fsm8h")]
 visibility_layer = 513
-position = Vector2(-209, 5.999998)
-scale = Vector2(5, 5)
+position = Vector2(-56, -14)
+scale = Vector2(2, 2)
 
 [node name="spawnr thing" parent="." unique_id=1807773249 node_paths=PackedStringArray("stop_point", "cross_point", "exit_point", "fuckoff") instance=ExtResource("4_f5p5n")]
 position = Vector2(-708, 84)
