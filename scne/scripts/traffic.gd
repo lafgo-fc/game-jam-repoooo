@@ -6,14 +6,14 @@ var light : String = "red"
 var timer_stopped : bool =  false
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("traffic control") or light == "green":
-		if light=="red":
+	if Input.is_action_just_pressed("traffic control"):
+		if light == "red":
 			light = "green"
 		else:
 			light = "red"
-		GameData.traffic = !GameData.traffic
+
+	GameData.traffic = light == "green"
 	_light_color()
-	
 
 func _light_color():
 	if light == "red":
