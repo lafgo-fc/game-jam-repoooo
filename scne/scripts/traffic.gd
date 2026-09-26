@@ -1,4 +1,5 @@
 extends CharacterBody2D
+<<<<<<< HEAD
 @onready var red_light_front_back = $"traffic light front back/red"
 @onready var red_light_right = $"traffic light left/red right"
 @onready var green_light_front_back = $"traffic light front back/green"
@@ -14,6 +15,13 @@ func car_pass():
 		GameData.traffic_right_left = false
 	if light == "green in front" or light == "red in right":
 		GameData.traffic_front_down = true
+=======
+
+@onready var red_light = $"traffic light front/red"
+@onready var green_light = $"traffic light front/green"
+
+var light: String = "red"
+>>>>>>> 94243bd (lol)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("traffic control front and back"):
@@ -32,6 +40,7 @@ func _process(delta: float) -> void:
 		light = "all red"
 	
 
+<<<<<<< HEAD
 func _light_color():
 	if light == "red in front":
 		red_light_front_back.show()
@@ -67,3 +76,14 @@ func _light_color():
 		red_light_left.show()
 		green_light_front_back.hide()
 		red_light_front_back.show()
+=======
+
+func _light_color() -> void:
+	if light == "red":
+		red_light.show()
+		green_light.hide()
+
+	elif light == "green":
+		green_light.show()
+		red_light.hide()
+>>>>>>> 94243bd (lol)
