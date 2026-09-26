@@ -1,6 +1,7 @@
 extends CharacterBody2D
 @onready var red_light = $red
 @onready var green_light = $green
+@onready var timer = $Timer
 var light : String = "red"
 
 func _process(delta: float) -> void:
@@ -11,6 +12,7 @@ func _process(delta: float) -> void:
 			light = "red"
 		GameData.traffic = !GameData.traffic
 	_light_color()
+	
 
 func _light_color() -> void:
 	if light == "red":

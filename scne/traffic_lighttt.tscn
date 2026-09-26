@@ -61,3 +61,7 @@ scale = Vector2(0.07812507, 0.07421878)
 color = Color(0.019607844, 1, 0, 1)
 energy = 3.84
 texture = SubResource("GradientTexture2D_454ae")
+
+[node name="Timer" type="Timer" parent="." unique_id=1521652953]
+wait_time = 3.0
+one_shot = true
