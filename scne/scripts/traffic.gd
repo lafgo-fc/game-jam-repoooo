@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var timer = $Timer
 var light : String = "red"
 var timer_stopped : bool =  false
+var direction_signal : String = "left"
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("traffic control"):
