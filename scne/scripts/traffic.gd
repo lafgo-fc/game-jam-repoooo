@@ -15,8 +15,6 @@ func _process(delta: float) -> void:
 			light = "green in front"
 		else:
 			light = "red in front"
-
-	GameData.traffic = light == "green in front"
 	if Input.is_action_just_pressed("traffic control right and left"):
 		if light == "red in right":
 			light = "green in right"
@@ -30,6 +28,8 @@ func _light_color():
 	if light == "red in front":
 		red_light_front_back.show()
 		green_light_front_back.hide()
+		green_light_right.show()
+		green_light_left.show()
 
 	elif light == "green in front":
 		green_light_front_back.show()
