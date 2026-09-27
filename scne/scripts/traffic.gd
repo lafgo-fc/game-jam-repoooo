@@ -8,9 +8,6 @@ extends CharacterBody2D
 @onready var car_direction = "res://scne/scripts/car.gd"
 var light : String = "red in front"
 
-var direction_signal : String = "left"
-
-
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("traffic control front and back"):
 		if light == "red in front":
@@ -23,6 +20,9 @@ func _process(delta: float) -> void:
 		else:
 			light = "red in right"
 	_light_color()
+	if Input.is_action_just_pressed("stop all"):
+		light = "all red"
+	
 
 func _light_color():
 	if light == "red in front":
@@ -52,3 +52,10 @@ func _light_color():
 		green_light_left.hide()
 		green_light_front_back.show()
 		red_light_front_back.hide()
+	elif light == "all red":
+		green_light_left.hide()
+		green_light_right.hide()
+		red_light_right.show()
+		red_light_left.show()
+		green_light_front_back.hide()
+		red_light_front_back.show()
