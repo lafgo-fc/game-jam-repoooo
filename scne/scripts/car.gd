@@ -23,7 +23,9 @@ func _process(delta: float) -> void:
 
 	# If the light is green, the car can move toward the exit.
 	else:
-		if GameData.traffic == true:
+		if GameData.traffic_right_left == true:
+			target = exit_point
+		elif GameData.traffic_front_down == true:
 			target = exit_point
 		else:
 			target = stop_point
