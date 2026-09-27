@@ -8,8 +8,10 @@ extends CharacterBody2D
 @onready var car_direction = $"."
 var light : String = "red in front"
 func car_pass():
+	if light == "green in right":
+		print(GameData.car_pos.y)
 	if light == "green in front":
-		print(GameData.car_pos)
+		print(GameData.car_pos.x)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("traffic control front and back"):
