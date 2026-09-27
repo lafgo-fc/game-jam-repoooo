@@ -20,8 +20,6 @@ func _process(delta: float) -> void:
 			light = "green in right"
 		else:
 			light = "red in right"
-
-	GameData.traffic = light == "green in right"
 	_light_color()
 
 func _light_color():
@@ -34,13 +32,21 @@ func _light_color():
 	elif light == "green in front":
 		green_light_front_back.show()
 		red_light_front_back.hide()
+		green_light_left.hide()
+		green_light_right.hide()
+		red_light_left.show()
+		red_light_right.show()
 	elif light == "green in right":
 		green_light_left.show()
 		green_light_right.show()
 		red_light_right.hide()
 		red_light_left.hide()
+		green_light_front_back.hide()
+		red_light_front_back.show()
 	elif light == "red in right":
 		red_light_left.show()
 		red_light_right.show()
 		green_light_right.hide()
 		green_light_left.hide()
+		green_light_front_back.show()
+		red_light_front_back.hide()
