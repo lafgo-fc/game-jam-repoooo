@@ -5,8 +5,11 @@ extends CharacterBody2D
 @onready var green_light_left = $"traffic light left/green left"
 @onready var red_light_left = $"traffic light left/red left"
 @onready var green_light_right = $"traffic light left/green right"
-@onready var car_direction = "res://scne/scripts/car.gd"
+@onready var car_direction = $"."
 var light : String = "red in front"
+func car_pass():
+	if light == "green in front":
+		print(GameData.car_pos)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("traffic control front and back"):
@@ -20,6 +23,7 @@ func _process(delta: float) -> void:
 		else:
 			light = "red in right"
 	_light_color()
+	car_pass()
 	if Input.is_action_just_pressed("stop all"):
 		light = "all red"
 	

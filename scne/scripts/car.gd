@@ -12,6 +12,7 @@ var has_passed = false
 
 
 func _process(delta: float) -> void:
+	GameData.car_pos = global_position
 	if fuckedoff == true:
 		queue_free()
 
