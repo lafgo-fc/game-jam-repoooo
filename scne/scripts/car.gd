@@ -28,12 +28,13 @@ func _process(delta: float) -> void:
 			target = stop_point
 
 	# Check if the car has actually crossed the intersection.
-	if global_position.distance_to(cross_point.global_position) < 10:
-		has_passed = true
+	if cross_point != null:
+		if global_position.distance_to(cross_point.global_position) < 10:
+			has_passed = true
 
-	if global_position.distance_to(fuckoff.global_position) < 10:
-		print("passed")
-		queue_free()
+	if fuckoff != null:
+		if global_position.distance_to(fuckoff.global_position) < 10:
+			queue_free()
 
 
 
