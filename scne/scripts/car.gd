@@ -9,16 +9,10 @@ var exit_point: Marker2D
 var fuckoff : Marker2D
 var fuckedoff = false
 var has_passed = false
-@onready var car_sprite = $AnimatedSprite2D
-
 func _process(delta: float) -> void:
 	GameData.car_pos = global_position
 	if fuckedoff == true:
 		queue_free()
-	if GameData.car_pos.x>0:
-		car_sprite.flip_h = true
-	else:
-		car_sprite.flip_h = false
 	# If the car has already crossed the intersection,
 	# it should always continue toward the exit.
 	if has_passed:
