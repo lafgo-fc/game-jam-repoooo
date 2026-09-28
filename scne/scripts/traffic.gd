@@ -12,8 +12,8 @@ func car_pass():
 		GameData.traffic_right_left = true
 	else :
 		GameData.traffic_right_left = false
-	if light == "green in front":
-		print(GameData.car_pos.x)
+	if light == "green in front" or light == "red in right":
+		GameData.traffic_front_down = true
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("traffic control front and back"):

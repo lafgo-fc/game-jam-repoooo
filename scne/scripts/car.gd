@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 		if GameData.traffic_right_left == true:
 			target = exit_point
 		elif GameData.traffic_front_down == true:
-			target = exit_point
+			target = stop_point
 		else:
 			target = stop_point
 
