@@ -6,7 +6,25 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7wsd"]
 size = Vector2(70, 31)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_evd0w"]
+atlas = ExtResource("2_vceqa")
+region = Rect2(0, 0, 64, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_s7wsd"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evd0w")
+}],
+"loop": 1,
+"name": &"right",
+"speed": 5.0
+}]
 
 [node name="car" type="CharacterBody2D" unique_id=1626053297]
 script = ExtResource("1_evd0w")
@@ -20,4 +38,6 @@ position = Vector2(6, -4.5)
 shape = SubResource("RectangleShape2D_s7wsd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=613896747]
+position = Vector2(95, 3)
 sprite_frames = SubResource("SpriteFrames_s7wsd")
+animation = &"right"
