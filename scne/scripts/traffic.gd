@@ -8,8 +8,10 @@ extends CharacterBody2D
 @onready var car_direction = $"."
 var light : String = "red in front"
 func car_pass():
-	if light == "green in right":
-		print(GameData.car_pos.y)
+	if light == "green in right" or light == "red in front":
+		GameData.traffic_right_left = true
+	else :
+		GameData.traffic_right_left = false
 	if light == "green in front":
 		print(GameData.car_pos.x)
 
