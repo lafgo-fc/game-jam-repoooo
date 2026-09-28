@@ -17,6 +17,7 @@ func _process(delta: float) -> void:
 		queue_free()
 	if GameData.car_pos.x>0:
 		car_sprite.flip_h = true
+		
 	else:
 		car_sprite.flip_h = false
 	# If the car has already crossed the intersection,
