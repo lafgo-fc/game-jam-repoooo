@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b5hmbecyicw8j" path="res://scne/traffic_lighttt.tscn" id="3_fsm8h"]
 [ext_resource type="PackedScene" uid="uid://b1iqng1h080e" path="res://scne/spawnr_thing.tscn" id="4_f5p5n"]
 [ext_resource type="Script" uid="uid://c4dgbo110484a" path="res://scne/label.gd" id="4_ls8i0"]
+[ext_resource type="PackedScene" uid="uid://ctrmuqi0xqfh3" path="res://scne/npc spawner.tscn" id="5_uaidk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xptqv"]
 texture = ExtResource("1_rdy3u")
@@ -1130,6 +1131,9 @@ cross_point = NodePath("../CrossPoint")
 exit_point = NodePath("../target 2")
 fuckoff = NodePath("../fuckoffpoint")
 
+[node name="NpcSpawner" parent="." unique_id=2056746993 instance=ExtResource("5_uaidk")]
+position = Vector2(-763, 171)
+
 [node name="CrossPoint" type="Marker2D" parent="." unique_id=2107428172]
 position = Vector2(-146, 79)
 
@@ -1140,3 +1144,32 @@ position = Vector2(535, 82)
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("4_ls8i0")
+
+[node name="waypoints" type="Node2D" parent="." unique_id=193136837]
+
+[node name="p1" type="Marker2D" parent="waypoints" unique_id=28400208]
+position = Vector2(-204, 146)
+
+[node name="p9" type="Marker2D" parent="waypoints" unique_id=87506571]
+position = Vector2(393, -70)
+
+[node name="p5" type="Marker2D" parent="waypoints" unique_id=973808347]
+position = Vector2(47, -419)
+
+[node name="p6" type="Marker2D" parent="waypoints" unique_id=1649892004]
+position = Vector2(-198, -411)
+
+[node name="p7" type="Marker2D" parent="waypoints" unique_id=723676230]
+position = Vector2(483, 145)
+
+[node name="p8" type="Marker2D" parent="waypoints" unique_id=1282460241]
+position = Vector2(-216, 478)
+
+[node name="p2" type="Marker2D" parent="waypoints" unique_id=1944140388]
+position = Vector2(-204, -74)
+
+[node name="p3" type="Marker2D" parent="waypoints" unique_id=1006885710]
+position = Vector2(40, 152)
+
+[node name="p4" type="Marker2D" parent="waypoints" unique_id=1583519284]
+position = Vector2(44, -71)

@@ -1,31 +1,131 @@
 [gd_scene format=3 uid="uid://bb6hayl4e4h2j"]
 
 [ext_resource type="Script" uid="uid://t8hef0i0t6bo" path="res://scne/scripts/car.gd" id="1_evd0w"]
+[ext_resource type="Texture2D" uid="uid://dl0aqa57xmn6i" path="res://assets/cars/bluecar-1.png" id="2_q6ssp"]
 [ext_resource type="Texture2D" uid="uid://ybpupcwugdkb" path="res://assets/cars/Redcar-1.png" id="2_vceqa"]
+[ext_resource type="Texture2D" uid="uid://derx8eqoo14ka" path="res://assets/cars/brown-1.png" id="3_yr6hs"]
+[ext_resource type="Texture2D" uid="uid://g7fdin0x72kw" path="res://assets/cars/pizzavan2.png" id="4_xshvc"]
+[ext_resource type="Texture2D" uid="uid://2qs444iy1dvx" path="res://assets/cars/ranger-1.png" id="5_i854k"]
+[ext_resource type="Texture2D" uid="uid://d0blp4bxvc7a2" path="res://assets/cars/sportred-1.png" id="7_307ky"]
+[ext_resource type="Texture2D" uid="uid://ewqsi5cq1f6y" path="res://assets/cars/sportryel-1.png" id="8_axwye"]
+[ext_resource type="Texture2D" uid="uid://jaulqgnk6a5d" path="res://assets/cars/van1.png" id="9_vfnst"]
+[ext_resource type="Texture2D" uid="uid://dvib7mqa7whs1" path="res://assets/cars/white-1.png" id="10_53pfn"]
+[ext_resource type="Texture2D" uid="uid://be7aowxqo6rg1" path="res://assets/cars/yellow1.png" id="11_d22jt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7wsd"]
-size = Vector2(62, 31)
+animation = &"front"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=458005439]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2074214003]
+position = Vector2(48, -5.5)
+shape = SubResource("RectangleShape2D_s7rlf")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s7wsd"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xx3ko")
+}],
 "loop": 1,
-"name": &"front",
+"name": &"blue car",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4jmf")
+}],
+"loop": 1,
+"name": &"brown car",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwkx8")
+}],
+"loop": 1,
+"name": &"pizza car",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54rh5")
+}],
+"loop": 1,
+"name": &"ranger car",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pn1vq")
+}],
+"loop": 1,
+"name": &"red car",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_li2l5")
+}],
+"loop": 1,
+"name": &"sported car",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1037m")
+}],
+"loop": 1,
+"name": &"sportyel car",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prvm8")
+}],
+"loop": 1,
+"name": &"van car",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4dri")
+}],
+"loop": 1,
+"name": &"white car",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvlni")
+}],
+"loop": 1,
+"name": &"yellow car",
 "speed": 5.0
 }]
 
+<<<<<<< HEAD
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7rlf"]
 size = Vector2(30, 25)
+=======
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7wsd"]
+size = Vector2(63, 28.5)
+>>>>>>> c61dad8a1941c831a3d9e1374971c7a76a02dc4c
 
 [node name="car" type="CharacterBody2D" unique_id=1626053297]
 collision_layer = 3
 script = ExtResource("1_evd0w")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=334636195]
-position = Vector2(10, -2)
-texture = ExtResource("2_vceqa")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=613896747]
+position = Vector2(3, 2)
+sprite_frames = SubResource("SpriteFrames_s7wsd")
+animation = &"pizza car"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1023565779]
+<<<<<<< HEAD
 position = Vector2(10, -4.5)
 shape = SubResource("RectangleShape2D_s7wsd")
 
@@ -43,3 +143,7 @@ shape = SubResource("RectangleShape2D_s7rlf")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+=======
+position = Vector2(4, 1)
+shape = SubResource("RectangleShape2D_s7wsd")
+>>>>>>> c61dad8a1941c831a3d9e1374971c7a76a02dc4c

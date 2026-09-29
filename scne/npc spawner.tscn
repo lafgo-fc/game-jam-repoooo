@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ctrmuqi0xqfh3"]
+
+[ext_resource type="Script" uid="uid://beqhpkqrsjx1p" path="res://scne/npc_spawner.gd" id="1_3ytr4"]
+
+[node name="NpcSpawner" type="Node2D" unique_id=2056746993]
+script = ExtResource("1_3ytr4")
+
+[node name="Timer" type="Timer" parent="." unique_id=501301645]
+wait_time = 5.676
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
