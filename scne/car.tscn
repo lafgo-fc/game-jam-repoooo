@@ -136,7 +136,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7wsd"]
-size = Vector2(70, 31)
+size = Vector2(63, 28.5)
 
 [node name="car" type="CharacterBody2D" unique_id=1626053297]
 script = ExtResource("1_evd0w")
@@ -146,6 +146,6 @@ position = Vector2(3, 2)
 sprite_frames = SubResource("SpriteFrames_s7wsd")
 animation = &"pizza car"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D" unique_id=1023565779]
-position = Vector2(-2, -1.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1023565779]
+position = Vector2(4, 1)
 shape = SubResource("RectangleShape2D_s7wsd")
