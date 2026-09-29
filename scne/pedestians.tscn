@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://jjrg7q8ffkxn"]
 
+[ext_resource type="Script" uid="uid://dwqexwr3f0a6h" path="res://scne/pedestians.gd" id="1_gkco8"]
 [ext_resource type="Texture2D" uid="uid://b73wvrqrbi2tm" path="res://assets/npcs/TownsPeople2_Animations.png" id="1_m80qp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gkco8"]
@@ -135,6 +136,7 @@ radius = 6.75
 height = 18.31579
 
 [node name="Pedestians" type="CharacterBody2D" unique_id=907237046]
+script = ExtResource("1_gkco8")
 
 [node name="cap guy" type="AnimatedSprite2D" parent="." unique_id=650339071]
 position = Vector2(0, -7)
