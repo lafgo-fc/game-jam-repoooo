@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://ctrmuqi0xqfh3"]
 
 [ext_resource type="Script" uid="uid://beqhpkqrsjx1p" path="res://scne/npc_spawner.gd" id="1_3ytr4"]
+[ext_resource type="PackedScene" uid="uid://jjrg7q8ffkxn" path="res://scne/pedestians.tscn" id="2_0v4el"]
 
 [node name="NpcSpawner" type="Node2D" unique_id=2056746993]
 script = ExtResource("1_3ytr4")
+npc = ExtResource("2_0v4el")
 
 [node name="Timer" type="Timer" parent="." unique_id=501301645]
 wait_time = 5.676

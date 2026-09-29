@@ -1,17 +1,12 @@
 extends CharacterBody2D
 
-
-const SPEED = 30
-
+var p1: Marker2D
+const SPEED = 30.0
 
 func _physics_process(delta: float) -> void:
+	if p1 == null:
+		return
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	var direction = global_position.direction_to(p1.global_position)
+	velocity = direction * SPEED
 	move_and_slide()
