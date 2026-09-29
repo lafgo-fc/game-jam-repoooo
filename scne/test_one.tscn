@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b5hmbecyicw8j" path="res://scne/traffic_lighttt.tscn" id="3_fsm8h"]
 [ext_resource type="PackedScene" uid="uid://b1iqng1h080e" path="res://scne/spawnr_thing.tscn" id="4_f5p5n"]
 [ext_resource type="Script" uid="uid://c4dgbo110484a" path="res://scne/label.gd" id="4_ls8i0"]
+[ext_resource type="PackedScene" uid="uid://ctrmuqi0xqfh3" path="res://scne/npc spawner.tscn" id="5_uaidk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xptqv"]
 texture = ExtResource("1_rdy3u")
@@ -1129,6 +1130,9 @@ stop_point = NodePath("../Marker2D")
 cross_point = NodePath("../CrossPoint")
 exit_point = NodePath("../target 2")
 fuckoff = NodePath("../fuckoffpoint")
+
+[node name="NpcSpawner" parent="." unique_id=2056746993 instance=ExtResource("5_uaidk")]
+position = Vector2(-763, 171)
 
 [node name="CrossPoint" type="Marker2D" parent="." unique_id=2107428172]
 position = Vector2(-146, 79)
