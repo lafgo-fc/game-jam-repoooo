@@ -12,7 +12,45 @@
 [ext_resource type="Texture2D" uid="uid://dvib7mqa7whs1" path="res://assets/cars/white-1.png" id="10_53pfn"]
 [ext_resource type="Texture2D" uid="uid://be7aowxqo6rg1" path="res://assets/cars/yellow1.png" id="11_d22jt"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx3ko"]
+atlas = ExtResource("2_q6ssp")
+region = Rect2(0, 0, 64, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4jmf"]
+atlas = ExtResource("3_yr6hs")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwkx8"]
+atlas = ExtResource("4_xshvc")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54rh5"]
+atlas = ExtResource("5_i854k")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pn1vq"]
+atlas = ExtResource("2_vceqa")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_li2l5"]
+atlas = ExtResource("7_307ky")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1037m"]
+atlas = ExtResource("8_axwye")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prvm8"]
+atlas = ExtResource("9_vfnst")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4dri"]
+atlas = ExtResource("10_53pfn")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvlni"]
+atlas = ExtResource("11_d22jt")
+region = Rect2(0, 0, 64, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s7wsd"]
 animations = [{
@@ -97,14 +135,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7rlf"]
-size = Vector2(30, 25)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7wsd"]
-size = Vector2(63, 28.5)
+size = Vector2(70, 31)
 
 [node name="car" type="CharacterBody2D" unique_id=1626053297]
-collision_layer = 3
 script = ExtResource("1_evd0w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=613896747]
@@ -112,16 +146,6 @@ position = Vector2(3, 2)
 sprite_frames = SubResource("SpriteFrames_s7wsd")
 animation = &"pizza car"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1023565779]
-position = Vector2(4, 1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D" unique_id=1023565779]
+position = Vector2(-2, -1.5)
 shape = SubResource("RectangleShape2D_s7wsd")
-
-[node name="Area2D" type="Area2D" parent="." unique_id=458005439]
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2074214003]
-position = Vector2(48, -5.5)
-shape = SubResource("RectangleShape2D_s7rlf")
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
