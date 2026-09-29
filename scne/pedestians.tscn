@@ -130,6 +130,10 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gdw26"]
+radius = 6.75
+height = 18.31579
+
 [node name="Pedestians" type="CharacterBody2D" unique_id=907237046]
 
 [node name="cap guy" type="AnimatedSprite2D" parent="." unique_id=650339071]
@@ -140,3 +144,5 @@ animation = &"top"
 frame_progress = 0.72681135
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cap guy" unique_id=741942514]
+position = Vector2(0.375, 4.3609023)
+shape = SubResource("CapsuleShape2D_gdw26")
