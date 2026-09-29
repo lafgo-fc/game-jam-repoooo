@@ -12,17 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dvib7mqa7whs1" path="res://assets/cars/white-1.png" id="10_53pfn"]
 [ext_resource type="Texture2D" uid="uid://be7aowxqo6rg1" path="res://assets/cars/yellow1.png" id="11_d22jt"]
 
-animation = &"front"
 
-[node name="Area2D" type="Area2D" parent="." unique_id=458005439]
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2074214003]
-position = Vector2(48, -5.5)
-shape = SubResource("RectangleShape2D_s7rlf")
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s7wsd"]
 animations = [{
@@ -107,13 +97,11 @@ animations = [{
 "speed": 5.0
 }]
 
-<<<<<<< HEAD
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7rlf"]
 size = Vector2(30, 25)
-=======
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7wsd"]
 size = Vector2(63, 28.5)
->>>>>>> c61dad8a1941c831a3d9e1374971c7a76a02dc4c
 
 [node name="car" type="CharacterBody2D" unique_id=1626053297]
 collision_layer = 3
@@ -125,14 +113,8 @@ sprite_frames = SubResource("SpriteFrames_s7wsd")
 animation = &"pizza car"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1023565779]
-<<<<<<< HEAD
-position = Vector2(10, -4.5)
+position = Vector2(4, 1)
 shape = SubResource("RectangleShape2D_s7wsd")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=613896747]
-position = Vector2(95, 3)
-sprite_frames = SubResource("SpriteFrames_s7wsd")
-animation = &"front"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=458005439]
 collision_layer = 2
@@ -143,7 +125,3 @@ shape = SubResource("RectangleShape2D_s7rlf")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
-=======
-position = Vector2(4, 1)
-shape = SubResource("RectangleShape2D_s7wsd")
->>>>>>> c61dad8a1941c831a3d9e1374971c7a76a02dc4c
