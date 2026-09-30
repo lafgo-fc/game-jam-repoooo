@@ -1,0 +1,42 @@
+[33m25b8a8a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m added npc spawner logic
+[33mce2d879[m Restore working car scene
+[33m5bacd32[m Fix car scene
+[33m8f317fa[m git thing fixed
+[33mc61dad8[m added waypoints
+[33m8aa68e2[m added npc spawner script
+[33mf08d9a3[m added npc spawner
+[33m3ea523b[m attached mc script
+[33ma9719d3[m added npc collider
+[33m0bf01d8[m added npc animation
+[33me917c1f[m added multiple cars node
+[33m04a2531[m lol
+[33m91b8072[m front-back car pass
+[33m07d3ba0[m right-left pass
+[33mdfeba01[m reset spawners
+[33m8bfa423[m fixed bugs
+[33m5376ac0[m bugs fixes
+[33m488b584[m flip cap pos according to centre point
+[33m93956f7[m added multi-direction spawner
+[33m131bc00[m added car pos tracker
+[33md4cd4ac[m different data access var added
+[33m2265ea8[m added car_pos access
+[33mf7212fe[m added stop all feature
+[33m13e7702[m fixed some bugs
+[33mb3448e9[m fixed color combo
+[33m25132b6[m fixed red light combi
+[33mc584eb1[m added different path traffic light script
+[33m10c91e5[m added lights
+[33md0fcbdc[m removed timer
+[33ma537624[m gam
+[33m738b0b4[m added new inputs
+[33mf3bd071[m added more traffic lights
+[33md1b6fea[m fixed timer glithes
+[33m18d44d2[m added timer script
+[33m5ae2add[m added traffic light timer
+[33mb2e2b5a[m correct scale of traffic light
+[33ma1faaed[m added light changes
+[33m55c290d[m added color test
+[33m8aacc11[m added point light
+[33mb4155be[m Add Godot game
+[33m0149e97[m full ass game
+[33mbc0c6ab[m Initial commit
