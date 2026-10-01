@@ -31,6 +31,9 @@ func _physics_process(delta: float) -> void:
 func process_animation(direction: Vector2):
 	if direction.x > 0:
 		animation.play("right")
-	if direction.x < 0:
+	elif direction.x < 0:
 		animation.play("left")
-		
+	elif direction.y > 0:
+		animation.play("top")
+	elif direction.y < 0 :
+		animation.play("front")
