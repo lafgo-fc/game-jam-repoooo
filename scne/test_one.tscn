@@ -1132,10 +1132,10 @@ exit_point = NodePath("../target 2")
 fuckoff = NodePath("../fuckoffpoint")
 
 [node name="NpcSpawner" parent="." unique_id=2056746993 instance=ExtResource("5_uaidk")]
-position = Vector2(-346, 188)
+position = Vector2(-768, 153)
 
 [node name="waypoints" type="Node2D" parent="NpcSpawner" unique_id=193136837]
-position = Vector2(348, -187)
+position = Vector2(773, -153)
 
 [node name="p1" type="Marker2D" parent="NpcSpawner/waypoints" unique_id=28400208]
 position = Vector2(-204, 146)

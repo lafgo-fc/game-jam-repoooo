@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var npc: PackedScene
-@onready var p1 = $"../waypoints/p1"
+@onready var p1 = $waypoints/p1
 
 func _ready() -> void:
 	spawn_npc()
@@ -12,6 +12,7 @@ func spawn_npc():
 		return
 
 	var npc_spawn = npc.instantiate()
+	npc_spawn.p1 = $waypoints/p1
 	add_child(npc_spawn)
 
 	npc_spawn.global_position = global_position
