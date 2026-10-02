@@ -31,6 +31,18 @@ region = Rect2(36, 78, 18, 26)
 atlas = ExtResource("1_m80qp")
 region = Rect2(18, 0, 18, 27)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvfya"]
+atlas = ExtResource("1_m80qp")
+region = Rect2(18, 27, 18, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glqgj"]
+atlas = ExtResource("1_m80qp")
+region = Rect2(18, 54, 18, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0e5l"]
+atlas = ExtResource("1_m80qp")
+region = Rect2(18, 81, 18, 27)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_yt22a"]
 atlas = ExtResource("1_m80qp")
 region = Rect2(0, 29, 18, 29)
@@ -100,9 +112,28 @@ animations = [{
 "name": &"idle front",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvfya")
+}],
+"loop": 1,
+"name": &"idle left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glqgj")
+}],
 "loop": 1,
 "name": &"idle right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0e5l")
+}],
+"loop": 1,
+"name": &"idle top",
 "speed": 5.0
 }, {
 "frames": [{
@@ -159,7 +190,7 @@ script = ExtResource("1_gkco8")
 position = Vector2(0, -7)
 scale = Vector2(2.6666667, 2.2931035)
 sprite_frames = SubResource("SpriteFrames_74c84")
-animation = &"idle right"
+animation = &"idle left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cap guy" unique_id=741942514]
 position = Vector2(0.375, 4.3609023)
