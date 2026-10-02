@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
-@onready var animation = $"npc 1"
+@onready var npc_1 = $"npc 1"
 @onready var traffic_light = $"."
+@onready var npc_2 = $"npc 2"
 
 @export var p1: Marker2D
 @export var p2: Marker2D
@@ -16,12 +17,19 @@ extends CharacterBody2D
 @export var p11: Marker2D
 var last_direction : String
 var npc_inside : bool = false
+var npc_name : AnimatedSprite2D
+var npc_list : Array[AnimatedSprite2D]
 
 const SPEED = 30.0
 
 var reached_p1 = false
 func _ready():
 	add_to_group("npc")
+	npc_list = [npc_1,npc_2]
+	npc_name = npc_list.pick_random()
+	for npc in npc_list:
+		npc.hide()
+	npc_name.show()
 
 func _physics_process(delta: float) -> void:
 	if p1 == null:
@@ -37,7 +45,7 @@ func _physics_process(delta: float) -> void:
 	if distance < 8.0 or npc_inside == true:
 		reached_p1 = true
 		velocity = Vector2.ZERO
-		animation.play("idle " + last_direction)
+		npc_name.play("idle " + last_direction)
 		return
 
 	velocity = direction * SPEED
@@ -48,14 +56,14 @@ func _physics_process(delta: float) -> void:
 
 func process_animation(direction: Vector2):
 	if direction.x > 0:
-		animation.play("right")
+		npc_name.play("right")
 		last_direction = "right"
 	elif direction.x < 0:
-		animation.play("left")
+		npc_name.play("left")
 	elif direction.y > 0:
-		animation.play("top")
+		npc_name.play("top")
 	elif direction.y < 0 :
-		animation.play("front")
+		npc_name.play("front")
 
 
 
