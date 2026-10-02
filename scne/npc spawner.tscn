@@ -9,5 +9,6 @@ npc = ExtResource("2_0v4el")
 
 [node name="Timer" type="Timer" parent="." unique_id=501301645]
 wait_time = 5.676
+autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

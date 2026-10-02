@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var animation = $"cap guy"
+@onready var traffic_light = $"."
 
 @export var p1: Marker2D
 @export var p2: Marker2D
@@ -21,7 +22,7 @@ func _physics_process(delta: float) -> void:
 	
 	var distance = global_position.distance_to(p1.global_position)
 	var direction = global_position.direction_to(p1.global_position)
-	if distance < 1.0:
+	if distance < 1.0 :
 		velocity = Vector2.ZERO
 		animation.play("idle " + last_direction)
 		return
