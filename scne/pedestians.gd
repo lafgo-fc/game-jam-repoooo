@@ -65,3 +65,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body != self and body.is_in_group("npc"):
 		print("npc")
 		npc_inside = true
+
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body != self and body.is_in_group("npc"):
+		npc_inside = false
