@@ -4,6 +4,7 @@ var traffic_right_left = false
 var traffic_front_down = false 
 var car_pos : Vector2
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

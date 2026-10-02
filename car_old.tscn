@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://43hd31jb4wvl"]
+
+[ext_resource type="Script" uid="uid://t8hef0i0t6bo" path="res://scne/scripts/car.gd" id="1_evd0w"]
+[ext_resource type="Texture2D" uid="uid://dl0aqa57xmn6i" path="res://assets/cars/bluecar-1.png" id="2_q6ssp"]
+[ext_resource type="Texture2D" uid="uid://ybpupcwugdkb" path="res://assets/cars/Redcar-1.png" id="2_vceqa"]
+[ext_resource type="Texture2D" uid="uid://derx8eqoo14ka" path="res://assets/cars/brown-1.png" id="3_yr6hs"]
+[ext_resource type="Texture2D" uid="uid://g7fdin0x72kw" path="res://assets/cars/pizzavan2.png" id="4_xshvc"]
+[ext_resource type="Texture2D" uid="uid://2qs444iy1dvx" path="res://assets/cars/ranger-1.png" id="5_i854k"]
+[ext_resource type="Texture2D" uid="uid://d0blp4bxvc7a2" path="res://assets/cars/sportred-1.png" id="7_307ky"]
+[ext_resource type="Texture2D" uid="uid://ewqsi5cq1f6y" path="res://assets/cars/sportryel-1.png" id="8_axwye"]
+[ext_resource type="Texture2D" uid="uid://jaulqgnk6a5d" path="res://assets/cars/van1.png" id="9_vfnst"]
+[ext_resource type="Texture2D" uid="uid://dvib7mqa7whs1" path="res://assets/cars/white-1.png" id="10_53pfn"]
+[ext_resource type="Texture2D" uid="uid://be7aowxqo6rg1" path="res://assets/cars/yellow1.png" id="11_d22jt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx3ko"]
+atlas = ExtResource("2_q6ssp")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4jmf"]
+atlas = ExtResource("3_yr6hs")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwkx8"]
+atlas = ExtResource("4_xshvc")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54rh5"]
+atlas = ExtResource("5_i854k")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pn1vq"]
+atlas = ExtResource("2_vceqa")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_li2l5"]
+atlas = ExtResource("7_307ky")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1037m"]
+atlas = ExtResource("8_axwye")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prvm8"]
+atlas = ExtResource("9_vfnst")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4dri"]
+atlas = ExtResource("10_53pfn")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvlni"]
+atlas = ExtResource("11_d22jt")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s7wsd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xx3ko")
+}],
+"loop": 1,
+"name": &"blue car",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4jmf")
+}],
+"loop": 1,
+"name": &"brown car",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwkx8")
+}],
+"loop": 1,
+"name": &"pizza car",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54rh5")
+}],
+"loop": 1,
+"name": &"ranger car",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pn1vq")
+}],
+"loop": 1,
+"name": &"red car",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_li2l5")
+}],
+"loop": 1,
+"name": &"sported car",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1037m")
+}],
+"loop": 1,
+"name": &"sportyel car",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prvm8")
+}],
+"loop": 1,
+"name": &"van car",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4dri")
+}],
+"loop": 1,
+"name": &"white car",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvlni")
+}],
+"loop": 1,
+"name": &"yellow car",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7wsd"]
+size = Vector2(63, 28.5)
+
+[node name="car" type="CharacterBody2D" unique_id=1626053297]
+script = ExtResource("1_evd0w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=613896747]
+position = Vector2(3, 2)
+sprite_frames = SubResource("SpriteFrames_s7wsd")
+animation = &"pizza car"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1023565779]
+position = Vector2(4, 1)
+shape = SubResource("RectangleShape2D_s7wsd")

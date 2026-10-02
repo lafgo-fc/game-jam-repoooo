@@ -1,17 +1,19 @@
 extends Node2D
 
 @export var car_scene: PackedScene
+@export_enum("front", "right") var road_direction: String = "front"
+
 @export var stop_point: Marker2D
 @export var cross_point: Marker2D
 @export var exit_point: Marker2D
 @export var fuckoff: Marker2D
+
 
 func _ready() -> void:
 	spawn_car()
 
 
 func spawn_car() -> void:
-
 	var car = car_scene.instantiate()
 
 	add_child(car)
@@ -23,8 +25,7 @@ func spawn_car() -> void:
 	car.exit_point = exit_point
 	car.fuckoff = fuckoff
 
-
-
+	car.road_direction = road_direction
 
 
 func _on_timer_timeout() -> void:
