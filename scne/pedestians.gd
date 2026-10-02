@@ -18,16 +18,24 @@ var last_direction : String
 
 const SPEED = 30.0
 
+var reached_p1 = false
+
 func _physics_process(delta: float) -> void:
-	
-	var distance = global_position.distance_to(p1.global_position)
-	var direction = global_position.direction_to(p1.global_position)
-	if distance < 1.0 :
-		velocity = Vector2.ZERO
-		animation.play("idle " + last_direction)
+	if p1 == null:
 		return
 
+	if reached_p1:
+		velocity = Vector2.ZERO
+		return
 
+	var distance = global_position.distance_to(p1.global_position)
+	var direction = global_position.direction_to(p1.global_position)
+
+	if distance < 8.0:
+		reached_p1 = true
+		velocity = Vector2.ZERO
+		
+		return
 
 	velocity = direction * SPEED
 	move_and_slide()
