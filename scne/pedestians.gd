@@ -15,6 +15,7 @@ extends CharacterBody2D
 @export var p10: Marker2D
 @export var p11: Marker2D
 var last_direction : String
+var npc_inside : bool = false
 
 const SPEED = 30.0
 
@@ -33,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	var distance = global_position.distance_to(p1.global_position)
 	var direction = global_position.direction_to(p1.global_position)
 
-	if distance < 8.0:
+	if distance < 8.0 or npc_inside == true:
 		reached_p1 = true
 		velocity = Vector2.ZERO
 		animation.play("idle " + last_direction)
@@ -63,3 +64,4 @@ func process_animation(direction: Vector2):
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body != self and body.is_in_group("npc"):
 		print("npc")
+		npc_inside = true
