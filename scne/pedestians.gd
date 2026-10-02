@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 	var direction = global_position.direction_to(p1.global_position)
 	if distance < 1.0:
 		velocity = Vector2.ZERO
-		animation.play("idle" + last_direction)
+		animation.play("idle " + last_direction)
 		return
 
 
