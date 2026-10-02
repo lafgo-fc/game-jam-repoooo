@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var traffic_light = $"."
 @onready var npc_2 = $"npc 2"
 @onready var npc_3 =  $"npc 3"
+@onready var npc_4 = $"npc 4"
 
 @export var p1: Marker2D
 @export var p2: Marker2D
@@ -26,7 +27,7 @@ const SPEED = 30.0
 var reached_p1 = false
 func _ready():
 	add_to_group("npc")
-	npc_list = [npc_1,npc_2,npc_3]
+	npc_list = [npc_1,npc_2,npc_3,npc_4]
 	npc_name = npc_list.pick_random()
 	for npc in npc_list:
 		npc.hide()
