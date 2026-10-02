@@ -97,7 +97,12 @@ animations = [{
 "texture": SubResource("AtlasTexture_gdw26")
 }],
 "loop": 1,
-"name": &"idle",
+"name": &"idle front",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"idle right",
 "speed": 5.0
 }, {
 "frames": [{
@@ -154,7 +159,7 @@ script = ExtResource("1_gkco8")
 position = Vector2(0, -7)
 scale = Vector2(2.6666667, 2.2931035)
 sprite_frames = SubResource("SpriteFrames_74c84")
-animation = &"idle"
+animation = &"idle right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cap guy" unique_id=741942514]
 position = Vector2(0.375, 4.3609023)
