@@ -19,6 +19,8 @@ var last_direction : String
 const SPEED = 30.0
 
 var reached_p1 = false
+func _ready():
+	add_to_group("npc")
 
 func _physics_process(delta: float) -> void:
 	if p1 == null:
@@ -53,3 +55,11 @@ func process_animation(direction: Vector2):
 		animation.play("top")
 	elif direction.y < 0 :
 		animation.play("front")
+
+
+
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body != self and body.is_in_group("npc"):
+		print("npc")

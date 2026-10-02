@@ -24,6 +24,10 @@ GameData="*uid://birwptlwq6km1"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[global_group]
+
+npc=""
+
 [input]
 
 "traffic control front and back"={
