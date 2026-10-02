@@ -25,7 +25,7 @@ func spawn_car() -> void:
 	car.exit_point = exit_point
 	car.fuckoff = fuckoff
 
-	car.road_direction = road_direction
+	#car.road_direction = road_direction
 
 
 func _on_timer_timeout() -> void:
