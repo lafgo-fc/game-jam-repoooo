@@ -1102,6 +1102,8 @@ texture = ExtResource("2_ls8i0")
 sources/0 = SubResource("TileSetAtlasSource_xptqv")
 sources/1 = SubResource("TileSetAtlasSource_uaidk")
 
+[sub_resource type="GDScript" id="GDScript_uaidk"]
+
 [node name="test one" type="Node2D" unique_id=1756665684]
 
 [node name="TileMap" type="TileMap" parent="." unique_id=547225761]
@@ -1153,6 +1155,7 @@ spawn_time = 20.0
 
 [node name="waypoints" type="Node2D" parent="." unique_id=193136837]
 position = Vector2(3, 5)
+script = SubResource("GDScript_uaidk")
 
 [node name="p1" type="Marker2D" parent="waypoints" unique_id=28400208]
 position = Vector2(-204, 146)

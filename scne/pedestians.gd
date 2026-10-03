@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+#sctipts and scenes import
 @onready var npc_1 = $"npc 1"
 @onready var traffic_light = $"."
 @onready var npc_2 = $"npc 2"
@@ -7,6 +7,22 @@ extends CharacterBody2D
 @onready var npc_4 = $"npc 4"
 @onready var npc_5 = $"npc 5"
 @onready var npc_6 = $"npc 6"
+
+
+# adding markers
+@onready var pt_1 = $waypoints/p1
+@onready var pt_2 = $waypoints/p2
+@onready var pt_3 = $waypoints/p3
+@onready var pt_4 = $waypoints/p4
+@onready var pt_5 = $waypoints/p5
+@onready var pt_6 = $waypoints/p6
+@onready var pt_7 = $waypoints/p7
+@onready var pt_8 = $waypoints/p8
+@onready var pt_9 = $waypoints/p9
+@onready var pt_10 = $waypoints/p10
+@onready var pt_11 = $waypoints/p11
+
+# essential vars
 var near_pt : Marker2D
 var last_direction : String
 var npc_inside : bool = false
