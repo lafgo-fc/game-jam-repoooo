@@ -78,12 +78,17 @@ func process_animation(direction: Vector2):
 
 # here we are checking our next pt
 func nex_pt():
-	print("nex_pt called")
-	print("near pt " , near_pt)
-	print("pt_1 ", pt_1)
 	if near_pt == pt_1:
-		print("npc reached")
 		var possible_pt = [pt_3,pt_8 , pt_2 ]
+		near_pt = possible_pt.pick_random()
+	elif near_pt == pt_2:
+		var possible_pt = [pt_1,pt_4,pt_6]
+		near_pt = possible_pt.pick_random()
+	elif near_pt == pt_3:
+		var possible_pt = [pt_4,pt_7,pt_11]
+		near_pt = possible_pt.pick_random()
+	elif near_pt == pt_4:
+		var possible_pt = [pt_9,pt_3,pt_2]
 		near_pt = possible_pt.pick_random()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
