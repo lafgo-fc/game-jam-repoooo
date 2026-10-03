@@ -1134,18 +1134,22 @@ fuckoff = NodePath("../fuckoffpoint")
 [node name="NpcSpawner" parent="." unique_id=2056746993 node_paths=PackedStringArray("near_pt") instance=ExtResource("5_uaidk")]
 position = Vector2(-770, 158)
 near_pt = NodePath("../waypoints/p1")
+spawn_time = 11.0
 
 [node name="NpcSpawner2" parent="." unique_id=2136522040 node_paths=PackedStringArray("near_pt") instance=ExtResource("5_uaidk")]
 position = Vector2(53, -446)
 near_pt = NodePath("../waypoints/p4")
+spawn_time = 15.0
 
 [node name="NpcSpawner3" parent="." unique_id=1458077235 node_paths=PackedStringArray("near_pt") instance=ExtResource("5_uaidk")]
 position = Vector2(-190, -436)
 near_pt = NodePath("../waypoints/p2")
+spawn_time = 8.0
 
 [node name="NpcSpawner4" parent="." unique_id=1979739054 node_paths=PackedStringArray("near_pt") instance=ExtResource("5_uaidk")]
 position = Vector2(704, 156)
 near_pt = NodePath("../waypoints/p3")
+spawn_time = 20.0
 
 [node name="waypoints" type="Node2D" parent="." unique_id=193136837]
 position = Vector2(3, 5)
