@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var npc_3 =  $"npc 3"
 @onready var npc_4 = $"npc 4"
 @onready var npc_5 = $"npc 5"
+@onready var npc_6 = $"npc 6"
 
 @export var p1: Marker2D
 @export var p2: Marker2D
@@ -28,7 +29,7 @@ const SPEED = 30.0
 var reached_p1 = false
 func _ready():
 	add_to_group("npc")
-	npc_list = [npc_1,npc_2,npc_3,npc_4,npc_5]
+	npc_list = [npc_1,npc_2,npc_3,npc_4,npc_5,npc_6]
 	npc_name = npc_list.pick_random()
 	for npc in npc_list:
 		npc.hide()
@@ -67,8 +68,6 @@ func process_animation(direction: Vector2):
 		npc_name.play("top")
 	elif direction.y < 0 :
 		npc_name.play("front")
-
-
 
 
 
