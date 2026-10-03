@@ -3,6 +3,7 @@ extends Node
 var traffic_right_left = false 
 var traffic_front_down = false 
 var car_pos : Vector2
+var light : String = "red in front"
 
 
 # Called when the node enters the scene tree for the first time.

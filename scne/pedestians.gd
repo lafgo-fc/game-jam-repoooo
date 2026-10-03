@@ -1,7 +1,7 @@
 extends CharacterBody2D
 #sctipts and scenes import
 @onready var npc_1 = $"npc 1"
-@onready var traffic_light = $"."
+@onready var traffic_light = $"../../TrafficLight"
 @onready var npc_2 = $"npc 2"
 @onready var npc_3 =  $"npc 3"
 @onready var npc_4 = $"npc 4"
@@ -28,6 +28,7 @@ var last_direction : String
 var npc_inside : bool = false
 var npc_name : AnimatedSprite2D
 var npc_list : Array[AnimatedSprite2D]
+var stop_signal : bool
 
 const SPEED = 30.0
 
@@ -49,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	if distance < 5.0:
 		nex_pt()
 		return
-	if npc_inside == true:
+	if npc_inside == true or stop_signal == true:
 		velocity = Vector2.ZERO
 		npc_name.play("idle " + last_direction)
 		return
@@ -61,6 +62,7 @@ func _physics_process(delta: float) -> void:
 
 
 func process_animation(direction: Vector2):
+	
 	if abs(direction.x)>abs(direction.y):
 		if direction.x > 0:
 			npc_name.play("right")
@@ -79,8 +81,14 @@ func process_animation(direction: Vector2):
 # here we are checking our next pt
 func nex_pt():
 	if near_pt == pt_1:
-		var possible_pt = [pt_3,pt_8 , pt_2 ]
+		var possible_pt = [pt_3 , pt_2 , pt_8]
 		near_pt = possible_pt.pick_random()
+		
+		if GameData.light == "red in right" or GameData.light == "green in front":
+			if possible_pt == [pt_3]:
+				stop_signal = true
+			else:
+				false
 	elif near_pt == pt_2:
 		var possible_pt = [pt_1,pt_4,pt_6]
 		near_pt = possible_pt.pick_random()
