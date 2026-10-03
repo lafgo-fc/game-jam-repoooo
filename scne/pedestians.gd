@@ -85,7 +85,7 @@ func nex_pt():
 		near_pt = possible_pt.pick_random()
 		
 		if GameData.light == "red in right" or GameData.light == "green in front":
-			if possible_pt == [pt_3]:
+			if possible_pt == pt_3:
 				stop_signal = true
 			else:
 				false
@@ -93,8 +93,13 @@ func nex_pt():
 		var possible_pt = [pt_1,pt_4,pt_6]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_3:
-		var possible_pt = [pt_4,pt_7,pt_11]
+		var possible_pt = [pt_4,pt_7,pt_11,pt_1]
 		near_pt = possible_pt.pick_random()
+		if GameData.light == "red in right" or GameData.light == "green in front":
+			if possible_pt == pt_1:
+				stop_signal = true
+			else:
+				false
 	elif near_pt == pt_4:
 		var possible_pt = [pt_9,pt_3,pt_2]
 		near_pt = possible_pt.pick_random()
