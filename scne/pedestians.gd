@@ -31,7 +31,7 @@ var npc_list : Array[AnimatedSprite2D]
 
 const SPEED = 30.0
 
-var reached_near_pt = false
+
 func _ready():
 	add_to_group("npc")
 	npc_list = [npc_1,npc_2,npc_3,npc_4,npc_5,npc_6]
@@ -44,15 +44,12 @@ func _physics_process(delta: float) -> void:
 	if near_pt == null:
 		return
 
-	if reached_near_pt:
-		velocity = Vector2.ZERO
-		return
-
 	var distance = global_position.distance_to(near_pt.global_position)
 	var direction = global_position.direction_to(near_pt.global_position)
-
-	if distance < 8.0 or npc_inside == true:
-		reached_near_pt = true
+	if distance < 5.0:
+		nex_pt()
+		return
+	if npc_inside == true:
 		velocity = Vector2.ZERO
 		npc_name.play("idle " + last_direction)
 		return
@@ -79,7 +76,12 @@ func process_animation(direction: Vector2):
 			npc_name.play("top")
 			last_direction = "top"
 
-
+# here we are checking our next pt
+func nex_pt():
+	if near_pt == pt_1:
+		print("npc reached")
+		var possible_pt = [pt_3,pt_8 , pt_2 ]
+		near_pt = possible_pt.pick_random()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body != self and body.is_in_group("npc"):
