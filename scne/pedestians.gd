@@ -10,17 +10,17 @@ extends CharacterBody2D
 
 
 # adding markers
-@onready var pt_1 = $waypoints/p1
-@onready var pt_2 = $waypoints/p2
-@onready var pt_3 = $waypoints/p3
-@onready var pt_4 = $waypoints/p4
-@onready var pt_5 = $waypoints/p5
-@onready var pt_6 = $waypoints/p6
-@onready var pt_7 = $waypoints/p7
-@onready var pt_8 = $waypoints/p8
-@onready var pt_9 = $waypoints/p9
-@onready var pt_10 = $waypoints/p10
-@onready var pt_11 = $waypoints/p11
+@onready var pt_1 = $"../../waypoints/p1"
+@onready var pt_2 = $"../../waypoints/p2"
+@onready var pt_3 = $"../../waypoints/p3"
+@onready var pt_4 = $"../../waypoints/p4"
+@onready var pt_5 = $"../../waypoints/p5"
+@onready var pt_6 = $"../../waypoints/p6"
+@onready var pt_7 = $"../../waypoints/p7"
+@onready var pt_8 = $"../../waypoints/p8"
+@onready var pt_9 = $"../../waypoints/p9"
+@onready var pt_10 = $"../../waypoints/p10"
+@onready var pt_11 = $"../../waypoints/p11"
 
 # essential vars
 var near_pt : Marker2D
@@ -78,6 +78,9 @@ func process_animation(direction: Vector2):
 
 # here we are checking our next pt
 func nex_pt():
+	print("nex_pt called")
+	print("near pt " , near_pt)
+	print("pt_1 ", pt_1)
 	if near_pt == pt_1:
 		print("npc reached")
 		var possible_pt = [pt_3,pt_8 , pt_2 ]
