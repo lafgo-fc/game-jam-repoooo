@@ -43,6 +43,7 @@ func _ready():
 	npc_name.show()
 
 func _physics_process(delta: float) -> void:
+	print(GameData.light)
 	if near_pt == null:
 		return
 
@@ -117,7 +118,22 @@ func  check_signal():
 	elif previous_pt == pt_4 and near_pt == pt_2:
 		if GameData.light == "red in right" or GameData.light == "green in front":
 			stop_signal = true
-
+	# pt2 → pt1
+	elif previous_pt == pt_2 and near_pt == pt_1:
+		if GameData.light == "red in front" or GameData.light == "green in right":
+			stop_signal = true
+	# pt1 → pt2
+	elif previous_pt == pt_1 and near_pt == pt_2:
+		if GameData.light == "red in front" or GameData.light == "green in right":
+			stop_signal = true
+	# pt4 → pt3
+	elif previous_pt == pt_4 and near_pt == pt_3:
+		if GameData.light == "red in front" or GameData.light == "green in right":
+			stop_signal = true
+	# pt3 → pt4
+	elif previous_pt == pt_3 and near_pt == pt_4:
+		if GameData.light == "red in front" or GameData.light == "green in right":
+			stop_signal = true
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body != self and body.is_in_group("npc"):
