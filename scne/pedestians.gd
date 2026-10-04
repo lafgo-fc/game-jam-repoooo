@@ -67,14 +67,14 @@ func _physics_process(delta: float) -> void:
 		if (last_direction == "right" and other_npc.last_direction == "left") \
 		or (last_direction == "left" and other_npc.last_direction == "right"):
 
-			other_npc.velocity.x = direction.x * SPEED
-			other_npc.velocity.y = side_amt
+			velocity.x = direction.x * SPEED
+			velocity.y = side_amt
 
 		elif (last_direction == "top" and other_npc.last_direction == "front") \
 		or (last_direction == "front" and other_npc.last_direction == "top"):
 
-			other_npc.velocity.y = direction.y * SPEED
-			other_npc.velocity.x = side_amt
+			velocity.y = direction.y * SPEED
+			velocity.x = side_amt
 
 		move_and_slide()
 
