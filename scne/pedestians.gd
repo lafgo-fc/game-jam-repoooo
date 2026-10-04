@@ -30,6 +30,7 @@ var npc_name : AnimatedSprite2D
 var npc_list : Array[AnimatedSprite2D]
 var stop_signal : bool
 var previous_pt : Marker2D
+var different_directional_npc : bool 
 
 const SPEED = 30.0
 
@@ -45,7 +46,8 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	if near_pt == null:
 		return
-
+	if different_directional_npc == true:
+		print("different directional npc found")
 	var distance = global_position.distance_to(near_pt.global_position)
 	var direction = global_position.direction_to(near_pt.global_position)
 	if distance < 5.0:
@@ -135,9 +137,12 @@ func  check_signal():
 			stop_signal = true
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body != self and body.is_in_group("npc") and last_direction == body.last_direction:
-		npc_inside = true
-
+	if body != self and body.is_in_group("npc"):
+		different_directional_npc = false
+		if last_direction == body.last_direction:
+			npc_inside = true
+		else :
+			different_directional_npc = true
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
