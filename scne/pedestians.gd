@@ -43,7 +43,6 @@ func _ready():
 	npc_name.show()
 
 func _physics_process(delta: float) -> void:
-	print(GameData.light)
 	if near_pt == null:
 		return
 
@@ -137,6 +136,8 @@ func  check_signal():
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body != self and body.is_in_group("npc"):
+		print("my direction ", last_direction)
+		print("other direction " , body.last_direction)
 		print("npc")
 		npc_inside = true
 
