@@ -135,10 +135,7 @@ func  check_signal():
 			stop_signal = true
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body != self and body.is_in_group("npc"):
-		print("my direction ", last_direction)
-		print("other direction " , body.last_direction)
-		print("npc")
+	if body != self and body.is_in_group("npc") and last_direction == body.last_direction:
 		npc_inside = true
 
 
