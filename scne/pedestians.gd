@@ -32,8 +32,13 @@ var stop_signal : bool
 var previous_pt : Marker2D
 var different_directional_npc : bool 
 var other_npc : Node2D = null
+var avoiding: bool = false
+var avoid_time : float = 0
 
+# constants
 const SPEED = 30.0
+const avoid_duration = 0.8
+const avoid_strength = 40
 
 
 func _ready():
@@ -47,16 +52,44 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	if near_pt == null:
 		return
-	if different_directional_npc == true:
-		if (last_direction == "right" and other_npc.last_direction == "left") or (last_direction == "left" and other_npc.last_direction == "right"):
-			print("right left collided")
-		elif (last_direction == "top" and other_npc.last_direction == "front") or (last_direction == "front" and other_npc.last_direction == "top"):
-			print("top front collided")
+
+	if different_directional_npc and other_npc != null and not avoiding:
+		avoiding = true
+		avoid_time = 0.0
+
+	if avoiding:
+		avoid_time += delta
+
+		var t = avoid_time / avoid_duration
+		var side_amt = sin(t * PI) * avoid_strength
+		var direction = global_position.direction_to(near_pt.global_position)
+
+		if (last_direction == "right" and other_npc.last_direction == "left") \
+		or (last_direction == "left" and other_npc.last_direction == "right"):
+
+			other_npc.velocity.x = direction.x * SPEED
+			other_npc.velocity.y = side_amt
+
+		elif (last_direction == "top" and other_npc.last_direction == "front") \
+		or (last_direction == "front" and other_npc.last_direction == "top"):
+
+			other_npc.velocity.y = direction.y * SPEED
+			other_npc.velocity.x = side_amt
+
+		move_and_slide()
+
+		if avoid_time >= avoid_duration:
+			avoiding = false
+			avoid_time = 0.0
+			different_directional_npc = false
+
+		return
+
 		
 		
 	var distance = global_position.distance_to(near_pt.global_position)
 	var direction = global_position.direction_to(near_pt.global_position)
-	if distance < 5.0:
+	if distance < 5.0:	
 		nex_pt()
 		return
 	check_signal()
