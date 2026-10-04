@@ -29,6 +29,7 @@ var npc_inside : bool = false
 var npc_name : AnimatedSprite2D
 var npc_list : Array[AnimatedSprite2D]
 var stop_signal : bool
+var previous_pt : Marker2D
 
 const SPEED = 30.0
 
@@ -50,15 +51,14 @@ func _physics_process(delta: float) -> void:
 	if distance < 5.0:
 		nex_pt()
 		return
+	check_signal()
 	if npc_inside == true or stop_signal == true:
 		velocity = Vector2.ZERO
 		npc_name.play("idle " + last_direction)
-		return
-
-	velocity = direction * SPEED
-	move_and_slide()
-
-	process_animation(direction)
+	else:
+		velocity = direction * SPEED
+		move_and_slide()
+		process_animation(direction)
 
 
 func process_animation(direction: Vector2):
@@ -80,29 +80,44 @@ func process_animation(direction: Vector2):
 
 # here we are checking our next pt
 func nex_pt():
+	previous_pt = near_pt
 	if near_pt == pt_1:
 		var possible_pt = [pt_3 , pt_2 , pt_8]
 		near_pt = possible_pt.pick_random()
-		
-		if GameData.light == "red in right" or GameData.light == "green in front":
-			if possible_pt.has(pt_3):
-				stop_signal = true
-			else:
-				false
 	elif near_pt == pt_2:
 		var possible_pt = [pt_1,pt_4,pt_6]
 		near_pt = possible_pt.pick_random()
+
 	elif near_pt == pt_3:
 		var possible_pt = [pt_4,pt_7,pt_11,pt_1]
 		near_pt = possible_pt.pick_random()
-		if GameData.light == "red in right" or GameData.light == "green in front":
-			if possible_pt.has(pt_1):
-				stop_signal = true
-			else:
-				false
+
 	elif near_pt == pt_4:
 		var possible_pt = [pt_9,pt_3,pt_2]
 		near_pt = possible_pt.pick_random()
+func  check_signal():
+	stop_signal = false
+
+	# pt1 → pt3
+	if previous_pt == pt_1 and near_pt == pt_3:
+		if GameData.light == "red in right" or GameData.light == "green in front":
+			stop_signal = true
+
+	# pt2 → pt4
+	elif previous_pt == pt_2 and near_pt == pt_4:
+		if GameData.light == "red in right" or GameData.light == "green in front":
+			stop_signal = true
+
+	# pt3 → pt1
+	elif previous_pt == pt_3 and near_pt == pt_1:
+		if GameData.light == "red in right" or GameData.light == "green in front":
+			stop_signal = true
+
+	# pt4 → pt2
+	elif previous_pt == pt_4 and near_pt == pt_2:
+		if GameData.light == "red in right" or GameData.light == "green in front":
+			stop_signal = true
+
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body != self and body.is_in_group("npc"):
