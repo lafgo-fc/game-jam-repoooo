@@ -38,7 +38,7 @@ var avoid_time : float = 0
 # constants
 const SPEED = 30.0
 const avoid_duration = 0.8
-const avoid_strength = 40
+const avoid_strength = 80
 
 
 func _ready():
@@ -64,18 +64,20 @@ func _physics_process(delta: float) -> void:
 		var side_amt = sin(t * PI) * avoid_strength
 		var direction = global_position.direction_to(near_pt.global_position)
 
-		if (last_direction == "right" and other_npc.last_direction == "left") \
-		or (last_direction == "left" and other_npc.last_direction == "right"):
+		if (last_direction == "right" and other_npc.last_direction == "left"):
 
 			velocity.x = direction.x * SPEED
 			velocity.y = side_amt
-
-		elif (last_direction == "top" and other_npc.last_direction == "front") \
-		or (last_direction == "front" and other_npc.last_direction == "top"):
-
+		elif last_direction == "left" and other_npc.last_direction == "right":
+			velocity.x = direction.x * SPEED
+			velocity.y = -side_amt
+		elif last_direction == "top" and other_npc.last_direction == "front":
 			velocity.y = direction.y * SPEED
 			velocity.x = side_amt
 
+		elif last_direction == "front" and other_npc.last_direction == "top":
+			velocity.y = direction.y * SPEED
+			velocity.x = -side_amt
 		move_and_slide()
 
 		if avoid_time >= avoid_duration:
