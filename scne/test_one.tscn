@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c8lkwc0gleper"]
 
 [ext_resource type="Texture2D" uid="uid://bbim6tsly17kp" path="res://assets/map assets/CP_V1.1.0_nyknck/CP_V1.0.4_nyknck/CP_V1.0.4.png" id="1_rdy3u"]
+[ext_resource type="Script" uid="uid://b6s3utnwtc5ws" path="res://scne/test_one.gd" id="1_ylc7u"]
 [ext_resource type="Texture2D" uid="uid://dvfbwf56pi4hu" path="res://assets/map assets/CP_V1.1.0_nyknck/tilemap_packed.png" id="2_ls8i0"]
 [ext_resource type="PackedScene" uid="uid://b5hmbecyicw8j" path="res://scne/traffic_lighttt.tscn" id="3_fsm8h"]
 [ext_resource type="PackedScene" uid="uid://b1iqng1h080e" path="res://scne/spawnr_thing.tscn" id="4_f5p5n"]
@@ -1105,6 +1106,7 @@ sources/1 = SubResource("TileSetAtlasSource_uaidk")
 [sub_resource type="GDScript" id="GDScript_uaidk"]
 
 [node name="test one" type="Node2D" unique_id=1756665684]
+script = ExtResource("1_ylc7u")
 
 [node name="TileMap" type="TileMap" parent="." unique_id=547225761]
 tile_set = SubResource("TileSet_s7wsd")
