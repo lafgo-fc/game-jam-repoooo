@@ -50,40 +50,35 @@ func _ready():
 	npc_name.show()
 
 func _physics_process(delta: float) -> void:
+	print(avoiding)
 	if near_pt == null:
 		return
 
 	if different_directional_npc and other_npc != null and not avoiding:
 		avoiding = true
 		avoid_time = 0.0
+	else :
+		avoiding = false
 
 	if avoiding:
-		avoid_time += delta
 
-		var t = avoid_time / avoid_duration
-		var side_amt = sin(t * PI) * avoid_strength
 		var direction = global_position.direction_to(near_pt.global_position)
 
 		if (last_direction == "right" and other_npc.last_direction == "left"):
 
 			velocity.x = direction.x * SPEED
-			velocity.y = side_amt
+			velocity.y = 80
 		elif last_direction == "left" and other_npc.last_direction == "right":
 			velocity.x = direction.x * SPEED
-			velocity.y = -side_amt
+			velocity.y = -80
 		elif last_direction == "top" and other_npc.last_direction == "front":
 			velocity.y = direction.y * SPEED
-			velocity.x = side_amt
+			velocity.x = 80
 
 		elif last_direction == "front" and other_npc.last_direction == "top":
 			velocity.y = direction.y * SPEED
-			velocity.x = -side_amt
+			velocity.x = -80
 		move_and_slide()
-
-		if avoid_time >= avoid_duration:
-			avoiding = false
-			avoid_time = 0.0
-			different_directional_npc = false
 
 		return
 
@@ -128,7 +123,7 @@ func nex_pt():
 		var possible_pt = [pt_3 , pt_2 , pt_8]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_2:
-		var possible_pt = [pt_1,pt_4,pt_6]
+		var possible_pt = [pt_6]
 		near_pt = possible_pt.pick_random()
 
 	elif near_pt == pt_3:
@@ -190,3 +185,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body != self and body.is_in_group("npc"):
 		npc_inside = false
+
+		
