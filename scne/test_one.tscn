@@ -1200,3 +1200,7 @@ position = Vector2(535, 82)
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("4_ls8i0")
+
+[node name="daytime" type="Timer" parent="." unique_id=428682100]
+wait_time = 1440.0
+autostart = true
