@@ -146,6 +146,6 @@ position = Vector2(3, 2)
 sprite_frames = SubResource("SpriteFrames_s7wsd")
 animation = &"pizza car"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D" unique_id=1023565779]
-position = Vector2(1, -1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1023565779]
+position = Vector2(4, 1)
 shape = SubResource("RectangleShape2D_s7wsd")
