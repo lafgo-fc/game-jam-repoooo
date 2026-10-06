@@ -34,6 +34,7 @@ var different_directional_npc : bool
 var other_npc : Node2D = null
 var avoiding: bool = false
 var avoid_time : float = 0
+var reached_pt : Marker2D
 
 # constants
 const SPEED = 30.0
@@ -85,7 +86,9 @@ func _physics_process(delta: float) -> void:
 		
 	var distance = global_position.distance_to(near_pt.global_position)
 	var direction = global_position.direction_to(near_pt.global_position)
-	if distance < 5.0:	
+	if distance < 5.0:
+		near_pt = reached_pt
+		print(reached_pt)
 		nex_pt()
 		return
 	check_signal()
@@ -114,6 +117,7 @@ func process_animation(direction: Vector2):
 		else :
 			npc_name.play("top")
 			last_direction = "top"
+	
 
 # here we are checking our next pt
 func nex_pt():
@@ -130,7 +134,7 @@ func nex_pt():
 		near_pt = possible_pt.pick_random()
 
 	elif near_pt == pt_4:
-		var possible_pt = [pt_9,pt_3,pt_2]
+		var possible_pt = [pt_9]
 		near_pt = possible_pt.pick_random()
 func  check_signal():
 	stop_signal = false
@@ -191,4 +195,3 @@ func timer_updates():
 		print("fcking afternoon")
 	elif GameData.daycycle == "night":
 		print("fcking night")
-		
