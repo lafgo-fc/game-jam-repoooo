@@ -51,7 +51,6 @@ func _ready():
 	npc_name.show()
 
 func _physics_process(delta: float) -> void:
-	print(avoiding)
 	if near_pt == null:
 		return
 
