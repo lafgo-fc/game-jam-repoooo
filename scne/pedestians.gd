@@ -34,7 +34,6 @@ var different_directional_npc : bool
 var other_npc : Node2D = null
 var avoiding: bool = false
 var avoid_time : float = 0
-var daycycle : String
 
 # constants
 const SPEED = 30.0
@@ -186,10 +185,10 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body != self and body.is_in_group("npc"):
 		npc_inside = false
 func timer_updates():
-	if daycycle == "morning":
+	if GameData.daycycle == "morning":
 		print("fcking morning")
-	elif daycycle == "afternoon":
+	elif GameData.daycycle == "afternoon":
 		print("fcking afternoon")
-	elif daycycle == "night":
+	elif GameData.daycycle == "night":
 		print("fcking night")
 		
