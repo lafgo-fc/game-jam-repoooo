@@ -1,5 +1,5 @@
 extends Node
-
+var daycycle : String
 var traffic_right_left = false 
 var traffic_front_down = false 
 var car_pos : Vector2
