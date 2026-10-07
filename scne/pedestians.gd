@@ -130,7 +130,7 @@ func nex_pt():
 		var possible_pt = [pt_3 , pt_2 , pt_8]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_2:
-		var possible_pt = [pt_6]
+		var possible_pt = [pt_6,pt_10,pt_4,pt_1]
 		near_pt = possible_pt.pick_random()
 
 	elif near_pt == pt_3:
@@ -199,8 +199,3 @@ func timer_updates():
 		print("fcking afternoon")
 	elif GameData.daycycle == "night":
 		print("fcking night")
-
-# handling the exit pts
-
-
-		
