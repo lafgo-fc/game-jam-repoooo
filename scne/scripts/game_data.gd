@@ -4,6 +4,7 @@ var traffic_right_left = false
 var traffic_front_down = false 
 var car_pos : Vector2
 var light : String = "red in front"
+var reputation : int = 0
 
 
 # Called when the node enters the scene tree for the first time.

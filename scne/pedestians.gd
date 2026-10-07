@@ -201,4 +201,7 @@ func timer_updates():
 
 func exit_pt():
 	if reached_pt == pt_9 or reached_pt ==pt_7 or reached_pt == pt_8 or reached_pt == pt_10 or reached_pt == pt_5 or reached_pt == pt_6:
-		print("exit")
+		queue_free()
+		GameData.reputation += 100
+		print(GameData.reputation)
+		
