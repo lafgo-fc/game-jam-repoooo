@@ -1163,7 +1163,7 @@ script = SubResource("GDScript_uaidk")
 position = Vector2(-204, 146)
 
 [node name="p9" type="Marker2D" parent="waypoints" unique_id=87506571]
-position = Vector2(393, -70)
+position = Vector2(307, -73)
 
 [node name="p5" type="Marker2D" parent="waypoints" unique_id=973808347]
 position = Vector2(46, -454)

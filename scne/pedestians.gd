@@ -88,11 +88,9 @@ func _physics_process(delta: float) -> void:
 	var direction = global_position.direction_to(near_pt.global_position)
 	if distance < 5.0:
 		reached_pt = near_pt
-		print(reached_pt)
 		nex_pt()
 		return
 	check_signal()
-	exit_pt()
 	if npc_inside == true or stop_signal == true:
 		velocity = Vector2.ZERO
 		npc_name.play("idle " + last_direction)
@@ -123,6 +121,11 @@ func process_animation(direction: Vector2):
 # here we are checking our next pt
 func nex_pt():
 	previous_pt = near_pt
+	if reached_pt == pt_9 or reached_pt ==pt_7 or reached_pt == pt_8 or reached_pt == pt_10 or reached_pt == pt_5 or reached_pt == pt_6:
+		queue_free()
+		print("reached exit")
+		GameData.reputation += 100
+		print(GameData.reputation)
 	if near_pt == pt_1:
 		var possible_pt = [pt_3 , pt_2 , pt_8]
 		near_pt = possible_pt.pick_random()
@@ -199,9 +202,5 @@ func timer_updates():
 
 # handling the exit pts
 
-func exit_pt():
-	if reached_pt == pt_9 or reached_pt ==pt_7 or reached_pt == pt_8 or reached_pt == pt_10 or reached_pt == pt_5 or reached_pt == pt_6:
-		queue_free()
-		GameData.reputation += 100
-		print(GameData.reputation)
+
 		
