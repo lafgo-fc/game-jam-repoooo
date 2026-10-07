@@ -3,7 +3,7 @@
 
 > **One intersection. Seven days. Increasing chaos. Don't get fired.**
 
-**[Game Name]** is a **2D top-down traffic management game** where you play as a newly recruited traffic officer assigned to one of the busiest intersections in the city.
+**Rush hour** is a **2D top-down traffic management game** where you play as a newly recruited traffic officer assigned to one of the busiest intersections in the city.
 
 Your mission sounds simple: **keep the traffic moving.**
 
