@@ -9,8 +9,10 @@ var morning_color = Color(1,0.9,0.8)
 var afternoon_color = Color(1,1,1)
 var evening_color = Color(1,0.7,0.5)
 var night_color = Color(0.25,0.3,0.5)
-var time_spent = 1440  - day_timer.time_left  # this gives us the time we have spent in the day
+ # this gives us the time we have spent in the day
 func time_op():
+	var time_spent = 1440  - day_timer.time_left 
+	clock.text = str(int(time_spent))
 	if time_spent <= 360:
 		GameData.daycycle = "morning"
 	elif time_spent <= 600 :
@@ -25,7 +27,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	clock.text(time_spent)
 	var target_color : Color
 	time_op()
 	if GameData.daycycle == "morning":

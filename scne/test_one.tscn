@@ -1210,5 +1210,7 @@ autostart = true
 [node name="day-night manager" type="CanvasModulate" parent="." unique_id=1561318286]
 
 [node name="clock" type="Label" parent="." unique_id=1365113893]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 302.0
+offset_top = -213.0
+offset_right = 359.0
+offset_bottom = -173.0
