@@ -87,12 +87,12 @@ func _physics_process(delta: float) -> void:
 	var distance = global_position.distance_to(near_pt.global_position)
 	var direction = global_position.direction_to(near_pt.global_position)
 	if distance < 5.0:
-		print(near_pt)
 		reached_pt = near_pt
 		print(reached_pt)
 		nex_pt()
 		return
 	check_signal()
+	exit_pt()
 	if npc_inside == true or stop_signal == true:
 		velocity = Vector2.ZERO
 		npc_name.play("idle " + last_direction)
@@ -196,3 +196,9 @@ func timer_updates():
 		print("fcking afternoon")
 	elif GameData.daycycle == "night":
 		print("fcking night")
+
+# handling the exit pts
+
+func exit_pt():
+	if reached_pt == pt_9 or reached_pt ==pt_7 or reached_pt == pt_8 or reached_pt == pt_10 or reached_pt == pt_5 or reached_pt == pt_6:
+		print("exit")
