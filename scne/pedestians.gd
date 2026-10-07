@@ -87,7 +87,8 @@ func _physics_process(delta: float) -> void:
 	var distance = global_position.distance_to(near_pt.global_position)
 	var direction = global_position.direction_to(near_pt.global_position)
 	if distance < 5.0:
-		near_pt = reached_pt
+		print(near_pt)
+		reached_pt = near_pt
 		print(reached_pt)
 		nex_pt()
 		return
@@ -134,7 +135,7 @@ func nex_pt():
 		near_pt = possible_pt.pick_random()
 
 	elif near_pt == pt_4:
-		var possible_pt = [pt_9]
+		var possible_pt = [pt_9,pt_3,pt_5, pt_2]
 		near_pt = possible_pt.pick_random()
 func  check_signal():
 	stop_signal = false
