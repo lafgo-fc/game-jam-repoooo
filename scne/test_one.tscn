@@ -1208,3 +1208,7 @@ wait_time = 1440.0
 autostart = true
 
 [node name="day-night manager" type="CanvasModulate" parent="." unique_id=1561318286]
+
+[node name="clock" type="Label" parent="." unique_id=1365113893]
+offset_right = 40.0
+offset_bottom = 23.0
