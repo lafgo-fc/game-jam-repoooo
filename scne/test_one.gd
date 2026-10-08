@@ -9,6 +9,8 @@ var morning_color = Color(1,0.9,0.8)
 var afternoon_color = Color(1,1,1)
 var evening_color = Color(1,0.7,0.5)
 var night_color = Color(0.25,0.3,0.5)
+var min : int = 0
+var hour : int = 0
  # this gives us the time we have spent in the day
 func time_op():
 	var time_spent = 1440  - day_timer.time_left 
@@ -21,6 +23,8 @@ func time_op():
 		GameData.daycycle = "evening"
 	elif time_spent <= 1440:
 		GameData.daycycle = "night"
+		
+
 
 func _ready() -> void:
 	pass
@@ -29,6 +33,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var target_color : Color
 	time_op()
+	clock_time()
 	if GameData.daycycle == "morning":
 		target_color = morning_color
 	elif GameData.daycycle == "afternoon":
@@ -38,3 +43,11 @@ func _process(delta: float) -> void:
 	elif GameData.daycycle == "night":
 		target_color = night_color
 	surroundings.color = surroundings.color.lerp(target_color,delta*0.5)
+
+func clock_time():
+	var time_spent = 1440  - day_timer.time_left 
+	print(hour , ":" , min)
+	time_spent = min
+	if min == 60:
+		hour +=hour
+		min = 0
