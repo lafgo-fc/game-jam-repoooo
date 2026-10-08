@@ -14,7 +14,7 @@ var hour : int
  # this gives us the time we have spent in the day
 func time_op():
 	var time_spent = 1440  - day_timer.time_left 
-	clock.text = str(int(time_spent))
+	clock.text = str(hour , ":", min)
 	if time_spent <= 360:
 		GameData.daycycle = "morning"
 	elif time_spent <= 600 :
