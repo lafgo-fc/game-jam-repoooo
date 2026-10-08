@@ -13,21 +13,22 @@ var min : int
 var hour : int 
  # this gives us the time we have spent in the day
 func time_op():
+	
 	var time_spent = 1440  - day_timer.time_left 
 	clock.text = str(hour , ":", min)
-	if time_spent <= 360:
-		GameData.daycycle = "morning"
-	elif time_spent <= 600 :
-		GameData.daycycle = "afternoon"
-	elif time_spent <= 780 :
-		GameData.daycycle = "evening"
-	elif time_spent <= 1440:
+	if time_spent <= 360 or  time_spent >=1201 :
 		GameData.daycycle = "night"
+	elif time_spent >= 721 and time_spent <= 1080 :
+		GameData.daycycle = "afternoon"
+	elif time_spent >= 1081 and time_spent <= 1200 :
+		GameData.daycycle = "evening"
+	elif time_spent >= 361 and time_spent <= 720:
+		GameData.daycycle = "morning"
 		
 
 
 func _ready() -> void:
-	pass
+	day_timer.start(900)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -47,6 +48,5 @@ func _process(delta: float) -> void:
 func clock_time():
 	var time_spent = 1440  - day_timer.time_left 
 	var total_min = int(time_spent)
-	hour = 6 + total_min / 60
+	hour =  total_min / 60
 	min = total_min % 60
-	print(hour , ":" , min)
