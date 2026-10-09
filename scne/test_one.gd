@@ -15,7 +15,13 @@ var hour : int
 func time_op():
 	
 	var time_spent = 1440  - day_timer.time_left 
-	clock.text = str(hour , ":", min)
+	print("Time left: ", day_timer.time_left)
+	print("Wait time: ", day_timer.wait_time)
+	if time_spent == 1440:
+		time_spent = 0
+		hour = 0
+		min = 0
+	clock.text = "%02d:%02d" % [hour, min]
 	if time_spent >= 1439:
 		time_spent = 0
 		hour = 0 
@@ -32,7 +38,8 @@ func time_op():
 
 
 func _ready() -> void:
-	day_timer.start(10)
+	day_timer.wait_time = 1440
+	day_timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -51,7 +58,7 @@ func _process(delta: float) -> void:
 
 func clock_time():
 	var time_spent = 1440  - day_timer.time_left 
-	var total_min = int(time_spent)
+	var total_min = int(time_spent) % 1440
 	hour =  total_min / 60
 	min = total_min % 60
 
