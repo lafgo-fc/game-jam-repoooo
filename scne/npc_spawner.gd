@@ -4,6 +4,9 @@ extends Node2D
 @export var near_pt: Marker2D
 @export var spawn_time : float = 3.0
 @onready var timer = $Timer
+# importing spawners
+
+
 
 func _ready() -> void:
 	timer.wait_time = spawn_time
@@ -25,3 +28,7 @@ func spawn_npc():
 
 func _on_timer_timeout() -> void:
 	spawn_npc()
+
+# managinig traffic accorging to the time
+
+		

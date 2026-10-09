@@ -2,7 +2,12 @@ extends Node2D
 @onready var day_timer = $daytime     # import the day-night timer
 @onready var surroundings = $"day-night manager"
 @onready var clock = $clock
-# gives the signal of time
+
+# adding the npc_spawners
+@onready var  spawner_1 = $NpcSpawner
+@onready var spawner_2 = $NpcSpawner2
+@onready var spawner_3 = $NpcSpawner3
+@onready var spawner_4 = $NpcSpawner4
 
 # adding the colors
 var morning_color = Color(1,0.9,0.8)
@@ -57,6 +62,27 @@ func clock_time():
 	hour =  total_min / 60
 	min = total_min % 60
 	clock.text = "%02d:%02d" % [hour, min]
-
+func manage_traffic():
+	if GameData.daycycle == "morning":
+		spawner_1.spawn_time(25)
+		spawner_2.spawn_time(35)
+		spawner_3.spawn_time(30)
+		spawner_4.spawn_time(20)
+	elif GameData.daycycle == "afternoon":
+		spawner_1.spawn_time(20)
+		spawner_2.spawn_time(25)
+		spawner_3.spawn_time(15)
+		spawner_4.spawn_time(30)
+	elif GameData.daycycle == "evening":
+		spawner_1.spawn_time(10)
+		spawner_2.spawn_time(15)
+		spawner_3.spawn_time(8)
+		spawner_4.spawn_time(10)
+	elif GameData.daycycle == "night":
+		spawner_1.spawn_time(30)
+		spawner_2.spawn_time(35)
+		spawner_3.spawn_time(40)
+		spawner_4.spawn_time(30)
+		
 
 	
