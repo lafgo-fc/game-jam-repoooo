@@ -1214,5 +1214,3 @@ offset_left = 302.0
 offset_top = -213.0
 offset_right = 359.0
 offset_bottom = -173.0
-
-[connection signal="timeout" from="daytime" to="." method="_on_daytime_timeout"]

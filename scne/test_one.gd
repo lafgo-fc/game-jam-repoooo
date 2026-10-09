@@ -17,11 +17,6 @@ func time_op():
 	var time_spent = 1440  - day_timer.time_left 
 	print("Time left: ", day_timer.time_left)
 	print("Wait time: ", day_timer.wait_time)
-	if time_spent == 1440:
-		time_spent = 0
-		hour = 0
-		min = 0
-	clock.text = "%02d:%02d" % [hour, min]
 	if time_spent >= 1439:
 		time_spent = 0
 		hour = 0 
@@ -61,9 +56,7 @@ func clock_time():
 	var total_min = int(time_spent) % 1440
 	hour =  total_min / 60
 	min = total_min % 60
+	clock.text = "%02d:%02d" % [hour, min]
+
 
 	
-
-
-func _on_daytime_timeout() -> void:
-	day_timer.start()
