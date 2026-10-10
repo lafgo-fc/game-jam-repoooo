@@ -31,3 +31,4 @@ func _on_timer_timeout() -> void:
 
 func spawner_time(new_time:float):
 	timer.wait_time = new_time
+	timer.start()

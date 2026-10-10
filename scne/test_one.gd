@@ -41,7 +41,7 @@ func time_op():
 
 func _ready() -> void:
 	day_timer.wait_time = 1440
-	day_timer.start()
+	day_timer.start(781)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -49,17 +49,16 @@ func _process(delta: float) -> void:
 	time_op()
 	check_daycycle_changes()
 	clock_time()
+	if is_cycle_changing:
+		manage_traffic()
 	if GameData.daycycle == "morning":
 		target_color = morning_color
 	elif GameData.daycycle == "afternoon":
 		target_color = afternoon_color
-		manage_traffic()
 	elif GameData.daycycle == "evening":
 		target_color = evening_color
-		manage_traffic()
 	elif GameData.daycycle == "night":
 		target_color = night_color
-		manage_traffic()
 	surroundings.color = surroundings.color.lerp(target_color,delta*0.5)
 
 func clock_time():
@@ -74,17 +73,17 @@ func manage_traffic():
 		spawner_2.spawner_time(35)
 		spawner_3.spawner_time(30)
 		spawner_4.spawner_time(20)
-	elif GameData.daycycle == "afternoon":
+	elif GameData.daycycle == "afternoon" and is_cycle_changing:
 		spawner_1.spawner_time(20)
 		spawner_2.spawner_time(25)
 		spawner_3.spawner_time(15)
 		spawner_4.spawner_time(30)
-	elif GameData.daycycle == "evening":
+	elif GameData.daycycle == "evening" and is_cycle_changing:
 		spawner_1.spawner_time(10)
 		spawner_2.spawner_time(15)
 		spawner_3.spawner_time(8)
 		spawner_4.spawner_time(10)
-	elif GameData.daycycle == "night":
+	elif GameData.daycycle == "night" and is_cycle_changing:
 		spawner_1.spawner_time(30)
 		spawner_2.spawner_time(35)
 		spawner_3.spawner_time(40)
@@ -93,6 +92,6 @@ func manage_traffic():
 func check_daycycle_changes():
 	if GameData.daycycle != last_daycycle:
 		is_cycle_changing = true
-		GameData.daycycle = last_daycycle
+		last_daycycle = GameData.daycycle
 	else:
 		is_cycle_changing = false
