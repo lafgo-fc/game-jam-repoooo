@@ -4,10 +4,10 @@ extends Node2D
 @onready var clock = $clock
 
 # adding the npc_spawners
-@onready var  spawner_1 = $NpcSpawner
-@onready var spawner_2 = $NpcSpawner2
-@onready var spawner_3 = $NpcSpawner3
-@onready var spawner_4 = $NpcSpawner4
+@onready var  spawner_1 = $"npc spawners/NpcSpawner"
+@onready var spawner_2 = $"npc spawners/NpcSpawner2"
+@onready var spawner_3 = $"npc spawners/NpcSpawner3"
+@onready var spawner_4 = $"npc spawners/NpcSpawner4"
 
 # adding the colors
 var morning_color = Color(1,0.9,0.8)
