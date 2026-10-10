@@ -3,7 +3,7 @@ extends Node2D
 @export var npc: PackedScene
 @export var near_pt: Marker2D
 @export var spawn_time : float = 3.0
-@onready var timer = $Timer
+@onready var timer = $spawn_Timer
 # importing spawners
 
 
@@ -29,6 +29,5 @@ func spawn_npc():
 func _on_timer_timeout() -> void:
 	spawn_npc()
 
-# managinig traffic accorging to the time
-
-		
+func spawner_time(new_time:float):
+	timer.wait_time = new_time

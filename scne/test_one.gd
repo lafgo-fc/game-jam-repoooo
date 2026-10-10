@@ -48,12 +48,16 @@ func _process(delta: float) -> void:
 	clock_time()
 	if GameData.daycycle == "morning":
 		target_color = morning_color
+		manage_traffic()
 	elif GameData.daycycle == "afternoon":
 		target_color = afternoon_color
+		manage_traffic()
 	elif GameData.daycycle == "evening":
 		target_color = evening_color
+		manage_traffic()
 	elif GameData.daycycle == "night":
 		target_color = night_color
+		manage_traffic()
 	surroundings.color = surroundings.color.lerp(target_color,delta*0.5)
 
 func clock_time():
@@ -64,25 +68,22 @@ func clock_time():
 	clock.text = "%02d:%02d" % [hour, min]
 func manage_traffic():
 	if GameData.daycycle == "morning":
-		spawner_1.spawn_time(25)
-		spawner_2.spawn_time(35)
-		spawner_3.spawn_time(30)
-		spawner_4.spawn_time(20)
+		spawner_1.spawner_time(25)
+		spawner_2.spawner_time(35)
+		spawner_3.spawner_time(30)
+		spawner_4.spawner_time(20)
 	elif GameData.daycycle == "afternoon":
-		spawner_1.spawn_time(20)
-		spawner_2.spawn_time(25)
-		spawner_3.spawn_time(15)
-		spawner_4.spawn_time(30)
+		spawner_1.spawner_time(20)
+		spawner_2.spawner_time(25)
+		spawner_3.spawner_time(15)
+		spawner_4.spawner_time(30)
 	elif GameData.daycycle == "evening":
-		spawner_1.spawn_time(10)
-		spawner_2.spawn_time(15)
-		spawner_3.spawn_time(8)
-		spawner_4.spawn_time(10)
+		spawner_1.spawner_time(10)
+		spawner_2.spawner_time(15)
+		spawner_3.spawner_time(8)
+		spawner_4.spawner_time(10)
 	elif GameData.daycycle == "night":
-		spawner_1.spawn_time(30)
-		spawner_2.spawn_time(35)
-		spawner_3.spawn_time(40)
-		spawner_4.spawn_time(30)
-		
-
-	
+		spawner_1.spawner_time(30)
+		spawner_2.spawner_time(35)
+		spawner_3.spawner_time(40)
+		spawner_4.spawner_time(30)
