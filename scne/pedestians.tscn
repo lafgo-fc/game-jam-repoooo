@@ -1618,13 +1618,14 @@ radius = 6.75
 height = 18.31579
 
 [sub_resource type="Gradient" id="Gradient_12oeb"]
-offsets = PackedFloat32Array(0, 0.4698795, 0.97590363, 1)
-colors = PackedColorArray(0.7142856, 0.7142856, 0.7142856, 1, 0, 0, 0, 1, 0.22857155, 0.22857155, 0.22857155, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.5120482)
+colors = PackedColorArray(0.7142856, 0.7142856, 0.7142856, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_74c84"]
 gradient = SubResource("Gradient_12oeb")
 fill = 1
-fill_from = Vector2(0.4826087, 0.56956524)
+fill_from = Vector2(0.47826087, 0.5565217)
+fill_to = Vector2(0.9956522, 0)
 
 [node name="Pedestians" type="CharacterBody2D" unique_id=907237046 groups=["npc"]]
 script = ExtResource("1_gkco8")
