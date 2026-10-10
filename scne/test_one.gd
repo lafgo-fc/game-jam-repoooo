@@ -16,6 +16,8 @@ var evening_color = Color(1,0.7,0.5)
 var night_color = Color(0.25,0.3,0.5)
 var min : int 
 var hour : int 
+var is_cycle_changing : bool = false
+var last_daycycle = ""
  # this gives us the time we have spent in the day
 func time_op():
 	
@@ -45,10 +47,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var target_color : Color
 	time_op()
+	check_daycycle_changes()
 	clock_time()
 	if GameData.daycycle == "morning":
 		target_color = morning_color
-		manage_traffic()
 	elif GameData.daycycle == "afternoon":
 		target_color = afternoon_color
 		manage_traffic()
@@ -67,7 +69,7 @@ func clock_time():
 	min = total_min % 60
 	clock.text = "%02d:%02d" % [hour, min]
 func manage_traffic():
-	if GameData.daycycle == "morning":
+	if GameData.daycycle == "morning" and is_cycle_changing:
 		spawner_1.spawner_time(25)
 		spawner_2.spawner_time(35)
 		spawner_3.spawner_time(30)
@@ -87,3 +89,10 @@ func manage_traffic():
 		spawner_2.spawner_time(35)
 		spawner_3.spawner_time(40)
 		spawner_4.spawner_time(30)
+
+func check_daycycle_changes():
+	if GameData.daycycle != last_daycycle:
+		is_cycle_changing = true
+		GameData.daycycle = last_daycycle
+	else:
+		is_cycle_changing = false
