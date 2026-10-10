@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var npc_4 = $"npc 4"
 @onready var npc_5 = $"npc 5"
 @onready var npc_6 = $"npc 6"
+@onready var light = $PointLight2D
 
 
 # adding markers
@@ -81,6 +82,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 		return
+	show_light()
 
 		
 		
@@ -199,3 +201,9 @@ func timer_updates():
 		print("fcking afternoon")
 	elif GameData.daycycle == "night":
 		print("fcking night")
+
+func show_light():
+	if GameData.daycycle == "night" :
+		light.show()
+	else:
+		light.hide()
