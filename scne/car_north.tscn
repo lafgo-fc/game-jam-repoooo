@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://djdijspwjped4"]
+
+[ext_resource type="Script" uid="uid://csrpa456vm8ee" path="res://scne/scripts/character_body_2d.gd" id="1_slgbw"]
+[ext_resource type="Texture2D" uid="uid://bk0l2e207pe1e" path="res://assets/cars/2D_TOPDOWN_PIXELART_CARS.png" id="2_m5n6y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_basrg"]
+atlas = ExtResource("2_m5n6y")
+region = Rect2(0, 0, 29, 92)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s7wsd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_basrg")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7rlf"]
+size = Vector2(27, 64)
+
+[node name="car north" type="CharacterBody2D" unique_id=2079764677]
+script = ExtResource("1_slgbw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1896414701]
+sprite_frames = SubResource("SpriteFrames_s7wsd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1958670231]
+position = Vector2(-1.5, -15)
+shape = SubResource("RectangleShape2D_s7rlf")
