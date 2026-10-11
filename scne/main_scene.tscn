@@ -496,5 +496,13 @@ sources/0 = SubResource("TileSetAtlasSource_u6d3h")
 
 [node name="MainScene" type="Node2D" unique_id=72376478]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1608724791]
+[node name="road" type="TileMapLayer" parent="." unique_id=1608724791]
 tile_set = SubResource("TileSet_454ae")
+
+[node name="road signs" type="TileMapLayer" parent="." unique_id=1129174605]
+
+[node name="buildings" type="TileMapLayer" parent="." unique_id=951546257]
+
+[node name="trees" type="TileMapLayer" parent="." unique_id=1913609209]
+
+[node name="props and others" type="TileMapLayer" parent="." unique_id=847652561]
