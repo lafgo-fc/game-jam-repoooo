@@ -437,5 +437,3 @@ func show_light():
 		light.show()
 	else:
 		light.hide()
-func dodge_npc():
-	pass
