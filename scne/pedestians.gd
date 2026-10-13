@@ -146,7 +146,7 @@ func _physics_process(delta: float) -> void:
 
 
 	check_signal()
-	npc_collision()
+	npc_collision()	
 
 
 	# --------------------------------
@@ -438,6 +438,9 @@ func show_light():
 		light.show()
 	else:
 		light.hide()
+
+# func to perform npc collision things
 func npc_collision():
 	if GameData.npc_collided:
 		print("npc collided")
+		GameData.reputation = GameData.reputation - 200
