@@ -150,7 +150,6 @@ sprite_frames = SubResource("SpriteFrames_s7wsd")
 animation = &"pizza car"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1023565779]
-visible = false
 position = Vector2(4, 1)
 shape = SubResource("RectangleShape2D_s7wsd")
 
@@ -159,3 +158,6 @@ shape = SubResource("RectangleShape2D_s7wsd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=191564098]
 position = Vector2(3.5, 0.5)
 shape = SubResource("RectangleShape2D_454ae")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

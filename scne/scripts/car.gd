@@ -64,8 +64,11 @@ func _physics_process(delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body != self:
 		car_in_front = true
-
+	if body.is_in_group("npc"):
+		GameData.npc_collided = true
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body != self:
 		car_in_front = false
+	elif body.is_in_group("npc"):
+		GameData.npc_collided = false
