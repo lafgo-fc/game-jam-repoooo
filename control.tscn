@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://cems2rag67qam"]
 
+[sub_resource type="SystemFont" id="SystemFont_0fbet"]
+
 [node name="Control" type="Control" unique_id=1635713520]
 layout_mode = 3
 anchors_preset = 0
@@ -13,3 +15,13 @@ offset_bottom = 40.0
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=1628543459]
 layout_mode = 2
+text = "Npc died! 💀 "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=2089483459]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.2739889, 0.21327025, 1)
+theme_override_fonts/font = SubResource("SystemFont_0fbet")
+text = "-200 reputation"
+vertical_alignment = 1
