@@ -1651,11 +1651,11 @@ scale = Vector2(2.34375, 2.40625)
 sprite_frames = SubResource("SpriteFrames_454ae")
 animation = &"idle top"
 
-[node name="Control2" parent="." unique_id=1444336778 instance=ExtResource("8_yt22a")]
-offset_left = -35.999996
-offset_top = -39.999996
-offset_right = 4.000004
-offset_bottom = 3.8146973e-06
+[node name="Control2" parent="npc 2" unique_id=319399955 instance=ExtResource("8_yt22a")]
+offset_left = -15.466664
+offset_top = -14.441555
+offset_right = 24.533337
+offset_bottom = 25.558445
 scale = Vector2(0.7, 0.7)
 
 [node name="npc 3" type="AnimatedSprite2D" parent="." unique_id=1103112919]
@@ -1663,7 +1663,7 @@ scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_xnp0m")
 animation = &"idle front"
 
-[node name="Control3" parent="npc 3" unique_id=640970795 instance=ExtResource("8_yt22a")]
+[node name="Control3" parent="npc 3" unique_id=947486854 instance=ExtResource("8_yt22a")]
 offset_left = -14.399998
 offset_top = -15.999997
 offset_right = 25.600002
@@ -1675,7 +1675,7 @@ scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_xi4lh")
 animation = &"idle top"
 
-[node name="Control4" parent="npc 4" unique_id=1142405070 instance=ExtResource("8_yt22a")]
+[node name="Control4" parent="npc 4" unique_id=776570238 instance=ExtResource("8_yt22a")]
 offset_left = -14.399998
 offset_top = -15.999997
 offset_right = 25.600002
@@ -1687,7 +1687,7 @@ scale = Vector2(2.4, 2.4)
 sprite_frames = SubResource("SpriteFrames_wmd7k")
 animation = &"idle front"
 
-[node name="Control5" parent="npc 5" unique_id=2040445164 instance=ExtResource("8_yt22a")]
+[node name="Control5" parent="npc 5" unique_id=1373093743 instance=ExtResource("8_yt22a")]
 offset_left = -14.999998
 offset_top = -16.666664
 offset_right = 25.000002
@@ -1699,7 +1699,7 @@ scale = Vector2(2.4, 2.4)
 sprite_frames = SubResource("SpriteFrames_n1mkj")
 animation = &"idle front"
 
-[node name="Control6" parent="npc 6" unique_id=117802568 instance=ExtResource("8_yt22a")]
+[node name="Control6" parent="npc 6" unique_id=1942839660 instance=ExtResource("8_yt22a")]
 offset_left = -14.999998
 offset_top = -16.666664
 offset_right = 25.000002
