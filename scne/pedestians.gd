@@ -43,6 +43,7 @@ var avoiding : bool = false
 var avoid_time : float = 0.0
 
 var reached_pt : Marker2D
+var collided_npc : Node2D = null 
 
 
 # constants
@@ -393,6 +394,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body != self and body.is_in_group("npc"):
 
 		other_npc = body
+		collided_npc = body
 
 		different_directional_npc = false
 
@@ -415,8 +417,12 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 			other_npc = null
 			different_directional_npc = false
+			
 			avoiding = false
 			avoid_time = 0.0
+	if body == collided_npc:
+		collided_npc = null
+		death_label.hide()
 
 
 # --------------------------------
@@ -442,10 +448,11 @@ func show_light():
 
 # func to perform npc collision things
 func npc_collision():
-	if GameData.npc_collided:
+	if collided_npc != null:
+		GameData.reputation -= 100
 		print("npc collided")
-		GameData.reputation = GameData.reputation - 200
 		death_label.show()
+		death_label.global_position = collided_npc.global_position
 	else:
 		death_label.hide()
-		
+	
