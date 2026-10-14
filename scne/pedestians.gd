@@ -23,6 +23,7 @@ extends CharacterBody2D
 @onready var pt_9 = $"../../waypoints/p9"
 @onready var pt_10 = $"../../waypoints/p10"
 @onready var pt_11 = $"../../waypoints/p11"
+@onready var death_label = $Control
 
 
 # essential vars
@@ -444,3 +445,7 @@ func npc_collision():
 	if GameData.npc_collided:
 		print("npc collided")
 		GameData.reputation = GameData.reputation - 200
+		death_label.show()
+	else:
+		death_label.hide()
+		
