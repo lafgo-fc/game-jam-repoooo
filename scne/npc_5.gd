@@ -9,3 +9,5 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func show_death_label() -> void:
 	death_label.show()
+func hide_death_label() -> void:
+	death_label.hide()

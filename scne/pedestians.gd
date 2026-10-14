@@ -156,7 +156,7 @@ func _physics_process(delta: float) -> void:
 
 
 	check_signal()
-	npc_collision()	
+
 
 
 	# --------------------------------
