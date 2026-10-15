@@ -15,6 +15,7 @@ func _ready() -> void:
 
 func spawn_npc() -> void:
 	if npc == null:
+		print("print func")
 		print("NPC scene not assigned")
 		return
 
