@@ -16,3 +16,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+var next_npc_id : int = 1
+func get_next_npc_id() -> int:
+	var id  = next_npc_id
+	next_npc_id += 1
+	return id
