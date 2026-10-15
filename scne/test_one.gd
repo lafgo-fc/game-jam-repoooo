@@ -4,10 +4,13 @@ extends Node2D
 @onready var clock = $clock
 
 # adding the npc_spawners
-@onready var  spawner_1 = $"npc spawners/NpcSpawner"
-@onready var spawner_2 = $"npc spawners/NpcSpawner2"
-@onready var spawner_3 = $"npc spawners/NpcSpawner3"
-@onready var spawner_4 = $"npc spawners/NpcSpawner4"
+
+# adding the npc_spawners
+@onready var spawner_1: Node2D = $"npc spawners/NpcSpawner"
+@onready var spawner_2: Node2D = $"npc spawners/NpcSpawner2"
+@onready var spawner_3: Node2D = $"npc spawners/NpcSpawner3"
+@onready var spawner_4: Node2D = $"npc spawners/NpcSpawner4"
+
 
 # adding the colors
 var morning_color = Color(1,0.9,0.8)
@@ -42,6 +45,12 @@ func time_op():
 func _ready() -> void:
 	day_timer.wait_time = 1440
 	day_timer.start()
+
+
+	print("Spawner 1: ", spawner_1)
+	print("Spawner 2: ", spawner_2)
+	print("Spawner 3: ", spawner_3)
+	print("Spawner 4: ", spawner_4)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

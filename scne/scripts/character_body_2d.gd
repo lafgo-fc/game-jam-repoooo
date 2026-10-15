@@ -1,6 +1,10 @@
+
 extends CharacterBody2D
 
 @export var speed = 100.0
+
+enum RoadDirection { FRONT, RIGHT }
+@export var road_direction: RoadDirection = RoadDirection.FRONT
 
 var target: Marker2D
 var stop_point: Marker2D
@@ -13,47 +17,48 @@ var has_passed = false
 var car_in_front = false
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	GameData.car_pos = global_position
 
 	if fuckedoff:
 		queue_free()
 		return
 
-	# If the car already crossed the intersection,
-	# keep moving toward the exit.
-	if has_passed:
-		target = exit_point
-
-	else:
-		# Decide movement according to traffic light
-		if GameData.traffic_right_left:
-			target = exit_point
-
-		elif GameData.traffic_front_down:
-			target = stop_point
-
-		else:
-			target = stop_point
-
-	# Check whether car crossed the intersection
-	if cross_point != null:
-		if global_position.distance_to(cross_point.global_position) < 10:
+	# Check whether the car has reached the crossing point.
+	if not has_passed and cross_point != null:
+		if global_position.distance_to(cross_point.global_position) < 10.0:
 			has_passed = true
 
-	# Delete car after it leaves the road
+	# Once the car has crossed, ignore traffic lights.
+	if has_passed:
+		target = exit_point
+	else:
+		# Check the light for this car's direction.
+		if road_direction == RoadDirection.RIGHT:
+			if GameData.traffic_right_left:
+				target = exit_point
+			else:
+				target = stop_point
+		else:
+			if GameData.traffic_front_down:
+				target = exit_point
+			else:
+				target = stop_point
+
+	# Remove the car when it reaches the end of the road.
 	if fuckoff != null:
-		if global_position.distance_to(fuckoff.global_position) < 10:
+		if global_position.distance_to(fuckoff.global_position) < 10.0:
 			queue_free()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if target == null:
+		velocity = Vector2.ZERO
+		move_and_slide()
 		return
 
 	if car_in_front:
 		velocity = Vector2.ZERO
-
 	else:
 		var direction = global_position.direction_to(target.global_position)
 		velocity = direction * speed
