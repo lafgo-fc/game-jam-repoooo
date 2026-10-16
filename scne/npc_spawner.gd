@@ -23,9 +23,11 @@ func spawn_npc() -> void:
 		return
 
 	var npc_spawn = npc.instantiate()
+	npc_spawn.npc_id = GameData.get_next_npc_id()
 	add_child(npc_spawn)
 	npc_spawn.global_position = global_position
 	npc_spawn.near_pt = near_pt
+	print("NPC spawned | ID: ", npc_spawn.npc_id)
 
 
 func _on_timer_timeout() -> void:

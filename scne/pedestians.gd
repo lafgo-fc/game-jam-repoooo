@@ -52,7 +52,7 @@ var avoid_time : float = 0.0
 
 var reached_pt : Marker2D
 var collided_npc : Node2D = null 
-
+var npc_id: int =-1
 
 # constants
 const SPEED = 30.0
