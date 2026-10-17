@@ -9,6 +9,7 @@ extends Node2D
 @export var fuckoff: Marker2D
 
 
+
 func _ready() -> void:
 	spawn_car()
 

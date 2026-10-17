@@ -2,6 +2,16 @@ extends CharacterBody2D
 
 @export var speed = 100.0
 @onready var death_label = $"../../death_label"
+@onready var van = $van
+@onready var taxi = $taxi
+@onready var luxury = $luxury
+@onready var jeep = $jeep
+@onready var civic = $civic
+@onready var truck = $truck
+@onready var bus = $bus
+@onready var polic_car = $"polic car"
+@onready var ambulance = $ambulance
+
 
 var target: Marker2D
 var stop_point: Marker2D
@@ -12,7 +22,10 @@ var fuckoff: Marker2D
 var fuckedoff = false
 var has_passed = false
 var car_in_front = false
+var vehicle = [van , taxi , luxury , jeep , civic , truck , bus , polic_car , ambulance]
 
+func _ready() -> void:
+	var selected_vehicle = vehicle.pick_random()
 
 func _process(delta: float) -> void:
 	GameData.car_pos = global_position
