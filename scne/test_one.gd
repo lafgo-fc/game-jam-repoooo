@@ -25,8 +25,6 @@ var last_daycycle = ""
 func time_op():
 	
 	var time_spent = 1440  - day_timer.time_left 
-	print("Time left: ", day_timer.time_left)
-	print("Wait time: ", day_timer.wait_time)
 	if time_spent >= 1439:
 		time_spent = 0
 		hour = 0 

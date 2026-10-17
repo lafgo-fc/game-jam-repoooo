@@ -25,11 +25,7 @@ extends CharacterBody2D
 @onready var pt_11 = $"../../waypoints/p11"
 
 # adding death_labels
-@onready var death_label_1 = $"npc 1/Control"
-@onready var death_label_2 = $"npc 2/Control2"
-@onready var death_label_3 = $"npc 3/Control3"
-@onready var death_label_4 = $"npc 4/Control4"
-@onready var death_label_5 = $"npc 5/Control5"
+
 
 
 
@@ -450,7 +446,5 @@ func show_light():
 		light.show()
 	else:
 		light.hide()
-
-# func to perform npc collision things
 
 	
