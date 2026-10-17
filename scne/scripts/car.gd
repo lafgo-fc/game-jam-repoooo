@@ -22,10 +22,14 @@ var fuckoff: Marker2D
 var fuckedoff = false
 var has_passed = false
 var car_in_front = false
-var vehicle = [van , taxi , luxury , jeep , civic , truck , bus , polic_car , ambulance]
+
 
 func _ready() -> void:
+	var vehicle = [van , taxi , luxury , jeep , civic , truck , bus , polic_car , ambulance]
 	var selected_vehicle = vehicle.pick_random()
+	for vehicles in vehicle:
+		vehicles.hide()
+	selected_vehicle.show()
 
 func _process(delta: float) -> void:
 	GameData.car_pos = global_position
