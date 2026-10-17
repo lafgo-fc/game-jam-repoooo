@@ -12,3 +12,6 @@ func _process(delta: float) -> void:
 func death_label_show() -> void:
 	$VBoxContainer/Label.show()
 	$VBoxContainer/Label2.show()
+func death_label_hide() -> void:
+	$VBoxContainer/Label.hide()
+	$VBoxContainer/Label2.hide()

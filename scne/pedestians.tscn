@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://f2l77wpxo68y" path="res://assets/npcs/NPC_4.png" id="5_fmtih"]
 [ext_resource type="Texture2D" uid="uid://cw315yuuom0cf" path="res://assets/npcs/NPC_5.png" id="6_8ja1e"]
 [ext_resource type="Texture2D" uid="uid://cktjvkdkkatmu" path="res://assets/npcs/NPC_6.png" id="7_12oeb"]
-[ext_resource type="PackedScene" uid="uid://cems2rag67qam" path="res://control.tscn" id="8_yt22a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mvjtp"]
 atlas = ExtResource("2_gkco8")
@@ -1679,8 +1678,6 @@ shape = SubResource("CapsuleShape2D_gdw26")
 position = Vector2(-1, -5.000001)
 scale = Vector2(1.9583334, 1.7559267)
 texture = SubResource("GradientTexture2D_74c84")
-
-[node name="Control" parent="." unique_id=1635713520 instance=ExtResource("8_yt22a")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

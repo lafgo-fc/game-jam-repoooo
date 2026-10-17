@@ -9,7 +9,7 @@ extends CharacterBody2D
 @onready var npc_5 = $"npc 5"
 @onready var npc_6 = $"npc 6"
 @onready var light = $PointLight2D
-@onready var death_label = $Control
+@onready var death_label = get_tree().current_scene.get_node("death_label")
 
 
 # adding markers
@@ -452,5 +452,5 @@ func show_light():
 func npc_collision() -> void:
 	if GameData.npc_collided and GameData.collided_npc_id == npc_id:
 		death_label.show()
-	else :
-		death_label.hide()
+		death_label.global_position = global_position
+		queue_free()
