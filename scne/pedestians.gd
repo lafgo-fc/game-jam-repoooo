@@ -454,3 +454,5 @@ func npc_collision() -> void:
 		death_label.show()
 		death_label.global_position = global_position
 		queue_free()
+		
+		
