@@ -63,7 +63,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("npc"):
+	if body.is_in_group("npc") and velocity.length() > 0:
 		GameData.npc_collided = true
 		GameData.collided_npc_id = body.npc_id
 
