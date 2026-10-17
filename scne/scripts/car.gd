@@ -11,6 +11,8 @@ extends CharacterBody2D
 @onready var bus = $bus
 @onready var polic_car = $"polic car"
 @onready var ambulance = $ambulance
+@onready var collision_shape = $CollisionShape2D
+@onready var collsion_range = $Area2D/collision_range
 
 
 var target: Marker2D
@@ -30,6 +32,39 @@ func _ready() -> void:
 	for vehicles in vehicle:
 		vehicles.hide()
 	selected_vehicle.show()
+	match selected_vehicle.name:
+		"van":
+			collision_shape.scale = Vector2(1.0 , 1.0)
+			collsion_range.scale = Vector2(1.0 , 1.3)
+		"taxi":
+			collision_shape.scale = Vector2(1.3 , 0.9)
+			collsion_range.scale = Vector2(1.3 , 1.3)
+		"luxury":
+			collision_shape.scale = Vector2(1.3 , 0.9)
+			collsion_range.scale = Vector2(1.3 , 1.3)
+		"jeep":
+			collision_shape.scale = Vector2(0.8 , 0.9)
+			collsion_range.scale = Vector2(1.0 , 1.3)
+		"civic":
+			collision_shape.scale = Vector2(0.8 , 0.8)
+			collsion_range.scale = Vector2(1.0 , 1.3)
+		"truck":
+			collision_shape.scale = Vector2(1.7 , 1.5)
+			collsion_range.scale = Vector2(1.9 , 1.7)
+			collsion_range.position = Vector2(0.0 , -10.0)
+		"bus":
+			collision_shape.scale = Vector2(2.1 , 1.5)
+			collision_shape.position = Vector2(5.0 , -10.0)
+			collsion_range.scale = Vector2(2.3 , 1.9)
+			collsion_range.position = Vector2(2.0 , -10.0)
+		"polic_car":
+			collision_shape.scale = Vector2(1.2 , 1.0)
+			collsion_range.scale = Vector2(1.4 , 1.4)
+		"ambulance":
+			collision_shape.scale = Vector2(1.6 , 1.3)
+			collision_shape.position = Vector2(0.0 , -7.0)
+			collsion_range.scale = Vector2(1.7 , 1.6)
+			collsion_range.position = Vector2(0.0 , -7.0)
 
 func _process(delta: float) -> void:
 	GameData.car_pos = global_position

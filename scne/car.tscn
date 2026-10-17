@@ -478,10 +478,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7wsd"]
-size = Vector2(70, 31)
+size = Vector2(65, 37.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_454ae"]
-size = Vector2(73, 33)
+size = Vector2(70, 37)
 
 [node name="car" type="CharacterBody2D" unique_id=1626053297]
 script = ExtResource("1_evd0w")
@@ -524,13 +524,15 @@ animation = &"right"
 frame_progress = 0.045443613
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1023565779]
-position = Vector2(4, 1)
+position = Vector2(0, -7)
+scale = Vector2(1.6, 1.3)
 shape = SubResource("RectangleShape2D_s7wsd")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=488053945]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=191564098]
-position = Vector2(3.5, -0.5)
+[node name="collision_range" type="CollisionShape2D" parent="Area2D" unique_id=191564098]
+position = Vector2(0, -7)
+scale = Vector2(1.7, 1.6)
 shape = SubResource("RectangleShape2D_454ae")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
