@@ -452,3 +452,5 @@ func show_light():
 func npc_collision() -> void:
 	if GameData.npc_collided and GameData.collided_npc_id == npc_id:
 		death_label.show()
+	else :
+		death_label.hide()
