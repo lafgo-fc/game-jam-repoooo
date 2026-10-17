@@ -451,7 +451,7 @@ func show_light():
 
 func npc_collision() -> void:
 	if GameData.npc_collided and GameData.collided_npc_id == npc_id:
-		death_label.show()
+		death_label.death_label_show()
 		death_label.global_position = global_position
 		queue_free()
 		
