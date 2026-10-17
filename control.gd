@@ -9,8 +9,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-func show_death_label(npc_id : int ) -> void:
-	$VBoxContainer/Label.text = "NPC ID" + str(npc_id)
-	$VBoxContainer/Label2.text= "NPC ID" + str(npc_id)
+func death_label_show() -> void:
 	$VBoxContainer/Label.show()
 	$VBoxContainer/Label2.show()

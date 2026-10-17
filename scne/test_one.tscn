@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://c4dgbo110484a" path="res://scne/label.gd" id="4_ls8i0"]
 [ext_resource type="PackedScene" uid="uid://ctrmuqi0xqfh3" path="res://scne/npc spawner.tscn" id="5_uaidk"]
 [ext_resource type="PackedScene" uid="uid://djdijspwjped4" path="res://scne/car_north.tscn" id="8_2b7d8"]
+[ext_resource type="PackedScene" uid="uid://cems2rag67qam" path="res://control.tscn" id="9_w33nj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xptqv"]
 texture = ExtResource("1_rdy3u")
@@ -1239,3 +1240,5 @@ position = Vector2(-125, 264)
 
 [node name="CrossPoint2" type="Marker2D" parent="car spawner/north" unique_id=1993360179]
 position = Vector2(-102, -172)
+
+[node name="death_label" parent="." unique_id=1635713520 instance=ExtResource("9_w33nj")]

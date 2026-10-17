@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var speed = 100.0
+@onready var death_label = $"../../death_label"
 
 var target: Marker2D
 var stop_point: Marker2D
@@ -62,21 +63,13 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body != self:
-		car_in_front = true
 	if body.is_in_group("npc"):
 		GameData.npc_collided = true
-		for child in body.get_children():
-			if child.has_method("show_death_label"):
-				child.show_death_label()
-				break
+
+		
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body != self:
 		car_in_front = false
 	if body.is_in_group("npc"):
 		GameData.npc_collided = false
-		for child in body.get_children():
-			if child.has_method("hide_death_label"):
-				child.hide_death_label()
-				break
