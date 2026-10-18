@@ -24,6 +24,7 @@ var fuckoff: Marker2D
 var fuckedoff = false
 var has_passed = false
 var car_in_front = false
+var vehicle_opt = AnimatedSprite2D
 
 
 func _ready() -> void:
@@ -32,6 +33,7 @@ func _ready() -> void:
 	for vehicles in vehicle:
 		vehicles.hide()
 	selected_vehicle.show()
+	vehicle_opt = selected_vehicle
 	match selected_vehicle.name:
 		"van":
 			collision_shape.scale = Vector2(1.0 , 1.0)
@@ -101,17 +103,24 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+
 	if target == null:
 		return
-
+	var direction = global_position.direction_to(target.global_position)
 	if car_in_front:
 		velocity = Vector2.ZERO
 
 	else:
-		var direction = global_position.direction_to(target.global_position)
 		velocity = direction * speed
+	process_animation(direction)
+	
 
 	move_and_slide()
+func process_animation(direction) -> void:
+	print(vehicle_opt)
+	if abs(direction.x) > abs(direction.y):
+		if direction.x > 0:
+			pass
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

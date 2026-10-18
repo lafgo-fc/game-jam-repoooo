@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://b1iqng1h080e" path="res://scne/spawnr_thing.tscn" id="4_f5p5n"]
 [ext_resource type="Script" uid="uid://c4dgbo110484a" path="res://scne/label.gd" id="4_ls8i0"]
 [ext_resource type="PackedScene" uid="uid://ctrmuqi0xqfh3" path="res://scne/npc spawner.tscn" id="5_uaidk"]
-[ext_resource type="PackedScene" uid="uid://djdijspwjped4" path="res://scne/car_north.tscn" id="8_2b7d8"]
 [ext_resource type="PackedScene" uid="uid://cems2rag67qam" path="res://control.tscn" id="9_w33nj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xptqv"]
@@ -1229,7 +1228,6 @@ position = Vector2(-104, -184)
 
 [node name="spawnr thing2" parent="car spawner/north" unique_id=1309819228 node_paths=PackedStringArray("stop_point", "cross_point", "exit_point", "fuckoff") instance=ExtResource("4_f5p5n")]
 position = Vector2(-117, -405)
-car_scene = ExtResource("8_2b7d8")
 stop_point = NodePath("../Marker2D2")
 cross_point = NodePath("../CrossPoint2")
 exit_point = NodePath("../target 3")
