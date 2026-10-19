@@ -120,7 +120,14 @@ func process_animation(direction) -> void:
 	print(vehicle_opt)
 	if abs(direction.x) > abs(direction.y):
 		if direction.x > 0:
-			pass
+			vehicle_opt.play("right")
+		else:
+			vehicle_opt.play("left")
+	elif abs(direction.x) < abs(direction.y):
+		if direction.y > 0:
+			vehicle_opt.play("down")
+		else:
+			vehicle_opt.play("top")
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
