@@ -321,10 +321,6 @@ animations = [{
 atlas = ExtResource("4_q6ssp")
 region = Rect2(1050, 210, 210, 210)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1037m"]
-atlas = ExtResource("4_q6ssp")
-region = Rect2(1050, 420, 210, 210)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_prvm8"]
 atlas = ExtResource("4_q6ssp")
 region = Rect2(630, 630, 210, 210)
@@ -342,9 +338,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_li2l5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1037m")
 }],
 "loop": 1,
 "name": &"down",
@@ -512,7 +505,7 @@ animation = &"right"
 
 [node name="bus" type="AnimatedSprite2D" parent="." unique_id=1915234929]
 sprite_frames = SubResource("SpriteFrames_xnp0m")
-animation = &"right"
+animation = &"down"
 
 [node name="polic car" type="AnimatedSprite2D" parent="." unique_id=2101197150]
 sprite_frames = SubResource("SpriteFrames_454ae")

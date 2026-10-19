@@ -96,9 +96,13 @@ func _process(delta: float) -> void:
 
 		elif GameData.traffic_front_down:
 			target = stop_point
+			vehicle_opt.play(last_direction)
+			return
 
 		else:
 			target = stop_point
+			vehicle_opt.play(last_direction)
+			return
 
 	# Check whether car crossed the intersection
 	if cross_point != null:
@@ -125,23 +129,15 @@ func _physics_process(delta: float) -> void:
 	
 
 	move_and_slide()
-func process_animation(direction) -> void:
-	
-	if abs(direction.x) > abs(direction.y):
-		if direction.x > 0:
-			vehicle_opt.play("right")
-			last_direction = "right"
+func process_animation(direction: Vector2) -> void:
+	if velocity.length() > 0.1:
+		if abs(direction.x) > abs(direction.y):
+			last_direction = "right" if direction.x > 0 else "left"
 		else:
-			vehicle_opt.play("left")
-			last_direction = "left"
-	elif abs(direction.x) < abs(direction.y):
-		if direction.y > 0:
-			vehicle_opt.play("down")
-			last_direction = "down"
-		else:
-			vehicle_opt.play("top")
-			last_direction = "top"
-		
+			last_direction = "down" if direction.y > 0 else "top"
+
+	if vehicle_opt.animation != last_direction:
+		vehicle_opt.play(last_direction)
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
