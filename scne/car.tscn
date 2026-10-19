@@ -488,7 +488,7 @@ script = ExtResource("1_evd0w")
 
 [node name="van" type="AnimatedSprite2D" parent="." unique_id=1717284833]
 sprite_frames = SubResource("SpriteFrames_wmd7k")
-animation = &"right"
+animation = &"down"
 
 [node name="taxi" type="AnimatedSprite2D" parent="." unique_id=458371514]
 sprite_frames = SubResource("SpriteFrames_nqc1f")

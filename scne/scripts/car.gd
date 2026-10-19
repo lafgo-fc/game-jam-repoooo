@@ -20,6 +20,7 @@ var stop_point: Marker2D
 var cross_point: Marker2D
 var exit_point: Marker2D
 var fuckoff: Marker2D
+var last_direction : String
 
 var fuckedoff = false
 var has_passed = false
@@ -34,6 +35,8 @@ func _ready() -> void:
 		vehicles.hide()
 	selected_vehicle.show()
 	vehicle_opt = selected_vehicle
+	collision_shape.position = Vector2.ZERO
+	collsion_range.position = Vector2.ZERO
 	match selected_vehicle.name:
 		"van":
 			collision_shape.scale = Vector2(1.0 , 1.0)
@@ -67,6 +70,12 @@ func _ready() -> void:
 			collision_shape.position = Vector2(0.0 , -7.0)
 			collsion_range.scale = Vector2(1.7 , 1.6)
 			collsion_range.position = Vector2(0.0 , -7.0)
+	
+	print("Selected vehicle: ", selected_vehicle.name)
+	print("Collision scale: ", collision_shape.scale)
+	print("Collision position: ", collision_shape.position)
+	print("Range scale: ", collsion_range.scale)
+	print("Range position: ", collsion_range.position)
 
 func _process(delta: float) -> void:
 	GameData.car_pos = global_position
@@ -117,17 +126,22 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 func process_animation(direction) -> void:
-	print(vehicle_opt)
+	
 	if abs(direction.x) > abs(direction.y):
 		if direction.x > 0:
 			vehicle_opt.play("right")
+			last_direction = "right"
 		else:
 			vehicle_opt.play("left")
+			last_direction = "left"
 	elif abs(direction.x) < abs(direction.y):
 		if direction.y > 0:
 			vehicle_opt.play("down")
+			last_direction = "down"
 		else:
 			vehicle_opt.play("top")
+			last_direction = "top"
+		
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
