@@ -13,17 +13,17 @@ extends CharacterBody2D
 
 
 # adding markers
-@onready var pt_1 = $"../../waypoints/p1"
-@onready var pt_2 = $"../../waypoints/p2"
-@onready var pt_3 = $"../../waypoints/p3"
-@onready var pt_4 = $"../../waypoints/p4"
-@onready var pt_5 = $"../../waypoints/p5"
-@onready var pt_6 = $"../../waypoints/p6"
-@onready var pt_7 = $"../../waypoints/p7"
-@onready var pt_8 = $"../../waypoints/p8"
-@onready var pt_9 = $"../../waypoints/p9"
-@onready var pt_10 = $"../../waypoints/p10"
-@onready var pt_11 = $"../../waypoints/p11"
+@onready var pt_1 = $"npc spawners/waypoints/p1"
+@onready var pt_2 = $"npc spawners/waypoints/p2"
+@onready var pt_3 = $"npc spawners/waypoints/p3"
+@onready var pt_4 = $"npc spawners/waypoints/p4"
+@onready var pt_5 = $"npc spawners/waypoints/p5"
+@onready var pt_6 = $"npc spawners/waypoints/p6"
+@onready var pt_7 = $"npc spawners/waypoints/p7"
+@onready var pt_8 = $"npc spawners/waypoints/p8"
+@onready var pt_9 = $"npc spawners/waypoints/p9"
+@onready var pt_10 = $"npc spawners/waypoints/p10"
+@onready var pt_11 = $"npc spawners/waypoints/p11"
 
 # adding death_labels
 
@@ -148,6 +148,7 @@ func _physics_process(delta: float) -> void:
 
 	# Reached waypoint
 	if distance < 5.0:
+		print("next pt called")
 		reached_pt = near_pt
 		nex_pt()
 		return

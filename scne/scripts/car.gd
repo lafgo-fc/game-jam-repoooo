@@ -135,7 +135,7 @@ func process_animation(direction: Vector2) -> void:
 	else:
 		last_direction = "down" if direction.y > 0 else "top"
 
-	if vehicle_opt.animation != last_direction:
+	if target == stop_point:
 		vehicle_opt.play(last_direction)
 
 
@@ -144,7 +144,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		GameData.npc_collided = true
 		GameData.collided_npc_id = body.npc_id
 
-		
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body != self:
