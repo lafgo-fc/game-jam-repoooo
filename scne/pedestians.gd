@@ -9,26 +9,20 @@ extends CharacterBody2D
 @onready var npc_5 = $"npc 5"
 @onready var npc_6 = $"npc 6"
 @onready var light = $PointLight2D
-@onready var death_label = get_tree().current_scene.get_node("death_label")
 
 
 # adding markers
-@onready var pt_1 = $"npc spawners/waypoints/p1"
-@onready var pt_2 = $"npc spawners/waypoints/p2"
-@onready var pt_3 = $"npc spawners/waypoints/p3"
-@onready var pt_4 = $"npc spawners/waypoints/p4"
-@onready var pt_5 = $"npc spawners/waypoints/p5"
-@onready var pt_6 = $"npc spawners/waypoints/p6"
-@onready var pt_7 = $"npc spawners/waypoints/p7"
-@onready var pt_8 = $"npc spawners/waypoints/p8"
-@onready var pt_9 = $"npc spawners/waypoints/p9"
-@onready var pt_10 = $"npc spawners/waypoints/p10"
-@onready var pt_11 = $"npc spawners/waypoints/p11"
-
-# adding death_labels
-
-
-
+@onready var pt_1 = $"../../waypoints/p1"
+@onready var pt_2 = $"../../waypoints/p2"
+@onready var pt_3 = $"../../waypoints/p3"
+@onready var pt_4 = $"../../waypoints/p4"
+@onready var pt_5 = $"../../waypoints/p5"
+@onready var pt_6 = $"../../waypoints/p6"
+@onready var pt_7 = $"../../waypoints/p7"
+@onready var pt_8 = $"../../waypoints/p8"
+@onready var pt_9 = $"../../waypoints/p9"
+@onready var pt_10 = $"../../waypoints/p10"
+@onready var pt_11 = $"../../waypoints/p11"
 
 
 # essential vars
@@ -48,8 +42,7 @@ var avoiding : bool = false
 var avoid_time : float = 0.0
 
 var reached_pt : Marker2D
-var collided_npc : Node2D = null 
-var npc_id: int =-1
+
 
 # constants
 const SPEED = 30.0
@@ -130,7 +123,6 @@ func _physics_process(delta: float) -> void:
 
 		return
 	show_light()
-	npc_collision()
 
 
 	# --------------------------------
@@ -148,14 +140,12 @@ func _physics_process(delta: float) -> void:
 
 	# Reached waypoint
 	if distance < 5.0:
-		print("next pt called")
 		reached_pt = near_pt
 		nex_pt()
 		return
 
 
 	check_signal()
-
 
 
 	# --------------------------------
@@ -423,10 +413,8 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 			other_npc = null
 			different_directional_npc = false
-			
 			avoiding = false
 			avoid_time = 0.0
-
 
 
 # --------------------------------
@@ -449,11 +437,3 @@ func show_light():
 		light.show()
 	else:
 		light.hide()
-
-func npc_collision() -> void:
-	if GameData.npc_collided and GameData.collided_npc_id == npc_id:
-		death_label.death_label_show()
-		death_label.global_position = global_position
-		queue_free()
-		
-		
