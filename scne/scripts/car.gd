@@ -26,6 +26,7 @@ var fuckedoff = false
 var has_passed = false
 var car_in_front = false
 var vehicle_opt = AnimatedSprite2D
+var vehicle_move = false
 
 
 func _ready() -> void:
@@ -91,9 +92,11 @@ func _process(delta: float) -> void:
 
 		elif GameData.traffic_front_down:
 			target = stop_point
+			vehicle_move = false
 
 		else:
 			target = stop_point
+			vehicle_move = false
 
 	# Check whether car crossed the intersection
 	if cross_point != null:
@@ -113,14 +116,19 @@ func _physics_process(delta: float) -> void:
 	var direction = global_position.direction_to(target.global_position)
 	if car_in_front:
 		velocity = Vector2.ZERO
+		vehicle_move = false
 
 	else:
 		velocity = direction * speed
+		vehicle_move = true
 	process_animation(direction)
 	
 
 	move_and_slide()
 func process_animation(direction: Vector2) -> void:
+	if vehicle_move == false:
+		vehicle_opt.pause()
+		return
 
 	if abs(direction.x) > abs(direction.y):
 		if direction.x > 0:
@@ -129,14 +137,13 @@ func process_animation(direction: Vector2) -> void:
 		elif direction.x < 0:
 			vehicle_opt.play("left")
 			last_direction = "left"
-	else:
+	elif abs(direction.x) < abs(direction.y):
 		if direction.y > 0:
 			vehicle_opt.play("down")
 			last_direction = "down"
 		elif direction.y < 0:
 			vehicle_opt.play("top")
 			last_direction = "top"
-
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("npc") and velocity.length() > 0:
