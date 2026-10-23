@@ -47,6 +47,7 @@ var direction: Vector2 = Vector2.ZERO
 var dodge_stage : int = 0
 var is_dodging = false
 var dodge_target : Vector2
+var being_dodged = false
 
 const SPEED = 30.0
 
@@ -62,6 +63,10 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	if near_pt == null:
 		return
+	if being_dodged:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return 
 	if is_dodging:
 		velocity = global_position.direction_to(dodge_target) * SPEED
 		var distance = global_position.distance_to(dodge_target)
@@ -193,6 +198,7 @@ func start_dodge():
 		if not is_dodging:
 			is_dodging = true
 			dodge_stage = 1
+			other_npc.being_dodged = true
 			dodge_target = global_position + Vector2(0 , -20)
 		
 "
