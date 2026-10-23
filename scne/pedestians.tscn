@@ -42,6 +42,11 @@ var stop_signal : bool
 var previous_pt : Marker2D
 var different_directional_npc : bool 
 var other_npc : Node2D = null
+var dodge_type : String
+var direction: Vector2 = Vector2.ZERO
+var dodge_stage : int = 0
+var is_dodging = false
+var dodge_target : Vector2
 
 const SPEED = 30.0
 
@@ -57,17 +62,32 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	if near_pt == null:
 		return
+	if is_dodging:
+		velocity = global_position.direction_to(dodge_target) * SPEED
+		var distance = global_position.distance_to(dodge_target)
+		if distance < 2.0 and dodge_stage == 1:
+			dodge_stage = 2
+			dodge_target = global_position + Vector2(20,0)
+		elif distance < 2.0 and dodge_stage == 2:
+			dodge_stage = 3
+			dodge_target = global_position + Vector2(0,20)
+		elif distance < 2.0 and dodge_stage == 3:
+			is_dodging = false
+			dodge_stage = 0
+			velocity = Vector2.ZERO
+		move_and_slide()
+		return
+	start_dodge()
 	if different_directional_npc == true:
 		if (last_direction == \"right\" and other_npc.last_direction == \"left\") or (last_direction == \"left\" and other_npc.last_direction == \"right\"):
 			print(\"right left collided\")
+			dodge_type = \"left and right\"
 		elif (last_direction == \"top\" and other_npc.last_direction == \"front\") or (last_direction == \"front\" and other_npc.last_direction == \"top\"):
 			print(\"top front collided\")
 		
 		
 	var distance = global_position.distance_to(near_pt.global_position)
 	var direction = global_position.direction_to(near_pt.global_position)
-	print(previous_pt)
-	print(near_pt)
 	if distance < 5.0:
 		nex_pt()
 		return
@@ -102,14 +122,14 @@ func process_animation(direction: Vector2):
 func nex_pt():
 	previous_pt = near_pt
 	if near_pt == pt_1:
-		var possible_pt = [pt_3 , pt_2 , pt_8]
+		var possible_pt = [pt_3]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_2:
 		var possible_pt = [pt_1,pt_4,pt_6]
 		near_pt = possible_pt.pick_random()
 
 	elif near_pt == pt_3:
-		var possible_pt = [pt_4,pt_7,pt_11,pt_1]
+		var possible_pt = [pt_1]
 		near_pt = possible_pt.pick_random()
 
 	elif near_pt == pt_4:
@@ -167,6 +187,14 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body != self and body.is_in_group(\"npc\"):
 		npc_inside = false
+
+func start_dodge():
+	if dodge_type == \"left and right\":
+		if not is_dodging:
+			is_dodging = true
+			dodge_stage = 1
+			dodge_target = global_position + Vector2(0 , -20)
+		
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mvjtp"]
