@@ -71,11 +71,6 @@ func _ready() -> void:
 			collsion_range.scale = Vector2(1.7 , 1.6)
 			collsion_range.position = Vector2(0.0 , -7.0)
 	
-	print("Selected vehicle: ", selected_vehicle.name)
-	print("Collision scale: ", collision_shape.scale)
-	print("Collision position: ", collision_shape.position)
-	print("Range scale: ", collsion_range.scale)
-	print("Range position: ", collsion_range.position)
 
 func _process(delta: float) -> void:
 	GameData.car_pos = global_position
@@ -126,17 +121,21 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 func process_animation(direction: Vector2) -> void:
-	if velocity.length() < 0.1:
-		vehicle_opt.pause()
-		return
 
 	if abs(direction.x) > abs(direction.y):
-		last_direction = "right" if direction.x > 0 else "left"
+		if direction.x > 0:
+			vehicle_opt.play("right")
+			last_direction = "right"
+		elif direction.x < 0:
+			vehicle_opt.play("left")
+			last_direction = "left"
 	else:
-		last_direction = "down" if direction.y > 0 else "top"
-
-	if target == stop_point:
-		vehicle_opt.play(last_direction)
+		if direction.y > 0:
+			vehicle_opt.play("down")
+			last_direction = "down"
+		elif direction.y < 0:
+			vehicle_opt.play("top")
+			last_direction = "top"
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

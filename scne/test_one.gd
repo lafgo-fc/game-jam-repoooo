@@ -44,12 +44,6 @@ func _ready() -> void:
 	day_timer.wait_time = 1440
 	day_timer.start()
 
-
-	print("Spawner 1: ", spawner_1)
-	print("Spawner 2: ", spawner_2)
-	print("Spawner 3: ", spawner_3)
-	print("Spawner 4: ", spawner_4)
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var target_color : Color

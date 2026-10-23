@@ -15,8 +15,6 @@ func _ready() -> void:
 
 func spawn_npc() -> void:
 	if npc == null:
-		
-		print("NPC scene not assigned")
 		return
 
 	if near_pt == null:
@@ -27,7 +25,6 @@ func spawn_npc() -> void:
 	add_child(npc_spawn)
 	npc_spawn.global_position = global_position
 	npc_spawn.near_pt = near_pt
-	print("NPC spawned | ID: ", npc_spawn.npc_id)
 
 
 func _on_timer_timeout() -> void:
