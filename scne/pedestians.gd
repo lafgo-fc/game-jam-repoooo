@@ -35,7 +35,7 @@ var other_npc : Node2D = null
 
 const SPEED = 30.0
 
-
+@export var npc_id : int = 0 
 func _ready():
 	add_to_group("npc")
 	npc_list = [npc_1,npc_2,npc_3,npc_4,npc_5,npc_6]
