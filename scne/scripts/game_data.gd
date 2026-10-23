@@ -1,24 +1,31 @@
+
 extends Node
-var daycycle : String
-var traffic_right_left = false 
-var traffic_front_down = false 
-var car_pos : Vector2
-var light : String = "red in front"
-var reputation : int = 0
-var npc_collided:bool = false
-var collided_npc_id : int = -1
 
+var daycycle: String
+var traffic_right_left: bool = false
+var traffic_front_down: bool = false
+var car_pos: Vector2
+var light: String = "red in front"
+var reputation: int = 0
+var npc_collided: bool = false
 
-# Called when the node enters the scene tree for the first time.
+# NPC collision tracking
+var collided_npc_id: int = -1
+var next_npc_id: int = 1
+
+# Car and waiting-time statistics
+var car_passed: int = 0
+var total_waiting_time: float = 0.0
+var total_cars: int = 0
+var average_waiting_time: float = 0.0
+
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
 	pass
-var next_npc_id : int = 1
+
+func _process(delta: float) -> void:
+	print(car_passed)
+
 func get_next_npc_id() -> int:
-	var id  = next_npc_id
+	var id: int = next_npc_id
 	next_npc_id += 1
 	return id

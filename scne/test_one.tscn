@@ -1222,7 +1222,7 @@ position = Vector2(-320, 82)
 [node name="north" type="Node" parent="car spawner" unique_id=549702950]
 
 [node name="target 3" type="Marker2D" parent="car spawner/north" unique_id=1571477143]
-position = Vector2(-115, 406)
+position = Vector2(-146, 358)
 
 [node name="Marker2D2" type="Marker2D" parent="car spawner/north" unique_id=1296893127]
 position = Vector2(-104, -184)
@@ -1235,7 +1235,7 @@ exit_point = NodePath("../target 3")
 fuckoff = NodePath("../fuckoffpoint2")
 
 [node name="fuckoffpoint2" type="Marker2D" parent="car spawner/north" unique_id=1201667808]
-position = Vector2(-125, 264)
+position = Vector2(-126, 322)
 
 [node name="CrossPoint2" type="Marker2D" parent="car spawner/north" unique_id=1993360179]
 position = Vector2(-102, -172)

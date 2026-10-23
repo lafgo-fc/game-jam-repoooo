@@ -1,7 +1,7 @@
 
 extends CharacterBody2D
 
-@export var speed = 100.0
+@export var speed: float = 100.0
 
 enum RoadDirection { FRONT, RIGHT }
 @export var road_direction: RoadDirection = RoadDirection.FRONT
@@ -12,9 +12,13 @@ var cross_point: Marker2D
 var exit_point: Marker2D
 var fuckoff: Marker2D
 
-var fuckedoff = false
-var has_passed = false
-var car_in_front = false
+var fuckedoff: bool = false
+var has_passed: bool = false
+
+var blocking_bodies: Array[Node2D] = []
+
+var waiting_time: float = 0.0
+var is_waiting: bool = false
 
 
 func _process(_delta: float) -> void:
@@ -24,40 +28,72 @@ func _process(_delta: float) -> void:
 		queue_free()
 		return
 
-	# Check whether the car has reached the crossing point.
 	if not has_passed and cross_point != null:
 		if global_position.distance_to(cross_point.global_position) < 10.0:
 			has_passed = true
 
-	# Once the car has crossed, ignore traffic lights.
 	if has_passed:
 		target = exit_point
-	else:
-		# Check the light for this car's direction.
-		if road_direction == RoadDirection.RIGHT:
-			if GameData.traffic_right_left:
-				target = exit_point
-			else:
-				target = stop_point
-		else:
-			if GameData.traffic_front_down:
-				target = exit_point
-			else:
-				target = stop_point
+		return
 
-	# Remove the car when it reaches the end of the road.
-	if fuckoff != null:
-		if global_position.distance_to(fuckoff.global_position) < 10.0:
-			queue_free()
+	var green: bool
+
+	if road_direction == RoadDirection.RIGHT:
+		green = GameData.traffic_right_left
+	else:
+		green = GameData.traffic_front_down
+
+	if green:
+		target = cross_point
+	else:
+		target = stop_point
+
+
+func update_waiting_time(delta: float, waiting: bool) -> void:
+	if waiting:
+		waiting_time += delta
+		is_waiting = true
+	else:
+		is_waiting = false
 
 
 func _physics_process(_delta: float) -> void:
+	for i in range(blocking_bodies.size() - 1, -1, -1):
+		if not is_instance_valid(blocking_bodies[i]):
+			blocking_bodies.remove_at(i)
+
+	var waiting_for_car = not blocking_bodies.is_empty()
+
+	var waiting_for_light = (
+		not has_passed
+		and target == stop_point
+		and stop_point != null
+		and global_position.distance_to(stop_point.global_position) < 5.0
+	)
+
+	update_waiting_time(
+		_delta,
+		waiting_for_car or waiting_for_light
+	)
+
+	if waiting_for_car:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
+
 	if target == null:
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return
 
-	if car_in_front:
+	if waiting_for_light:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
+
+	var distance = global_position.distance_to(target.global_position)
+
+	if distance < 5.0:
 		velocity = Vector2.ZERO
 	else:
 		var direction = global_position.direction_to(target.global_position)
@@ -65,12 +101,24 @@ func _physics_process(_delta: float) -> void:
 
 	move_and_slide()
 
+	if fuckoff != null:
+		if global_position.distance_to(fuckoff.global_position) < 25.0:
+			GameData.car_passed += 1
+
+			GameData.total_waiting_time += waiting_time
+			GameData.total_cars += 1
+			GameData.average_waiting_time = (
+				GameData.total_waiting_time / GameData.total_cars
+			)
+
+			queue_free()
+			return
+
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body != self:
-		car_in_front = true
+	if body != self and not blocking_bodies.has(body):
+		blocking_bodies.append(body)
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body != self:
-		car_in_front = false
+	blocking_bodies.erase(body)

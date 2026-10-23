@@ -1,6 +1,8 @@
+
 extends CharacterBody2D
 
-@export var speed = 100.0
+@export var speed: float = 100.0
+
 @onready var death_label = $"../../death_label"
 @onready var van = $van
 @onready var taxi = $taxi
@@ -14,119 +16,161 @@ extends CharacterBody2D
 @onready var collision_shape = $CollisionShape2D
 @onready var collsion_range = $Area2D/collision_range
 
-
 var target: Marker2D
 var stop_point: Marker2D
 var cross_point: Marker2D
 var exit_point: Marker2D
 var fuckoff: Marker2D
-var last_direction : String
+var last_direction: String = ""
 
-var fuckedoff = false
-var has_passed = false
-var car_in_front = false
-var vehicle_opt = AnimatedSprite2D
-var vehicle_move = false
+var fuckedoff: bool = false
+var has_passed: bool = false
+var car_in_front: bool = false
+var vehicle_opt: AnimatedSprite2D
+var vehicle_move: bool = false
+
+var blocking_bodies: Array[Node2D] = []
+var waiting_time: float = 0.0
+var is_waiting: bool = false
 
 
 func _ready() -> void:
-	var vehicle = [van , taxi , luxury , jeep , civic , truck , bus , polic_car , ambulance]
-	var selected_vehicle = vehicle.pick_random()
-	for vehicles in vehicle:
-		vehicles.hide()
+	var vehicles = [
+		van, taxi, luxury, jeep, civic,
+		truck, bus, polic_car, ambulance
+	]
+
+	var selected_vehicle = vehicles.pick_random()
+
+	for vehicle in vehicles:
+		vehicle.hide()
+
 	selected_vehicle.show()
 	vehicle_opt = selected_vehicle
+
 	collision_shape.position = Vector2.ZERO
 	collsion_range.position = Vector2.ZERO
+
 	match selected_vehicle.name:
 		"van":
-			collision_shape.scale = Vector2(1.0 , 1.0)
-			collsion_range.scale = Vector2(1.0 , 1.3)
-		"taxi":
-			collision_shape.scale = Vector2(1.3 , 0.9)
-			collsion_range.scale = Vector2(1.3 , 1.3)
-		"luxury":
-			collision_shape.scale = Vector2(1.3 , 0.9)
-			collsion_range.scale = Vector2(1.3 , 1.3)
+			collision_shape.scale = Vector2(1.0, 1.0)
+			collsion_range.scale = Vector2(1.0, 1.3)
+		"taxi", "luxury":
+			collision_shape.scale = Vector2(1.3, 0.9)
+			collsion_range.scale = Vector2(1.3, 1.3)
 		"jeep":
-			collision_shape.scale = Vector2(0.8 , 0.9)
-			collsion_range.scale = Vector2(1.0 , 1.3)
+			collision_shape.scale = Vector2(0.8, 0.9)
+			collsion_range.scale = Vector2(1.0, 1.3)
 		"civic":
-			collision_shape.scale = Vector2(0.8 , 0.8)
-			collsion_range.scale = Vector2(1.0 , 1.3)
+			collision_shape.scale = Vector2(0.8, 0.8)
+			collsion_range.scale = Vector2(1.0, 1.3)
 		"truck":
-			collision_shape.scale = Vector2(1.7 , 1.5)
-			collsion_range.scale = Vector2(1.9 , 1.7)
-			collsion_range.position = Vector2(0.0 , -10.0)
+			collision_shape.scale = Vector2(1.7, 1.5)
+			collsion_range.scale = Vector2(1.9, 1.7)
+			collsion_range.position = Vector2(0.0, -10.0)
 		"bus":
-			collision_shape.scale = Vector2(2.1 , 1.5)
-			collision_shape.position = Vector2(5.0 , -10.0)
-			collsion_range.scale = Vector2(2.3 , 1.9)
-			collsion_range.position = Vector2(2.0 , -10.0)
-		"polic_car":
-			collision_shape.scale = Vector2(1.2 , 1.0)
-			collsion_range.scale = Vector2(1.4 , 1.4)
+			collision_shape.scale = Vector2(2.1, 1.5)
+			collision_shape.position = Vector2(5.0, -10.0)
+			collsion_range.scale = Vector2(2.3, 1.9)
+			collsion_range.position = Vector2(2.0, -10.0)
+		"polic car":
+			collision_shape.scale = Vector2(1.2, 1.0)
+			collsion_range.scale = Vector2(1.4, 1.4)
 		"ambulance":
-			collision_shape.scale = Vector2(1.6 , 1.3)
-			collision_shape.position = Vector2(0.0 , -7.0)
-			collsion_range.scale = Vector2(1.7 , 1.6)
-			collsion_range.position = Vector2(0.0 , -7.0)
-	
+			collision_shape.scale = Vector2(1.6, 1.3)
+			collision_shape.position = Vector2(0.0, -7.0)
+			collsion_range.scale = Vector2(1.7, 1.6)
+			collsion_range.position = Vector2(0.0, -7.0)
 
-func _process(delta: float) -> void:
+
+func _process(_delta: float) -> void:
 	GameData.car_pos = global_position
 
 	if fuckedoff:
 		queue_free()
 		return
 
-	# If the car already crossed the intersection,
-	# keep moving toward the exit.
+	if not has_passed:
+		if GameData.traffic_right_left:
+			target = cross_point
+		else:
+			target = stop_point
+
+	if cross_point != null and not has_passed:
+		if global_position.distance_to(cross_point.global_position) < 10.0:
+			has_passed = true
+
 	if has_passed:
 		target = exit_point
 
-	else:
-		# Decide movement according to traffic light
-		if GameData.traffic_right_left:
-			target = exit_point
-
-		elif GameData.traffic_front_down:
-			target = stop_point
-			vehicle_move = false
-
-		else:
-			target = stop_point
-			vehicle_move = false
-
-	# Check whether car crossed the intersection
-	if cross_point != null:
-		if global_position.distance_to(cross_point.global_position) < 10:
-			has_passed = true
-
-	# Delete car after it leaves the road
 	if fuckoff != null:
-		if global_position.distance_to(fuckoff.global_position) < 10:
+		if global_position.distance_to(fuckoff.global_position) < 25.0:
+			GameData.car_passed += 1
+			GameData.total_waiting_time += waiting_time
+			GameData.total_cars += 1
+			GameData.average_waiting_time = (
+				GameData.total_waiting_time / GameData.total_cars
+			)
 			queue_free()
 
 
-func _physics_process(delta: float) -> void:
+func update_waiting_time(delta: float, waiting: bool) -> void:
+	if waiting:
+		waiting_time += delta
+		is_waiting = true
+	else:
+		is_waiting = false
 
-	if target == null:
-		return
-	var direction = global_position.direction_to(target.global_position)
-	if car_in_front:
+
+func _physics_process(delta: float) -> void:
+	for i in range(blocking_bodies.size() - 1, -1, -1):
+		if not is_instance_valid(blocking_bodies[i]):
+			blocking_bodies.remove_at(i)
+
+	var waiting_for_car = not blocking_bodies.is_empty()
+
+	var waiting_for_light = (
+		not has_passed
+		and target == stop_point
+		and stop_point != null
+		and global_position.distance_to(stop_point.global_position) < 5.0
+	)
+
+	update_waiting_time(delta, waiting_for_car or waiting_for_light)
+
+	if waiting_for_car or waiting_for_light or car_in_front:
 		velocity = Vector2.ZERO
 		vehicle_move = false
+		if vehicle_opt != null:
+			vehicle_opt.pause()
+		move_and_slide()
+		return
 
+	if target == null:
+		velocity = Vector2.ZERO
+		vehicle_move = false
+		move_and_slide()
+		return
+
+	var direction: Vector2 = global_position.direction_to(target.global_position)
+	var distance: float = global_position.distance_to(target.global_position)
+
+	if distance < 5.0:
+		velocity = Vector2.ZERO
+		vehicle_move = false
 	else:
 		velocity = direction * speed
 		vehicle_move = true
-	process_animation(direction)
-	
 
+	process_animation(direction)
 	move_and_slide()
+
+
 func process_animation(direction: Vector2) -> void:
-	if vehicle_move == false:
+	if vehicle_opt == null:
+		return
+
+	if not vehicle_move:
 		vehicle_opt.pause()
 		return
 
@@ -134,25 +178,42 @@ func process_animation(direction: Vector2) -> void:
 		if direction.x > 0:
 			vehicle_opt.play("right")
 			last_direction = "right"
-		elif direction.x < 0:
+		else:
 			vehicle_opt.play("left")
 			last_direction = "left"
-	elif abs(direction.x) < abs(direction.y):
+	elif abs(direction.y) >= abs(direction.x):
 		if direction.y > 0:
 			vehicle_opt.play("down")
 			last_direction = "down"
-		elif direction.y < 0:
+		else:
 			vehicle_opt.play("top")
 			last_direction = "top"
 
+
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body != self and not blocking_bodies.has(body):
+		blocking_bodies.append(body)
+
 	if body.is_in_group("npc") and velocity.length() > 0:
 		GameData.npc_collided = true
-		GameData.collided_npc_id = body.npc_id
+
+		if "npc_id" in body:
+			GameData.collided_npc_id = body.npc_id
+
+		for child in body.get_children():
+			if child.has_method("show_death_label"):
+				child.show_death_label()
+				break
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body != self:
-		car_in_front = false
+	blocking_bodies.erase(body)
+
 	if body.is_in_group("npc"):
 		GameData.npc_collided = false
+		GameData.collided_npc_id = -1
+
+		for child in body.get_children():
+			if child.has_method("hide_death_label"):
+				child.hide_death_label()
+				break
