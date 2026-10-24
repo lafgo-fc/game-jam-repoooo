@@ -77,6 +77,7 @@ func _physics_process(delta: float) -> void:
 		elif distance < 2.0 and dodge_stage == 2:
 			dodge_stage = 3
 			dodge_target = global_position + Vector2(0,40)
+			npc_name.play(\"front\")
 		elif distance < 2.0 and dodge_stage == 3:
 			is_dodging = false
 			dodge_stage = 0
@@ -196,12 +197,13 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func start_dodge():
 	if dodge_type == \"left and right\":
-		if not is_dodging:
+		if not is_dodging and npc_inside:
 			is_dodging = true
 			dodge_stage = 1
 			other_npc.being_dodged = true
 			dodge_target = global_position + Vector2(0 , -40)
-		
+			npc_name.play(\"top\")
+			return
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mvjtp"]
