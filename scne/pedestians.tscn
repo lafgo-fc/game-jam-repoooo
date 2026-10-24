@@ -74,6 +74,7 @@ func _physics_process(delta: float) -> void:
 		if distance < 2.0 and dodge_stage == 1:
 			dodge_stage = 2
 			dodge_target = global_position + Vector2(80,0)
+			npc_name.play(\"right\")
 		elif distance < 2.0 and dodge_stage == 2:
 			dodge_stage = 3
 			dodge_target = global_position + Vector2(0,40)
@@ -109,7 +110,9 @@ func _physics_process(delta: float) -> void:
 
 
 func process_animation(direction: Vector2):
-	
+	if is_dodging and dodge_stage == 1:
+		npc_name.play(\"top\")
+		return
 	if abs(direction.x)>abs(direction.y):
 		if direction.x > 0:
 			npc_name.play(\"right\")
@@ -197,7 +200,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func start_dodge():
 	if dodge_type == \"left and right\":
-		if not is_dodging and npc_inside:
+		if not is_dodging :
 			is_dodging = true
 			dodge_stage = 1
 			other_npc.being_dodged = true
