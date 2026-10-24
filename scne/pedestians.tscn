@@ -64,6 +64,7 @@ func _physics_process(delta: float) -> void:
 	if near_pt == null:
 		return
 	if being_dodged:
+		npc_name.play(\"idle \" +last_direction)
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return 
@@ -72,10 +73,10 @@ func _physics_process(delta: float) -> void:
 		var distance = global_position.distance_to(dodge_target)
 		if distance < 2.0 and dodge_stage == 1:
 			dodge_stage = 2
-			dodge_target = global_position + Vector2(20,0)
+			dodge_target = global_position + Vector2(80,0)
 		elif distance < 2.0 and dodge_stage == 2:
 			dodge_stage = 3
-			dodge_target = global_position + Vector2(0,20)
+			dodge_target = global_position + Vector2(0,40)
 		elif distance < 2.0 and dodge_stage == 3:
 			is_dodging = false
 			dodge_stage = 0
@@ -199,7 +200,7 @@ func start_dodge():
 			is_dodging = true
 			dodge_stage = 1
 			other_npc.being_dodged = true
-			dodge_target = global_position + Vector2(0 , -20)
+			dodge_target = global_position + Vector2(0 , -40)
 		
 "
 
