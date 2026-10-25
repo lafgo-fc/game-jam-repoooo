@@ -82,7 +82,6 @@ func _physics_process(delta: float) -> void:
 		elif distance < 2.0 and dodge_stage == 3:
 			is_dodging = false
 			dodge_stage = 0
-			velocity = Vector2.ZERO
 		move_and_slide()
 		return
 	start_dodge()
@@ -92,6 +91,7 @@ func _physics_process(delta: float) -> void:
 			dodge_type = \"left and right\"
 		elif (last_direction == \"top\" and other_npc.last_direction == \"front\") or (last_direction == \"front\" and other_npc.last_direction == \"top\"):
 			print(\"top front collided\")
+			dodge_type = \"front and down\"
 		
 		
 	var distance = global_position.distance_to(near_pt.global_position)
@@ -188,9 +188,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body != self and body.is_in_group(\"npc\"):
 		other_npc = body
 		different_directional_npc = false
-		if last_direction == body.last_direction:
-			npc_inside = true
-		else :
+		npc_inside = true
+		if self.last_direction != body.last_direction:
 			different_directional_npc = true
 
 
@@ -205,8 +204,6 @@ func start_dodge():
 			dodge_stage = 1
 			other_npc.being_dodged = true
 			dodge_target = global_position + Vector2(0 , -40)
-			npc_name.play(\"top\")
-			return
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mvjtp"]
