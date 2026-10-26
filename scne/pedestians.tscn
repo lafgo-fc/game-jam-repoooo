@@ -206,18 +206,18 @@ func process_animation(direction: Vector2):
 func nex_pt():
 	previous_pt = near_pt
 	if near_pt == pt_1:
-		var possible_pt = [pt_3]
+		var possible_pt = [pt_3,pt_2,pt_8]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_2:
-		var possible_pt = [pt_1]
+		var possible_pt = [pt_1,pt_4,pt_10]
 		near_pt = possible_pt.pick_random()
 
 	elif near_pt == pt_3:
-		var possible_pt = [pt_4]
+		var possible_pt = [pt_4,pt_1,pt_11]
 		near_pt = possible_pt.pick_random()
 
 	elif near_pt == pt_4:
-		var possible_pt = [pt_3]
+		var possible_pt = [pt_3,pt_2,pt_9]
 		near_pt = possible_pt.pick_random()
 func  check_signal():
 	stop_signal = false
