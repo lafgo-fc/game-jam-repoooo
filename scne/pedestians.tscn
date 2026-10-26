@@ -69,11 +69,14 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return 
 	if is_dodging:
+		print(\"Dodge stage: \", dodge_stage, \" | Animation: \", npc_name.animation)
 		velocity = global_position.direction_to(dodge_target) * SPEED
 		var distance = global_position.distance_to(dodge_target)
+		if dodge_stage == 1:
+			npc_name.play(\"top\")
 		if distance < 2.0 and dodge_stage == 1:
 			dodge_stage = 2
-			dodge_target = global_position + Vector2(80,0)
+			dodge_target = global_position + Vector2(100,0)
 			npc_name.play(\"right\")
 		elif distance < 2.0 and dodge_stage == 2:
 			dodge_stage = 3
@@ -108,12 +111,13 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity = direction * SPEED
 		move_and_slide()
-		print(\"Calling process_animation\")
 		process_animation(direction)
 
 
 func process_animation(direction: Vector2):
-	print(\"animation stage \" , dodge_stage)
+
+	if dodge_stage == 1:
+		return
 	if abs(direction.x)>abs(direction.y):
 		if direction.x > 0:
 			npc_name.play(\"right\")
@@ -207,6 +211,7 @@ func start_dodge():
 			other_npc.being_dodged = true
 			dodge_target = global_position + Vector2(0 , -40)
 			npc_name.play(\"top\")
+			return
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mvjtp"]
