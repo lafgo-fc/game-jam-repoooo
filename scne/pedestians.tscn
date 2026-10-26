@@ -107,6 +107,24 @@ func _physics_process(delta: float) -> void:
 			dodge_stage = 0
 		move_and_slide()
 		return
+	elif is_dodging and dodge_type == \"top and right\":
+		velocity = global_position.direction_to(dodge_target) * SPEED
+		var distance = global_position.distance_to(dodge_target)
+		if dodge_stage == 1:
+			npc_name.play(\"front\")
+		if distance < 2.0 and dodge_stage == 1:
+			dodge_stage = 2
+			dodge_target = global_position + Vector2(100,0)
+			npc_name.play(\"right\")
+		elif distance < 2.0 and dodge_stage == 2:
+			dodge_stage = 3
+			dodge_target = global_position + Vector2(0,-40)
+			npc_name.play(\"top\")
+		elif distance < 2.0 and dodge_stage == 3:
+			is_dodging = false
+			dodge_stage = 0
+		move_and_slide()
+		return
 
 
 	if different_directional_npc == true:
@@ -160,7 +178,7 @@ func process_animation(direction: Vector2):
 func nex_pt():
 	previous_pt = near_pt
 	if near_pt == pt_1:
-		var possible_pt = [pt_2]
+		var possible_pt = [pt_3]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_2:
 		var possible_pt = [pt_1]
@@ -250,8 +268,8 @@ func start_dodge():
 			dodge_stage = 1
 			print(dodge_stage)
 			other_npc.being_dodged = true
-			dodge_target = global_position + Vector2(-40 , 0)
-			npc_name.play(\"top\")
+			dodge_target = global_position + Vector2(0 , -40)
+			npc_name.play(\"front\")
 			return
 	
 "
