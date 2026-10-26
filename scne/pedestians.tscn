@@ -116,6 +116,9 @@ func _physics_process(delta: float) -> void:
 		elif (last_direction == \"top\" and other_npc.last_direction == \"front\") or (last_direction == \"front\" and other_npc.last_direction == \"top\"):
 			print(\"top front collided\")
 			dodge_type = \"front and down\"
+		elif (last_direction == \"top\" and other_npc.last_direction == \"right\") or (last_direction == \"right\" and other_npc.last_direction == \"top\"):
+			print(\"front right collided\")
+			dodge_type = \"top and right\"
 		start_dodge()
 		
 		
@@ -241,6 +244,16 @@ func start_dodge():
 			dodge_target = global_position + Vector2(-40 , 0)
 			npc_name.play(\"top\")
 			return
+	elif dodge_type == \"top and right\" and npc_inside:
+		if not is_dodging :
+			is_dodging = true
+			dodge_stage = 1
+			print(dodge_stage)
+			other_npc.being_dodged = true
+			dodge_target = global_position + Vector2(-40 , 0)
+			npc_name.play(\"top\")
+			return
+	
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mvjtp"]
