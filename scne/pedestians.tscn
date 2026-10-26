@@ -125,6 +125,24 @@ func _physics_process(delta: float) -> void:
 			dodge_stage = 0
 		move_and_slide()
 		return
+	elif is_dodging and dodge_type == \"top and left\" or dodge_type == \"front and left\":
+		velocity = global_position.direction_to(dodge_target) * SPEED
+		var distance = global_position.distance_to(dodge_target)
+		if dodge_stage == 1:
+			npc_name.play(\"front\")
+		if distance < 2.0 and dodge_stage == 1:
+			dodge_stage = 2
+			dodge_target = global_position + Vector2(-100,0)
+			npc_name.play(\"left\")
+		elif distance < 2.0 and dodge_stage == 2:
+			dodge_stage = 3
+			dodge_target = global_position + Vector2(0,-40)
+			npc_name.play(\"top\")
+		elif distance < 2.0 and dodge_stage == 3:
+			is_dodging = false
+			dodge_stage = 0
+		move_and_slide()
+		return
 
 
 	if different_directional_npc == true:
@@ -141,6 +159,9 @@ func _physics_process(delta: float) -> void:
 			print(\"front right collided\")
 			dodge_type = \"front and right\"
 		elif (last_direction == \"front\" and other_npc.last_direction == \"left\") or (last_direction == \"left\" and other_npc.last_direction == \"front\"):
+			print(\"front left collided\")
+			dodge_type = \"front and left\"
+		elif (last_direction == \"top\" and other_npc.last_direction == \"left\") or (last_direction == \"left\" and other_npc.last_direction == \"top\"):
 			print(\"front left collided\")
 			dodge_type = \"front and left\"
 		
