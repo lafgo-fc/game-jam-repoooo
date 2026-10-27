@@ -307,6 +307,11 @@ func start_dodge():
 			other_npc.being_dodged = true
 			dodge_target = global_position + Vector2(0 , -40)
 			return
+func exit_pt():
+	var points = [pt_1,pt_2,pt_3,pt_4,pt_5,pt_6,pt_7,pt_8,pt_9,pt_10,pt_11]
+	for point in points:
+		if global_position.distance_to(point.global_position) < 5:
+			queue_free()
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mvjtp"]
@@ -1935,14 +1940,13 @@ script = SubResource("GDScript_8ja1e")
 position = Vector2(0, -7)
 scale = Vector2(2.6666667, 2.2931035)
 sprite_frames = SubResource("SpriteFrames_74c84")
-animation = &"top"
-frame_progress = 0.47326368
+animation = &"idle front"
 
 [node name="npc 2" type="AnimatedSprite2D" parent="." unique_id=1958349776]
 position = Vector2(0.25000072, -5.2500005)
 scale = Vector2(2.34375, 2.40625)
 sprite_frames = SubResource("SpriteFrames_454ae")
-animation = &"idle top"
+animation = &"idle front"
 
 [node name="npc 3" type="AnimatedSprite2D" parent="." unique_id=1103112919]
 scale = Vector2(2.5, 2.5)
@@ -1952,7 +1956,7 @@ animation = &"idle front"
 [node name="npc 4" type="AnimatedSprite2D" parent="." unique_id=518088500]
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_xi4lh")
-animation = &"idle top"
+animation = &"idle front"
 
 [node name="npc 5" type="AnimatedSprite2D" parent="." unique_id=1794136208]
 scale = Vector2(2.4, 2.4)
