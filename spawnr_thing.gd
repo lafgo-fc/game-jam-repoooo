@@ -30,4 +30,4 @@ func spawn_car() -> void:
 
 
 func _on_timer_timeout() -> void:
-	pass
+	spawn_car()

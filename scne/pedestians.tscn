@@ -213,14 +213,14 @@ func nex_pt():
 		var possible_pt = [pt_3,pt_2,pt_8]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_2:
-		var possible_pt = [pt_1,pt_4,pt_10]
+		var possible_pt = [pt_1,pt_4,pt_10,pt_6]
 		near_pt = possible_pt.pick_random()
 
 	elif near_pt == pt_3:
-		var possible_pt = [pt_1]
+		var possible_pt = [pt_1,pt_11,pt_4,pt_7]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_4:
-		var possible_pt = [pt_3,pt_2,pt_9]
+		var possible_pt = [pt_3,pt_2,pt_9,pt_5]
 		near_pt = possible_pt.pick_random()
 func  check_signal():
 	stop_signal = false
