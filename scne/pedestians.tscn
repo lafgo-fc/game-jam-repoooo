@@ -63,6 +63,7 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	if near_pt == null:
 		return
+	exit_pt()
 	
 	
 	# performing the dodge
@@ -308,10 +309,12 @@ func start_dodge():
 			dodge_target = global_position + Vector2(0 , -40)
 			return
 func exit_pt():
-	var points = [pt_1,pt_2,pt_3,pt_4,pt_5,pt_6,pt_7,pt_8,pt_9,pt_10,pt_11]
+	var points = [pt_5,pt_6,pt_7,pt_8,pt_9,pt_10,pt_11]
 	for point in points:
 		if global_position.distance_to(point.global_position) < 5:
 			queue_free()
+			print(\"npc exited\")
+			GameData.reputation += 100
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mvjtp"]
