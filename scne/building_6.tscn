@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ct0gj1v2ph1a2"]
+
+[ext_resource type="Texture2D" uid="uid://bx6b0qmb5c6ra" path="res://assets/map assets/CP_V1.1.0_nyknck/CP_V1.0.4_nyknck/Building6.png" id="1_noci1"]
+
+[node name="building6" type="Sprite2D" unique_id=1261646951]
+texture = ExtResource("1_noci1")
