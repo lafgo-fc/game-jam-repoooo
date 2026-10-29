@@ -42,6 +42,12 @@ var stop_signal : bool
 var previous_pt : Marker2D
 var different_directional_npc : bool 
 var other_npc : Node2D = null
+var dodge_type : String
+var direction: Vector2 = Vector2.ZERO
+var dodge_stage : int = 0
+var is_dodging = false
+var dodge_target : Vector2
+var being_dodged = false
 
 const SPEED = 30.0
 
@@ -57,17 +63,118 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	if near_pt == null:
 		return
+	exit_pt()
+	
+	
+	# performing the dodge
+	if being_dodged:
+		npc_name.play(\"idle \" +last_direction)
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return 
+	if is_dodging and dodge_type == \"left and right\":
+		velocity = global_position.direction_to(dodge_target) * SPEED
+		var distance = global_position.distance_to(dodge_target)
+		if dodge_stage == 1:
+			npc_name.play(\"top\")
+		if distance < 2.0 and dodge_stage == 1:
+			dodge_stage = 2
+			dodge_target = global_position + Vector2(100,0)
+			npc_name.play(\"right\")
+		elif distance < 2.0 and dodge_stage == 2:
+			dodge_stage = 3
+			other_npc.being_dodged = false
+			dodge_target = global_position + Vector2(0,40)
+			npc_name.play(\"front\")
+		elif distance < 2.0 and dodge_stage == 3:
+			is_dodging = false
+			dodge_stage = 0
+		move_and_slide()
+		return
+	elif is_dodging and dodge_type == \"front and down\":
+		velocity = global_position.direction_to(dodge_target) * SPEED
+		var distance = global_position.distance_to(dodge_target)
+		if dodge_stage == 1:
+			npc_name.play(\"left\")
+		if distance < 2.0 and dodge_stage == 1:
+			dodge_stage = 2
+			dodge_target = global_position + Vector2(0,100)
+			npc_name.play(\"front\")
+		elif distance < 2.0 and dodge_stage == 2:
+			dodge_stage = 3
+			other_npc.being_dodged = false
+			dodge_target = global_position + Vector2(40,0)
+			npc_name.play(\"right\")
+		elif distance < 2.0 and dodge_stage == 3:
+			is_dodging = false
+			dodge_stage = 0
+		move_and_slide()
+		return
+	elif is_dodging and dodge_type == \"top and right\" or dodge_type == \"front and right\":
+		velocity = global_position.direction_to(dodge_target) * SPEED
+		var distance = global_position.distance_to(dodge_target)
+		if dodge_stage == 1:
+			npc_name.play(\"front\")
+		if distance < 2.0 and dodge_stage == 1:
+			dodge_stage = 2
+			dodge_target = global_position + Vector2(100,0)
+			npc_name.play(\"right\")
+		elif distance < 2.0 and dodge_stage == 2:
+			dodge_stage = 3
+			other_npc.being_dodged = false
+			dodge_target = global_position + Vector2(0,-40)
+			npc_name.play(\"top\")
+		elif distance < 2.0 and dodge_stage == 3:
+			is_dodging = false
+			dodge_stage = 0
+		move_and_slide()
+		return
+	elif is_dodging and dodge_type == \"top and left\" or dodge_type == \"front and left\":
+		velocity = global_position.direction_to(dodge_target) * SPEED
+		var distance = global_position.distance_to(dodge_target)
+		if dodge_stage == 1:
+			npc_name.play(\"front\")
+		if distance < 2.0 and dodge_stage == 1:
+			dodge_stage = 2
+			dodge_target = global_position + Vector2(-100,0)
+			npc_name.play(\"left\")
+		elif distance < 2.0 and dodge_stage == 2:
+			dodge_stage = 3
+			other_npc.being_dodged = false
+			dodge_target = global_position + Vector2(0,-40)
+			npc_name.play(\"top\")
+		elif distance < 2.0 and dodge_stage == 3:
+			is_dodging = false
+			dodge_stage = 0
+		move_and_slide()
+		return
+
+
 	if different_directional_npc == true:
 		if (last_direction == \"right\" and other_npc.last_direction == \"left\") or (last_direction == \"left\" and other_npc.last_direction == \"right\"):
 			print(\"right left collided\")
+			dodge_type = \"left and right\"
 		elif (last_direction == \"top\" and other_npc.last_direction == \"front\") or (last_direction == \"front\" and other_npc.last_direction == \"top\"):
 			print(\"top front collided\")
+			dodge_type = \"front and down\"
+		elif (last_direction == \"top\" and other_npc.last_direction == \"right\") or (last_direction == \"right\" and other_npc.last_direction == \"top\"):
+			print(\"top right collided\")
+			dodge_type = \"top and right\"
+		elif (last_direction == \"front\" and other_npc.last_direction == \"right\") or (last_direction == \"right\" and other_npc.last_direction == \"front\"):
+			print(\"front right collided\")
+			dodge_type = \"front and right\"
+		elif (last_direction == \"front\" and other_npc.last_direction == \"left\") or (last_direction == \"left\" and other_npc.last_direction == \"front\"):
+			print(\"front left collided\")
+			dodge_type = \"front and left\"
+		elif (last_direction == \"top\" and other_npc.last_direction == \"left\") or (last_direction == \"left\" and other_npc.last_direction == \"top\"):
+			print(\"front left collided\")
+			dodge_type = \"front and left\"
+		
+		start_dodge()
 		
 		
 	var distance = global_position.distance_to(near_pt.global_position)
 	var direction = global_position.direction_to(near_pt.global_position)
-	print(previous_pt)
-	print(near_pt)
 	if distance < 5.0:
 		nex_pt()
 		return
@@ -82,7 +189,9 @@ func _physics_process(delta: float) -> void:
 
 
 func process_animation(direction: Vector2):
-	
+
+	if dodge_stage == 1:
+		return
 	if abs(direction.x)>abs(direction.y):
 		if direction.x > 0:
 			npc_name.play(\"right\")
@@ -102,18 +211,17 @@ func process_animation(direction: Vector2):
 func nex_pt():
 	previous_pt = near_pt
 	if near_pt == pt_1:
-		var possible_pt = [pt_3 , pt_2 , pt_8]
+		var possible_pt = [pt_3,pt_2,pt_8]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_2:
-		var possible_pt = [pt_1,pt_4,pt_6]
+		var possible_pt = [pt_1,pt_4,pt_10,pt_6]
 		near_pt = possible_pt.pick_random()
 
 	elif near_pt == pt_3:
-		var possible_pt = [pt_4,pt_7,pt_11,pt_1]
+		var possible_pt = [pt_1,pt_11,pt_4,pt_7]
 		near_pt = possible_pt.pick_random()
-
 	elif near_pt == pt_4:
-		var possible_pt = [pt_9,pt_3,pt_2]
+		var possible_pt = [pt_3,pt_2,pt_9,pt_5]
 		near_pt = possible_pt.pick_random()
 func  check_signal():
 	stop_signal = false
@@ -158,15 +266,55 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body != self and body.is_in_group(\"npc\"):
 		other_npc = body
 		different_directional_npc = false
-		if last_direction == body.last_direction:
-			npc_inside = true
-		else :
+		npc_inside = true
+		if self.last_direction != body.last_direction:
 			different_directional_npc = true
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body != self and body.is_in_group(\"npc\"):
 		npc_inside = false
+
+func start_dodge():
+	if dodge_type == \"left and right\" and npc_inside:
+		if not is_dodging :
+			is_dodging = true
+			dodge_stage = 1
+			print(dodge_stage)
+			other_npc.being_dodged = true
+			dodge_target = global_position + Vector2(0 , -40)
+			return
+	elif dodge_type == \"front and down\" and npc_inside:
+		if not is_dodging :
+			is_dodging = true
+			dodge_stage = 1
+			print(dodge_stage)
+			other_npc.being_dodged = true
+			dodge_target = global_position + Vector2(-40 , 0)
+			return
+	elif dodge_type == \"top and right\" or dodge_type == \"front and right\" and npc_inside:
+		if not is_dodging :
+			is_dodging = true
+			dodge_stage = 1
+			print(dodge_stage)
+			other_npc.being_dodged = true
+			dodge_target = global_position + Vector2(0 , -40)
+			return
+	elif dodge_type == \"top and left\" or dodge_type == \"front and left\" and npc_inside:
+		if not is_dodging :
+			is_dodging = true
+			dodge_stage = 1
+			print(dodge_stage)
+			other_npc.being_dodged = true
+			dodge_target = global_position + Vector2(0 , -40)
+			return
+func exit_pt():
+	var points = [pt_5,pt_6,pt_7,pt_8,pt_9,pt_10,pt_11]
+	for point in points:
+		if global_position.distance_to(point.global_position) < 5:
+			queue_free()
+			print(\"npc exited\")
+			GameData.reputation += 100
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mvjtp"]
@@ -1795,14 +1943,13 @@ script = SubResource("GDScript_8ja1e")
 position = Vector2(0, -7)
 scale = Vector2(2.6666667, 2.2931035)
 sprite_frames = SubResource("SpriteFrames_74c84")
-animation = &"top"
-frame_progress = 0.47326368
+animation = &"idle front"
 
 [node name="npc 2" type="AnimatedSprite2D" parent="." unique_id=1958349776]
 position = Vector2(0.25000072, -5.2500005)
 scale = Vector2(2.34375, 2.40625)
 sprite_frames = SubResource("SpriteFrames_454ae")
-animation = &"idle top"
+animation = &"idle front"
 
 [node name="npc 3" type="AnimatedSprite2D" parent="." unique_id=1103112919]
 scale = Vector2(2.5, 2.5)
@@ -1812,7 +1959,7 @@ animation = &"idle front"
 [node name="npc 4" type="AnimatedSprite2D" parent="." unique_id=518088500]
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_xi4lh")
-animation = &"idle top"
+animation = &"idle front"
 
 [node name="npc 5" type="AnimatedSprite2D" parent="." unique_id=1794136208]
 scale = Vector2(2.4, 2.4)

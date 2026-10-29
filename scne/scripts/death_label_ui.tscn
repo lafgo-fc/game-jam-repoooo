@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c5npysxt2lt1l"]
+
+[ext_resource type="Script" uid="uid://buhyn0is6ei28" path="res://death_label_ui.gd" id="1_jbavh"]
+
+[node name="death_label_ui" type="Control" unique_id=1948873641]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_jbavh")
+
+[node name="npc_died" type="Label" parent="." unique_id=1623627267]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "NPC DIED! 💀"
+
+[node name="reputation" type="Label" parent="." unique_id=924784933]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "REPUTATION -200"
