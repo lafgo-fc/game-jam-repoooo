@@ -9,12 +9,18 @@ script = ExtResource("1_jbavh")
 
 [node name="npc_died" type="Label" parent="." unique_id=1623627267]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 18.0
+offset_top = 1.0
+offset_right = 117.0
+offset_bottom = 24.0
 text = "NPC DIED! 💀"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="reputation" type="Label" parent="." unique_id=924784933]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -3.0
+offset_top = 23.0
+offset_right = 134.0
+offset_bottom = 46.0
 text = "REPUTATION -200"

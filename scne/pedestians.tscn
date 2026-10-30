@@ -315,6 +315,10 @@ func exit_pt():
 			queue_free()
 			print(\"npc exited\")
 			GameData.reputation += 100
+
+func died_label():
+	if GameData.npc_collided:
+		
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mvjtp"]
@@ -1938,6 +1942,7 @@ fill_to = Vector2(0.9956522, 0)
 
 [node name="Pedestians" type="CharacterBody2D" unique_id=907237046 groups=["npc"]]
 script = SubResource("GDScript_8ja1e")
+npc_id = null
 
 [node name="npc 1" type="AnimatedSprite2D" parent="." unique_id=650339071]
 position = Vector2(0, -7)
