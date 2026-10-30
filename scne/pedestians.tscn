@@ -31,7 +31,8 @@ script/source = "extends CharacterBody2D
 @onready var pt_9 = $\"../../waypoints/p9\"
 @onready var pt_10 = $\"../../waypoints/p10\"
 @onready var pt_11 = $\"../../waypoints/p11\"
-
+var death_label_scene = preload(\"res://scne/scripts/death_label_ui.tscn\")
+var death_label
 # essential vars
 var near_pt : Marker2D
 var last_direction : String
@@ -48,6 +49,7 @@ var dodge_stage : int = 0
 var is_dodging = false
 var dodge_target : Vector2
 var being_dodged = false
+var npc_collided = false
 
 const SPEED = 30.0
 
@@ -59,8 +61,10 @@ func _ready():
 	for npc in npc_list:
 		npc.hide()
 	npc_name.show()
-
+	death_label = death_label_scene.instantiate()
+	get_tree().current_scene.add_child(death_label)
 func _physics_process(delta: float) -> void:
+	death_label_ui()
 	if near_pt == null:
 		return
 	exit_pt()
@@ -315,9 +319,14 @@ func exit_pt():
 			queue_free()
 			print(\"npc exited\")
 			GameData.reputation += 100
-
-func died_label():
-	if GameData.npc_collided:
+func death_label_ui():
+	if npc_collided:
+		print(\"ran\")
+		queue_free()
+		death_label.show()
+		death_label.global_position = global_position
+	else:
+		death_label.hide()
 		
 "
 
@@ -1942,7 +1951,6 @@ fill_to = Vector2(0.9956522, 0)
 
 [node name="Pedestians" type="CharacterBody2D" unique_id=907237046 groups=["npc"]]
 script = SubResource("GDScript_8ja1e")
-npc_id = null
 
 [node name="npc 1" type="AnimatedSprite2D" parent="." unique_id=650339071]
 position = Vector2(0, -7)

@@ -23,7 +23,7 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	print(car_passed)
+	pass
 
 func get_next_npc_id() -> int:
 	var id: int = next_npc_id

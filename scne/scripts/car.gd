@@ -195,7 +195,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		blocking_bodies.append(body)
 
 	if body.is_in_group("npc") and velocity.length() > 0:
-		GameData.npc_collided = true
+		body.npc_collided = true
+		print("npc collided")
 
 		if "npc_id" in body:
 			GameData.collided_npc_id = body.npc_id
