@@ -24,4 +24,5 @@ offset_left = -3.0
 offset_top = 23.0
 offset_right = 134.0
 offset_bottom = 46.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 text = "REPUTATION -200"

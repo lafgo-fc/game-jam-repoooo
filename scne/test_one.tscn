@@ -1960,6 +1960,13 @@ position = Vector2(-320, 82)
 
 [node name="north" type="Node" parent="car spawner" unique_id=549702950]
 
+[node name="spawnr thing2" parent="car spawner/north" unique_id=501297833 node_paths=PackedStringArray("stop_point", "cross_point", "exit_point", "fuckoff") instance=ExtResource("4_f5p5n")]
+position = Vector2(-116, -419)
+stop_point = NodePath("../../west/Marker2D")
+cross_point = NodePath("../Marker2D2")
+exit_point = NodePath("../target 3")
+fuckoff = NodePath("../fuckoffpoint2")
+
 [node name="target 3" type="Marker2D" parent="car spawner/north" unique_id=1571477143]
 position = Vector2(-146, 358)
 
