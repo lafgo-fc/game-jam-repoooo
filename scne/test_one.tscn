@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://yfyoygf1lrkn" path="res://scne/building_5.tscn" id="15_mb0g2"]
 [ext_resource type="PackedScene" uid="uid://ct0gj1v2ph1a2" path="res://scne/building_6.tscn" id="16_2fwml"]
 [ext_resource type="PackedScene" uid="uid://jhaj3tvuowm2" path="res://scne/building_7.tscn" id="17_mb0g2"]
+[ext_resource type="PackedScene" uid="uid://c5npysxt2lt1l" path="res://scne/scripts/death_label_ui.tscn" id="18_2fwml"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xptqv"]
 texture = ExtResource("1_rdy3u")
@@ -2001,3 +2002,5 @@ position = Vector2(229, -190)
 
 [node name="building7" parent="." unique_id=250562988 instance=ExtResource("17_mb0g2")]
 position = Vector2(333, 221)
+
+[node name="death_label_ui" parent="." unique_id=1948873641 instance=ExtResource("18_2fwml")]

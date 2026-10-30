@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://coeuoxlbgfudj" path="res://assets/cars/vehicle asset/Yellow_JEEP_CLEAN_All_000-sheet.png" id="8_307ky"]
 [ext_resource type="Texture2D" uid="uid://dda80ck62w3oa" path="res://assets/cars/vehicle asset/Black_LUXURY_CLEAN_All_000-sheet.png" id="9_axwye"]
 [ext_resource type="Texture2D" uid="uid://cbpgwcm14bvyu" path="res://assets/cars/vehicle asset/TAXI_CLEAN_ALLD0000-sheet.png" id="10_vfnst"]
+[ext_resource type="PackedScene" uid="uid://c5npysxt2lt1l" path="res://scne/scripts/death_label_ui.tscn" id="11_q6ssp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1wpe"]
 atlas = ExtResource("6_xshvc")
@@ -527,6 +528,12 @@ shape = SubResource("RectangleShape2D_s7wsd")
 position = Vector2(0, -7)
 scale = Vector2(1.7, 1.6)
 shape = SubResource("RectangleShape2D_454ae")
+
+[node name="death_label_ui" parent="." unique_id=1948873641 instance=ExtResource("11_q6ssp")]
+offset_left = -60.0
+offset_top = -80.0
+offset_right = -60.0
+offset_bottom = -80.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

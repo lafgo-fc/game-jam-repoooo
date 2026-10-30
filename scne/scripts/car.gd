@@ -15,6 +15,7 @@ extends CharacterBody2D
 @onready var ambulance = $ambulance
 @onready var collision_shape = $CollisionShape2D
 @onready var collsion_range = $Area2D/collision_range
+@onready var death_label_scene = $death_label_ui
 
 var target: Marker2D
 var stop_point: Marker2D
@@ -196,6 +197,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 	if body.is_in_group("npc") and velocity.length() > 0:
 		body.npc_collided = true
+		death_label_scene.show()
+		death_label_scene.global_position = body.global_position
 		print("npc collided")
 
 		if "npc_id" in body:
@@ -211,7 +214,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	blocking_bodies.erase(body)
 
 	if body.is_in_group("npc"):
-		GameData.npc_collided = false
+		body.npc_collided = false
 		GameData.collided_npc_id = -1
 
 		for child in body.get_children():
