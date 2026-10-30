@@ -197,8 +197,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 	if body.is_in_group("npc") and velocity.length() > 0:
 		body.npc_collided = true
-		death_label_scene.show()
-		death_label_scene.global_position = body.global_position
 		print("npc collided")
 
 		if "npc_id" in body:

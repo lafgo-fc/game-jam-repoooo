@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://f2l77wpxo68y" path="res://assets/npcs/NPC_4.png" id="5_fmtih"]
 [ext_resource type="Texture2D" uid="uid://cw315yuuom0cf" path="res://assets/npcs/NPC_5.png" id="6_8ja1e"]
 [ext_resource type="Texture2D" uid="uid://cktjvkdkkatmu" path="res://assets/npcs/NPC_6.png" id="7_12oeb"]
-[ext_resource type="PackedScene" uid="uid://c5npysxt2lt1l" path="res://scne/scripts/death_label_ui.tscn" id="7_yt22a"]
 
 [sub_resource type="GDScript" id="GDScript_8ja1e"]
 script/source = "extends CharacterBody2D
@@ -32,7 +31,7 @@ script/source = "extends CharacterBody2D
 @onready var pt_9 = $\"../../waypoints/p9\"
 @onready var pt_10 = $\"../../waypoints/p10\"
 @onready var pt_11 = $\"../../waypoints/p11\"
-@onready var death_label_scene = $death_label_ui
+var death_label_scene = preload(\"res://scne/scripts/death_label_ui.tscn\")
 # essential vars
 var near_pt : Marker2D
 var last_direction : String
@@ -318,9 +317,13 @@ func exit_pt():
 			print(\"npc exited\")
 			GameData.reputation += 100
 func death_label_ui():
+	var death_label = death_label_scene.instantiate()
+	get_tree().current_scene.add_child(death_label)
 	if npc_collided:
-		print(\"ram\")
+		death_label.death_label_show()
+		death_label.global_position = global_position
 		queue_free()
+		
 
 		
 "
@@ -1994,8 +1997,6 @@ shape = SubResource("CapsuleShape2D_gdw26")
 position = Vector2(-1, -5.000001)
 scale = Vector2(1.9583334, 1.7559267)
 texture = SubResource("GradientTexture2D_74c84")
-
-[node name="death_label_ui" parent="." unique_id=1948873641 instance=ExtResource("7_yt22a")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
