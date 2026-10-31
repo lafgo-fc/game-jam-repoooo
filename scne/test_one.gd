@@ -42,7 +42,7 @@ func time_op():
 
 func _ready() -> void:
 	day_timer.wait_time = 1440
-	day_timer.start()
+	day_timer.start(1000)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

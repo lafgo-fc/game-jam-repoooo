@@ -1198,6 +1198,8 @@ sources/1 = SubResource("TileSetAtlasSource_uaidk")
 sources/2 = SubResource("TileSetAtlasSource_ff7c7")
 sources/6 = SubResource("TileSetAtlasSource_3abip")
 
+[sub_resource type="LabelSettings" id="LabelSettings_oahyd"]
+
 [sub_resource type="GDScript" id="GDScript_uaidk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w33nj"]
@@ -1874,10 +1876,19 @@ autostart = true
 [node name="day-night manager" type="CanvasModulate" parent="." unique_id=1561318286]
 
 [node name="clock" type="Label" parent="." unique_id=1365113893]
-offset_left = 302.0
-offset_top = -213.0
-offset_right = 359.0
-offset_bottom = -173.0
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 239.0
+offset_top = -214.0
+offset_right = 342.0
+offset_bottom = -174.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_oahyd")
 
 [node name="npc spawners" type="Node" parent="." unique_id=1626039885]
 
