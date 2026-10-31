@@ -31,6 +31,7 @@ script/source = "extends CharacterBody2D
 @onready var pt_9 = $\"../../waypoints/p9\"
 @onready var pt_10 = $\"../../waypoints/p10\"
 @onready var pt_11 = $\"../../waypoints/p11\"
+@onready var npc_light = $PointLight2D
 var death_label_scene = preload(\"res://scne/scripts/death_label_ui.tscn\")
 # essential vars
 var near_pt : Marker2D
@@ -65,6 +66,10 @@ func _physics_process(delta: float) -> void:
 	if near_pt == null:
 		return
 	exit_pt()
+	if GameData.daycycle == \"night\":
+		npc_light.show()
+	else:
+		npc_light.hide()
 	
 	
 	# performing the dodge
@@ -1994,6 +1999,7 @@ scale = Vector2(2.6666667, 2.2931035)
 shape = SubResource("CapsuleShape2D_gdw26")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=748906987]
+visible = false
 position = Vector2(-1, -5.000001)
 scale = Vector2(1.9583334, 1.7559267)
 texture = SubResource("GradientTexture2D_74c84")
