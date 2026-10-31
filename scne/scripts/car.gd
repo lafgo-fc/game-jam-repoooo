@@ -92,6 +92,8 @@ func _process(_delta: float) -> void:
 		return
 
 	if not has_passed:
+		print(last_direction)
+		
 		if GameData.traffic_right_left:
 			target = cross_point
 		else:
