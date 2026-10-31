@@ -96,6 +96,8 @@ func _process(_delta: float) -> void:
 		
 		if GameData.traffic_right_left and (last_direction == "right" or last_direction == "left"):
 			target = cross_point
+		if GameData.traffic_front_down and (last_direction == "top" or last_direction == "down"):
+			target = cross_point
 		else:
 			target = stop_point
 
