@@ -1964,10 +1964,10 @@ fuckoff = NodePath("../fuckoffpoint")
 position = Vector2(535, 82)
 
 [node name="CrossPoint" type="Marker2D" parent="car spawner/west" unique_id=2107428172]
-position = Vector2(-297, 81)
+position = Vector2(-316, 81)
 
 [node name="Marker2D" type="Marker2D" parent="car spawner/west" unique_id=1450399088]
-position = Vector2(-320, 82)
+position = Vector2(-295, 80)
 
 [node name="north" type="Node" parent="car spawner" unique_id=549702950]
 
