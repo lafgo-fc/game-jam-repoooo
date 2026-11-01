@@ -116,7 +116,7 @@ func _physics_process(delta: float) -> void:
 			dodge_stage = 0
 		move_and_slide()
 		return
-	elif is_dodging and dodge_type == \"top and right\" or dodge_type == \"front and right\":
+	elif (is_dodging and dodge_type == \"top and right\") or dodge_type == \"front and right\":
 		velocity = global_position.direction_to(dodge_target) * SPEED
 		var distance = global_position.distance_to(dodge_target)
 		if dodge_stage == 1:
@@ -135,7 +135,7 @@ func _physics_process(delta: float) -> void:
 			dodge_stage = 0
 		move_and_slide()
 		return
-	elif is_dodging and dodge_type == \"top and left\" or dodge_type == \"front and left\":
+	elif is_dodging and (dodge_type == \"top and left\" or dodge_type == \"front and left\"):
 		velocity = global_position.direction_to(dodge_target) * SPEED
 		var distance = global_position.distance_to(dodge_target)
 		if dodge_stage == 1:
@@ -298,7 +298,7 @@ func start_dodge():
 			other_npc.being_dodged = true
 			dodge_target = global_position + Vector2(-40 , 0)
 			return
-	elif dodge_type == \"top and right\" or dodge_type == \"front and right\" and npc_inside:
+	elif (dodge_type == \"top and right\" or dodge_type == \"front and right\") and npc_inside:
 		if not is_dodging :
 			is_dodging = true
 			dodge_stage = 1
@@ -306,7 +306,7 @@ func start_dodge():
 			other_npc.being_dodged = true
 			dodge_target = global_position + Vector2(0 , -40)
 			return
-	elif dodge_type == \"top and left\" or dodge_type == \"front and left\" and npc_inside:
+	elif (dodge_type == \"top and left\" or dodge_type == \"front and left\") and npc_inside:
 		if not is_dodging :
 			is_dodging = true
 			dodge_stage = 1
@@ -322,12 +322,13 @@ func exit_pt():
 			print(\"npc exited\")
 			GameData.reputation += 100
 func death_label_ui():
+	if not npc_collided:
+		return
 	var death_label = death_label_scene.instantiate()
 	get_tree().current_scene.add_child(death_label)
-	if npc_collided:
-		death_label.death_label_show()
-		death_label.global_position = global_position
-		queue_free()
+	death_label.global_position = global_position
+	death_label.death_label_show()
+	queue_free()
 		
 
 		
