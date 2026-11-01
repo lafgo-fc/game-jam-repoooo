@@ -38,6 +38,7 @@ var collision_range_base_position: Vector2
 
 
 func _ready() -> void:
+	add_to_group("car")
 	var vehicles = [
 		van, taxi, luxury, jeep, civic,
 		truck, bus, polic_car, ambulance

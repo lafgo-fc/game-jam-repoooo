@@ -28,6 +28,7 @@ window/stretch/aspect="expand"
 
 npc=""
 death_label=""
+car=""
 
 [input]
 

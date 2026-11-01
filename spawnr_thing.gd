@@ -8,7 +8,7 @@ extends Node2D
 @export var exit_point: Marker2D
 @export var fuckoff: Marker2D
 
-
+var can_spawn = true
 
 func _ready() -> void:
 	spawn_car()
@@ -30,4 +30,17 @@ func spawn_car() -> void:
 
 
 func _on_timer_timeout() -> void:
-	spawn_car()
+	if can_spawn:
+		spawn_car()
+	else:
+		pass
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("car"):
+		can_spawn = false
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.is_in_group("car"):
+		can_spawn = true
