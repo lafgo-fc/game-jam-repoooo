@@ -33,6 +33,8 @@ var vehicle_move: bool = false
 var blocking_bodies: Array[Node2D] = []
 var waiting_time: float = 0.0
 var is_waiting: bool = false
+var collision_shape_base_position: Vector2
+var collision_range_base_position: Vector2
 
 
 func _ready() -> void:
@@ -82,6 +84,8 @@ func _ready() -> void:
 			collision_shape.position = Vector2(0.0, -7.0)
 			collsion_range.scale = Vector2(1.7, 1.6)
 			collsion_range.position = Vector2(0.0, -7.0)
+	collision_shape_base_position = collision_shape.position
+	collision_range_base_position = collsion_range.position
 
 
 func _process(_delta: float) -> void:
@@ -95,15 +99,12 @@ func _process(_delta: float) -> void:
 
 		if GameData.traffic_right_left and (last_direction == "right" or last_direction == "left"):
 			target = cross_point
-			print("right left")
 
 		elif GameData.traffic_front_down and (last_direction == "top" or last_direction == "down"):
 			target = cross_point
-			print("front down")
 
 		else:
 			target = stop_point
-			print("red")
 
 	if has_passed:
 		target = exit_point
@@ -136,6 +137,7 @@ func _physics_process(delta: float) -> void:
 	for i in range(blocking_bodies.size() - 1, -1, -1):
 		if not is_instance_valid(blocking_bodies[i]):
 			blocking_bodies.remove_at(i)
+	update_collision_direction()
 
 	var waiting_for_car = not blocking_bodies.is_empty()
 
@@ -173,6 +175,7 @@ func _physics_process(delta: float) -> void:
 		vehicle_move = true
 
 	process_animation(direction)
+	update_collision_direction()
 	move_and_slide()
 
 
@@ -191,6 +194,7 @@ func process_animation(direction: Vector2) -> void:
 		else:
 			vehicle_opt.play("left")
 			last_direction = "left"
+
 	elif abs(direction.y) >= abs(direction.x):
 		if direction.y > 0:
 			vehicle_opt.play("down")
@@ -228,3 +232,30 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 			if child.has_method("hide_death_label"):
 				child.hide_death_label()
 				break
+func update_collision_direction():
+	var offset = 20.0
+	var angle = 0.0
+	var direction_offset = Vector2.ZERO
+
+	match last_direction:
+		"right":
+			angle = 0.0
+			direction_offset = Vector2(offset, 0)
+
+		"left":
+			angle = PI
+			direction_offset = Vector2(-offset, 0)
+
+		"down":
+			angle = PI / 2
+			direction_offset = Vector2(0, offset)
+
+		"top":
+			angle = -PI / 2
+			direction_offset = Vector2(0, -offset)
+
+	collision_shape.rotation = angle
+	collision_shape.position = collision_shape_base_position
+
+	collsion_range.rotation = angle
+	collsion_range.position = collision_range_base_position + direction_offset

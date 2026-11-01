@@ -475,44 +475,54 @@ animations = [{
 size = Vector2(65, 37.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_454ae"]
-size = Vector2(70, 37)
+size = Vector2(72.05883, 38.5)
 
 [node name="car" type="CharacterBody2D" unique_id=1626053297]
 script = ExtResource("1_evd0w")
 
 [node name="van" type="AnimatedSprite2D" parent="." unique_id=1717284833]
+visible = false
 sprite_frames = SubResource("SpriteFrames_wmd7k")
-animation = &"down"
+animation = &"right"
 
 [node name="taxi" type="AnimatedSprite2D" parent="." unique_id=458371514]
+visible = false
 sprite_frames = SubResource("SpriteFrames_nqc1f")
 animation = &"right"
 
 [node name="luxury" type="AnimatedSprite2D" parent="." unique_id=46847102]
+visible = false
 sprite_frames = SubResource("SpriteFrames_lrbqv")
 animation = &"right"
 
 [node name="jeep" type="AnimatedSprite2D" parent="." unique_id=127133174]
+visible = false
 sprite_frames = SubResource("SpriteFrames_43aha")
 animation = &"right"
 
 [node name="civic" type="AnimatedSprite2D" parent="." unique_id=335970636]
+visible = false
 sprite_frames = SubResource("SpriteFrames_n1mkj")
 animation = &"right"
 
 [node name="truck" type="AnimatedSprite2D" parent="." unique_id=910418351]
+visible = false
 sprite_frames = SubResource("SpriteFrames_xi4lh")
-animation = &"right"
-
-[node name="bus" type="AnimatedSprite2D" parent="." unique_id=1915234929]
-sprite_frames = SubResource("SpriteFrames_xnp0m")
 animation = &"down"
 
+[node name="bus" type="AnimatedSprite2D" parent="." unique_id=1915234929]
+visible = false
+sprite_frames = SubResource("SpriteFrames_xnp0m")
+animation = &"right"
+
 [node name="polic car" type="AnimatedSprite2D" parent="." unique_id=2101197150]
+visible = false
 sprite_frames = SubResource("SpriteFrames_454ae")
 animation = &"right"
 
 [node name="ambulance" type="AnimatedSprite2D" parent="." unique_id=890322407]
+visible = false
+position = Vector2(11, 6)
 sprite_frames = SubResource("SpriteFrames_74c84")
 animation = &"right"
 frame_progress = 0.045443613
@@ -525,7 +535,7 @@ shape = SubResource("RectangleShape2D_s7wsd")
 [node name="Area2D" type="Area2D" parent="." unique_id=488053945]
 
 [node name="collision_range" type="CollisionShape2D" parent="Area2D" unique_id=191564098]
-position = Vector2(0, -7)
+position = Vector2(-1.7500029, -8.2)
 scale = Vector2(1.7, 1.6)
 shape = SubResource("RectangleShape2D_454ae")
 
