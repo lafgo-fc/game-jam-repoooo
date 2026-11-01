@@ -92,19 +92,26 @@ func _process(_delta: float) -> void:
 		return
 
 	if not has_passed:
-		
-		if GameData.traffic_right_left :
+
+		if GameData.traffic_right_left and (last_direction == "right" or last_direction == "left"):
 			target = cross_point
+			print("right left")
+
+		elif GameData.traffic_front_down and (last_direction == "top" or last_direction == "down"):
+			target = cross_point
+			print("front down")
+
 		else:
-			print("this working")
 			target = stop_point
+			print("red")
+
+	if has_passed:
+		target = exit_point
 
 	if cross_point != null and not has_passed:
 		if global_position.distance_to(cross_point.global_position) < 10.0:
 			has_passed = true
 
-	if has_passed:
-		target = exit_point
 
 	if fuckoff != null:
 		if global_position.distance_to(fuckoff.global_position) < 25.0:
