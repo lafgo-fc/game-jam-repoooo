@@ -93,11 +93,10 @@ func _process(_delta: float) -> void:
 
 	if not has_passed:
 		
-		if GameData.traffic_right_left and (last_direction == "right" or last_direction == "left"):
-			target = cross_point
-		if GameData.traffic_front_down and (last_direction == "top" or last_direction == "down"):
+		if GameData.traffic_right_left :
 			target = cross_point
 		else:
+			print("this working")
 			target = stop_point
 
 	if cross_point != null and not has_passed:
@@ -105,7 +104,6 @@ func _process(_delta: float) -> void:
 			has_passed = true
 
 	if has_passed:
-		print("passed")
 		target = exit_point
 
 	if fuckoff != null:
