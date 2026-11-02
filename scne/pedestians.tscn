@@ -241,9 +241,6 @@ func nex_pt():
 	elif near_pt == pt_3:
 		var possible_pt = [pt_1,pt_7,pt_17]
 		near_pt = possible_pt.pick_random()
-	elif near_pt == pt_4:
-		var possible_pt = [pt_3,pt_2,pt_9,pt_5]
-		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_12:
 		var possible_pt = [pt_18,pt_11,pt_13,pt_20]
 		near_pt = possible_pt.pick_random()
@@ -252,6 +249,12 @@ func nex_pt():
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_20:
 		var possible_pt = [pt_5,pt_12,pt_19,pt_2]
+		near_pt = possible_pt.pick_random()
+	elif near_pt == pt_23:
+		var possible_pt = [pt_10,pt_22,pt_1,pt_21]
+		near_pt = possible_pt.pick_random()
+	elif near_pt == pt_21:
+		var possible_pt = [pt_23,pt_3,pt_9,pt_4]
 		near_pt = possible_pt.pick_random()
 func  check_signal():
 	stop_signal = false
@@ -339,7 +342,7 @@ func start_dodge():
 			dodge_target = global_position + Vector2(0 , -40)
 			return
 func exit_pt():
-	var points = [pt_5,pt_6,pt_7,pt_8,pt_9,pt_10,pt_11,pt_17,pt_16,pt_15,pt_14,pt_18]
+	var points = [pt_5,pt_6,pt_7,pt_8,pt_9,pt_10,pt_11,pt_17,pt_16,pt_15,pt_14,pt_18,pt_22,pt_4,pt_19,pt_24]
 	for point in points:
 		if global_position.distance_to(point.global_position) < 5:
 			queue_free()

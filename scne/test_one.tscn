@@ -1893,7 +1893,7 @@ label_settings = SubResource("LabelSettings_oahyd")
 [node name="npc spawners" type="Node" parent="." unique_id=1626039885]
 
 [node name="NpcSpawner2" parent="npc spawners" unique_id=2136522040 node_paths=PackedStringArray("near_pt") instance=ExtResource("5_uaidk")]
-position = Vector2(336, -112)
+position = Vector2(461, -114)
 near_pt = NodePath("../waypoints/p20")
 
 [node name="NpcSpawner" parent="npc spawners" unique_id=2056746993 node_paths=PackedStringArray("near_pt") instance=ExtResource("5_uaidk")]
@@ -1920,10 +1920,10 @@ position = Vector2(-273, 189)
 position = Vector2(-265, 468)
 
 [node name="p9" type="Marker2D" parent="npc spawners/waypoints" unique_id=87506571]
-position = Vector2(446, -66)
+position = Vector2(576, -59)
 
 [node name="p19" type="Marker2D" parent="npc spawners/waypoints" unique_id=2038831045]
-position = Vector2(447, -112)
+position = Vector2(575, -120)
 
 [node name="p20" type="Marker2D" parent="npc spawners/waypoints" unique_id=423898545]
 position = Vector2(49, -111)
@@ -1935,10 +1935,10 @@ position = Vector2(46, -454)
 position = Vector2(-194, -441)
 
 [node name="p22" type="Marker2D" parent="npc spawners/waypoints" unique_id=2063812874]
-position = Vector2(-251, -442)
+position = Vector2(-273, -445)
 
 [node name="p23" type="Marker2D" parent="npc spawners/waypoints" unique_id=1094046391]
-position = Vector2(-250, -67)
+position = Vector2(-270, -64)
 
 [node name="p24" type="Marker2D" parent="npc spawners/waypoints" unique_id=636406763]
 position = Vector2(-715, -114)
@@ -1968,10 +1968,10 @@ position = Vector2(-716, -72)
 position = Vector2(49, 484)
 
 [node name="p4" type="Marker2D" parent="npc spawners/waypoints" unique_id=1583519284]
-position = Vector2(97, -454)
+position = Vector2(134, -458)
 
 [node name="p21" type="Marker2D" parent="npc spawners/waypoints" unique_id=811883301]
-position = Vector2(99, -67)
+position = Vector2(127, -71)
 
 [node name="p12" type="Marker2D" parent="npc spawners/waypoints" unique_id=1365234433]
 position = Vector2(46, 134)
