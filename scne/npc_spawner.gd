@@ -5,8 +5,7 @@ extends Node2D
 @export var spawn_time: float = 3.0
 
 @onready var timer = $spawn_Timer
-
-
+var can_spawn = true
 func _ready() -> void:
 	timer.wait_time = spawn_time
 	timer.start()
@@ -28,9 +27,20 @@ func spawn_npc() -> void:
 
 
 func _on_timer_timeout() -> void:
-	spawn_npc()
+	if can_spawn:
+		spawn_npc()
 
 
 func spawner_time(new_time: float) -> void:
 	timer.wait_time = new_time
 	timer.start()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("npc"):
+		can_spawn = false
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.is_in_group("npc"):
+		can_spawn = true

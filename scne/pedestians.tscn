@@ -241,6 +241,9 @@ func nex_pt():
 	elif near_pt == pt_12:
 		var possible_pt = [pt_18,pt_11,pt_13]
 		near_pt = possible_pt.pick_random()
+	elif near_pt == pt_11:
+		var possible_pt = [pt_8,pt_12,pt_14]
+		near_pt = possible_pt.pick_random()
 func  check_signal():
 	stop_signal = false
 
