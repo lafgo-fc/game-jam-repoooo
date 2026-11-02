@@ -1893,7 +1893,7 @@ label_settings = SubResource("LabelSettings_oahyd")
 [node name="npc spawners" type="Node" parent="." unique_id=1626039885]
 
 [node name="NpcSpawner2" parent="npc spawners" unique_id=2136522040 node_paths=PackedStringArray("near_pt") instance=ExtResource("5_uaidk")]
-position = Vector2(48, -402)
+position = Vector2(336, -112)
 near_pt = NodePath("../waypoints/p20")
 
 [node name="NpcSpawner" parent="npc spawners" unique_id=2056746993 node_paths=PackedStringArray("near_pt") instance=ExtResource("5_uaidk")]
@@ -1901,8 +1901,8 @@ position = Vector2(-729, 189)
 near_pt = NodePath("../waypoints/p1")
 
 [node name="NpcSpawner3" parent="npc spawners" unique_id=1458077235 node_paths=PackedStringArray("near_pt") instance=ExtResource("5_uaidk")]
-position = Vector2(-191, -403)
-near_pt = NodePath("../waypoints/p2")
+position = Vector2(-637, -70)
+near_pt = NodePath("../waypoints/p23")
 spawn_time = 6.0
 
 [node name="NpcSpawner4" parent="npc spawners" unique_id=1979739054 node_paths=PackedStringArray("near_pt") instance=ExtResource("5_uaidk")]
@@ -1923,7 +1923,7 @@ position = Vector2(-265, 468)
 position = Vector2(446, -66)
 
 [node name="p19" type="Marker2D" parent="npc spawners/waypoints" unique_id=2038831045]
-position = Vector2(447, -104)
+position = Vector2(447, -112)
 
 [node name="p20" type="Marker2D" parent="npc spawners/waypoints" unique_id=423898545]
 position = Vector2(49, -111)
@@ -1941,7 +1941,7 @@ position = Vector2(-251, -442)
 position = Vector2(-250, -67)
 
 [node name="p24" type="Marker2D" parent="npc spawners/waypoints" unique_id=636406763]
-position = Vector2(-716, -98)
+position = Vector2(-715, -114)
 
 [node name="p7" type="Marker2D" parent="npc spawners/waypoints" unique_id=723676230]
 position = Vector2(720, 189)

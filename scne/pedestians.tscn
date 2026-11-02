@@ -38,6 +38,12 @@ script/source = "extends CharacterBody2D
 @onready var pt_16 = $\"../../waypoints/p16\"
 @onready var pt_17 = $\"../../waypoints/p17\"
 @onready var pt_18 = $\"../../waypoints/p18\"
+@onready var pt_19 = $\"../../waypoints/p19\"
+@onready var pt_20 = $\"../../waypoints/p20\"
+@onready var pt_21 = $\"../../waypoints/p21\"
+@onready var pt_22 = $\"../../waypoints/p22\"
+@onready var pt_23 = $\"../../waypoints/p23\"
+@onready var pt_24 = $\"../../waypoints/p24\"
 
 
 @onready var npc_light = $PointLight2D
@@ -226,10 +232,10 @@ func process_animation(direction: Vector2):
 func nex_pt():
 	previous_pt = near_pt
 	if near_pt == pt_1:
-		var possible_pt = [pt_3,pt_17,pt_7,pt_15]
+		var possible_pt = [pt_3,pt_16,pt_7,pt_15]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_2:
-		var possible_pt = [pt_1,pt_4,pt_10,pt_6]
+		var possible_pt = [pt_20,pt_6,pt_13,pt_24]
 		near_pt = possible_pt.pick_random()
 
 	elif near_pt == pt_3:
@@ -239,10 +245,13 @@ func nex_pt():
 		var possible_pt = [pt_3,pt_2,pt_9,pt_5]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_12:
-		var possible_pt = [pt_18,pt_11,pt_13]
+		var possible_pt = [pt_18,pt_11,pt_13,pt_20]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_13:
 		var possible_pt = [pt_8,pt_12,pt_14]
+		near_pt = possible_pt.pick_random()
+	elif near_pt == pt_20:
+		var possible_pt = [pt_5,pt_12,pt_19,pt_2]
 		near_pt = possible_pt.pick_random()
 func  check_signal():
 	stop_signal = false
