@@ -1897,7 +1897,7 @@ position = Vector2(48, -402)
 near_pt = NodePath("../waypoints/p4")
 
 [node name="NpcSpawner" parent="npc spawners" unique_id=2056746993 node_paths=PackedStringArray("near_pt") instance=ExtResource("5_uaidk")]
-position = Vector2(-777, 189)
+position = Vector2(-729, 189)
 near_pt = NodePath("../waypoints/p1")
 
 [node name="NpcSpawner3" parent="npc spawners" unique_id=1458077235 node_paths=PackedStringArray("near_pt") instance=ExtResource("5_uaidk")]
@@ -1906,15 +1906,18 @@ near_pt = NodePath("../waypoints/p2")
 spawn_time = 6.0
 
 [node name="NpcSpawner4" parent="npc spawners" unique_id=1979739054 node_paths=PackedStringArray("near_pt") instance=ExtResource("5_uaidk")]
-position = Vector2(475, 148)
-near_pt = NodePath("../waypoints/p3")
+position = Vector2(510, 141)
+near_pt = NodePath("../waypoints/p12")
 
 [node name="waypoints" type="Node2D" parent="npc spawners" unique_id=193136837]
 position = Vector2(3, 5)
 script = SubResource("GDScript_uaidk")
 
 [node name="p1" type="Marker2D" parent="npc spawners/waypoints" unique_id=28400208]
-position = Vector2(-204, 146)
+position = Vector2(-273, 189)
+
+[node name="p16" type="Marker2D" parent="npc spawners/waypoints" unique_id=1159358631]
+position = Vector2(-265, 468)
 
 [node name="p9" type="Marker2D" parent="npc spawners/waypoints" unique_id=87506571]
 position = Vector2(411, -61)
@@ -1926,16 +1929,19 @@ position = Vector2(46, -454)
 position = Vector2(-194, -441)
 
 [node name="p7" type="Marker2D" parent="npc spawners/waypoints" unique_id=723676230]
-position = Vector2(720, 145)
+position = Vector2(720, 189)
 
 [node name="p8" type="Marker2D" parent="npc spawners/waypoints" unique_id=1282460241]
-position = Vector2(-216, 478)
+position = Vector2(-204, 471)
 
 [node name="p2" type="Marker2D" parent="npc spawners/waypoints" unique_id=1944140388]
 position = Vector2(-204, -74)
 
 [node name="p3" type="Marker2D" parent="npc spawners/waypoints" unique_id=1006885710]
-position = Vector2(35, 154)
+position = Vector2(122, 188)
+
+[node name="p17" type="Marker2D" parent="npc spawners/waypoints" unique_id=1967362970]
+position = Vector2(129, 483)
 
 [node name="p10" type="Marker2D" parent="npc spawners/waypoints" unique_id=522072571]
 position = Vector2(-716, -72)
@@ -1945,6 +1951,18 @@ position = Vector2(49, 484)
 
 [node name="p4" type="Marker2D" parent="npc spawners/waypoints" unique_id=1583519284]
 position = Vector2(44, -71)
+
+[node name="p12" type="Marker2D" parent="npc spawners/waypoints" unique_id=1365234433]
+position = Vector2(46, 134)
+
+[node name="p13" type="Marker2D" parent="npc spawners/waypoints" unique_id=1157584584]
+position = Vector2(-190, 140)
+
+[node name="p14" type="Marker2D" parent="npc spawners/waypoints" unique_id=317661836]
+position = Vector2(-778, 141)
+
+[node name="p15" type="Marker2D" parent="npc spawners/waypoints" unique_id=418551019]
+position = Vector2(-773, 189)
 
 [node name="car spawner" type="Node" parent="." unique_id=5536193]
 
@@ -2007,15 +2025,15 @@ position = Vector2(-333, -161)
 position = Vector2(-236, -160)
 
 [node name="bilding4" parent="." unique_id=1008924152 instance=ExtResource("14_pjh36")]
-position = Vector2(-289, 203)
+position = Vector2(-359, 290)
 
 [node name="building5" parent="." unique_id=779683964 instance=ExtResource("15_mb0g2")]
-position = Vector2(155, 206)
+position = Vector2(172, 294)
 
 [node name="building6" parent="." unique_id=1261646951 instance=ExtResource("16_2fwml")]
 position = Vector2(229, -190)
 
 [node name="building7" parent="." unique_id=250562988 instance=ExtResource("17_mb0g2")]
-position = Vector2(333, 221)
+position = Vector2(345, 317)
 
 [node name="death_label_ui" parent="." unique_id=1948873641 instance=ExtResource("18_2fwml")]
