@@ -251,48 +251,59 @@ func nex_pt():
 		var possible_pt = [pt_5,pt_12,pt_19,pt_2]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_23:
-		var possible_pt = [pt_10,pt_22,pt_1,pt_21]
+		var possible_pt = [pt_21]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_21:
 		var possible_pt = [pt_23,pt_3,pt_9,pt_4]
 		near_pt = possible_pt.pick_random()
-func  check_signal():
+func check_signal():
 	stop_signal = false
 
+	# pt12 → pt20 | pt3 → pt21
+	if (previous_pt == pt_12 and near_pt == pt_20) or \\
+	(previous_pt == pt_3 and near_pt == pt_21):
+		if GameData.light == \"red in front\":
+			stop_signal = true
+
+	# pt1 → pt23 | pt13 → pt2
+	elif (previous_pt == pt_1 and near_pt == pt_23) or \\
+	(previous_pt == pt_13 and near_pt == pt_2):
+		if GameData.light == \"red in front\":
+			stop_signal = true
+
+	# pt2 → pt20 | pt23 → pt21
+	elif (previous_pt == pt_2 and near_pt == pt_20) or \\
+	(previous_pt == pt_23 and near_pt == pt_21):
+		if GameData.light == \"green in front\":
+			stop_signal = true
+			print(stop_signal)
+
+	# pt20 → pt2 | pt21 → pt3
+	elif (previous_pt == pt_20 and near_pt == pt_2) or \\
+	(previous_pt == pt_21 and near_pt == pt_23):
+		if GameData.light == \"green in front\":
+			stop_signal = true
+
+	# pt12 → pt13 | pt3 → pt1
+	elif (previous_pt == pt_12 and near_pt == pt_13) or \\
+	(previous_pt == pt_3 and near_pt == pt_1):
+		if GameData.light == \"green in front\":
+			stop_signal = true
+
+	# pt23 → pt1 | pt13 → pt12
+	elif (previous_pt == pt_23 and near_pt == pt_1) or \\
+	(previous_pt == pt_2 and near_pt == pt_13):
+		if GameData.light == \"red in front\":
+			stop_signal = true
+
 	# pt1 → pt3
-	if previous_pt == pt_1 and near_pt == pt_3:
-		if GameData.light == \"red in right\" or GameData.light == \"green in front\":
+	elif (previous_pt == pt_1 and near_pt == pt_3) or \\
+	(previous_pt == pt_13 and near_pt == pt_12):
+		if GameData.light == \"green in front\":
 			stop_signal = true
-
-	# pt2 → pt4
-	elif previous_pt == pt_2 and near_pt == pt_4:
-		if GameData.light == \"red in right\" or GameData.light == \"green in front\":
-			stop_signal = true
-
-	# pt3 → pt1
-	elif previous_pt == pt_3 and near_pt == pt_1:
-		if GameData.light == \"red in right\" or GameData.light == \"green in front\":
-			stop_signal = true
-
-	# pt4 → pt2
-	elif previous_pt == pt_4 and near_pt == pt_2:
-		if GameData.light == \"red in right\" or GameData.light == \"green in front\":
-			stop_signal = true
-	# pt2 → pt1
-	elif previous_pt == pt_2 and near_pt == pt_1:
-		if GameData.light == \"red in front\" or GameData.light == \"green in right\":
-			stop_signal = true
-	# pt1 → pt2
-	elif previous_pt == pt_1 and near_pt == pt_2:
-		if GameData.light == \"red in front\" or GameData.light == \"green in right\":
-			stop_signal = true
-	# pt4 → pt3
-	elif previous_pt == pt_4 and near_pt == pt_3:
-		if GameData.light == \"red in front\" or GameData.light == \"green in right\":
-			stop_signal = true
-	# pt3 → pt4
-	elif previous_pt == pt_3 and near_pt == pt_4:
-		if GameData.light == \"red in front\" or GameData.light == \"green in right\":
+	elif (previous_pt == pt_20 and near_pt == pt_12) or \\
+	(previous_pt == pt_21 and near_pt == pt_3):
+		if GameData.light == \"red in front\":
 			stop_signal = true
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
