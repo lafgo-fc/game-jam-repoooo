@@ -31,6 +31,15 @@ script/source = "extends CharacterBody2D
 @onready var pt_9 = $\"../../waypoints/p9\"
 @onready var pt_10 = $\"../../waypoints/p10\"
 @onready var pt_11 = $\"../../waypoints/p11\"
+@onready var pt_12 = $\"../../waypoints/p12\"
+@onready var pt_13 = $\"../../waypoints/p13\"
+@onready var pt_14 = $\"../../waypoints/p14\"
+@onready var pt_15 = $\"../../waypoints/p15\"
+@onready var pt_16 = $\"../../waypoints/p16\"
+@onready var pt_17 = $\"../../waypoints/p17\"
+@onready var pt_18 = $\"../../waypoints/p18\"
+
+
 @onready var npc_light = $PointLight2D
 var death_label_scene = preload(\"res://scne/scripts/death_label_ui.tscn\")
 # essential vars
@@ -217,17 +226,20 @@ func process_animation(direction: Vector2):
 func nex_pt():
 	previous_pt = near_pt
 	if near_pt == pt_1:
-		var possible_pt = [pt_3,pt_2,pt_8]
+		var possible_pt = [pt_3,pt_17,pt_7,pt_15]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_2:
 		var possible_pt = [pt_1,pt_4,pt_10,pt_6]
 		near_pt = possible_pt.pick_random()
 
 	elif near_pt == pt_3:
-		var possible_pt = [pt_1,pt_11,pt_4,pt_7]
+		var possible_pt = [pt_1,pt_7,pt_17]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_4:
 		var possible_pt = [pt_3,pt_2,pt_9,pt_5]
+		near_pt = possible_pt.pick_random()
+	elif near_pt == pt_12:
+		var possible_pt = [pt_18,pt_11,pt_13]
 		near_pt = possible_pt.pick_random()
 func  check_signal():
 	stop_signal = false

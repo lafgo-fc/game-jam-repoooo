@@ -1931,6 +1931,9 @@ position = Vector2(-194, -441)
 [node name="p7" type="Marker2D" parent="npc spawners/waypoints" unique_id=723676230]
 position = Vector2(720, 189)
 
+[node name="p18" type="Marker2D" parent="npc spawners/waypoints" unique_id=1235166146]
+position = Vector2(723, 129)
+
 [node name="p8" type="Marker2D" parent="npc spawners/waypoints" unique_id=1282460241]
 position = Vector2(-204, 471)
 
