@@ -175,12 +175,7 @@ func _physics_process(delta: float) -> void:
 			dodge_stage = 0
 		move_and_slide()
 		return
-	if is_instance_valid(other_npc):
-		different_directional_npc = (
-		last_direction != other_npc.last_direction
-	)
-	else:
-		different_directional_npc = false
+	
 
 	if different_directional_npc and is_instance_valid(other_npc) and not has_dodged_this_encounter:
 		if (last_direction == \"right\" and other_npc.last_direction == \"left\") or (last_direction == \"left\" and other_npc.last_direction == \"right\"):
