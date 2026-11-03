@@ -12,7 +12,6 @@ npc = ExtResource("2_0v4el")
 
 [node name="spawn_Timer" type="Timer" parent="." unique_id=501301645]
 wait_time = 11.068
-autostart = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1009847330]
 

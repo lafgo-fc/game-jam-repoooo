@@ -41,7 +41,6 @@ func manage_traffic():
 	elif GameData.daycycle == "afternoon":
 		timer.wait_time = 10
 	elif GameData.daycycle == "evening":
-		print("this working")
 		timer.wait_time = 5
 	timer.start()
 		

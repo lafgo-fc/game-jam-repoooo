@@ -5,10 +5,14 @@ extends Node2D
 
 
 @onready var timer = $spawn_Timer
+var previous_shift = ""
 var can_spawn = true
 func _ready() -> void:
-	timer.start()
 	spawn_npc()
+	manage_npc_timer()
+func _process(delta: float) -> void:
+	if previous_shift != GameData.daycycle:
+		manage_npc_timer()
 
 
 func spawn_npc() -> void:
@@ -24,12 +28,14 @@ func spawn_npc() -> void:
 	npc_spawn.global_position = global_position
 	npc_spawn.near_pt = near_pt
 func manage_npc_timer():
+	previous_shift = GameData.daycycle
 	if GameData.daycycle == "morning":
-		timer.wait_time(30)
+		timer.wait_time = 20
 	elif GameData.daycycle == "afternoon":
-		timer.wait_time(25)
+		timer.wait_time = 15
 	elif GameData.daycycle == "evening":
-		timer.wait_time(20)
+		timer.wait_time = 10
+	timer.start()
 
 
 func _on_timer_timeout() -> void:
