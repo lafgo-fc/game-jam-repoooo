@@ -30,11 +30,11 @@ func spawn_npc() -> void:
 func manage_npc_timer():
 	previous_shift = GameData.daycycle
 	if GameData.daycycle == "morning":
-		timer.wait_time = 20
+		timer.wait_time = 30
 	elif GameData.daycycle == "afternoon":
-		timer.wait_time = 15
+		timer.wait_time = 25
 	elif GameData.daycycle == "evening":
-		timer.wait_time = 10
+		timer.wait_time = 20
 	timer.start()
 
 

@@ -50,7 +50,7 @@ script/source = "extends CharacterBody2D
 var death_label_scene = preload(\"res://scne/scripts/death_label_ui.tscn\")
 # essential vars
 var near_pt : Marker2D
-var last_direction: String = \"front\"
+var last_direction : String
 var npc_inside : bool = false
 var npc_name : AnimatedSprite2D
 var npc_list : Array[AnimatedSprite2D]
@@ -66,9 +66,8 @@ var dodge_target : Vector2
 var being_dodged = false
 var npc_collided = false
 var npc_waiting_time : float = 0
-var overlapping_npcs: Array[Node2D] = []
+
 const SPEED = 30.0
-var has_dodged_this_encounter: bool = false
 
 @export var npc_id : int = 0 
 func _ready():
@@ -106,8 +105,7 @@ func _physics_process(delta: float) -> void:
 			npc_name.play(\"right\")
 		elif distance < 2.0 and dodge_stage == 2:
 			dodge_stage = 3
-			if is_instance_valid(other_npc):
-				other_npc.being_dodged = false
+			other_npc.being_dodged = false
 			dodge_target = global_position + Vector2(0,40)
 			npc_name.play(\"front\")
 		elif distance < 2.0 and dodge_stage == 3:
@@ -126,8 +124,7 @@ func _physics_process(delta: float) -> void:
 			npc_name.play(\"front\")
 		elif distance < 2.0 and dodge_stage == 2:
 			dodge_stage = 3
-			if is_instance_valid(other_npc):
-				other_npc.being_dodged = false
+			other_npc.being_dodged = false
 			dodge_target = global_position + Vector2(40,0)
 			npc_name.play(\"right\")
 		elif distance < 2.0 and dodge_stage == 3:
@@ -146,8 +143,7 @@ func _physics_process(delta: float) -> void:
 			npc_name.play(\"right\")
 		elif distance < 2.0 and dodge_stage == 2:
 			dodge_stage = 3
-			if is_instance_valid(other_npc):
-				other_npc.being_dodged = false
+			other_npc.being_dodged = false
 			dodge_target = global_position + Vector2(0,-40)
 			npc_name.play(\"top\")
 		elif distance < 2.0 and dodge_stage == 3:
@@ -166,8 +162,7 @@ func _physics_process(delta: float) -> void:
 			npc_name.play(\"left\")
 		elif distance < 2.0 and dodge_stage == 2:
 			dodge_stage = 3
-			if is_instance_valid(other_npc):
-				other_npc.being_dodged = false
+			other_npc.being_dodged = false
 			dodge_target = global_position + Vector2(0,-40)
 			npc_name.play(\"top\")
 		elif distance < 2.0 and dodge_stage == 3:
@@ -175,9 +170,9 @@ func _physics_process(delta: float) -> void:
 			dodge_stage = 0
 		move_and_slide()
 		return
-	
 
-	if different_directional_npc and is_instance_valid(other_npc) and not has_dodged_this_encounter:
+
+	if different_directional_npc == true:
 		if (last_direction == \"right\" and other_npc.last_direction == \"left\") or (last_direction == \"left\" and other_npc.last_direction == \"right\"):
 			dodge_type = \"left and right\"
 		elif (last_direction == \"top\" and other_npc.last_direction == \"front\") or (last_direction == \"front\" and other_npc.last_direction == \"top\"):
@@ -193,11 +188,10 @@ func _physics_process(delta: float) -> void:
 		
 			dodge_type = \"front and left\"
 		elif (last_direction == \"top\" and other_npc.last_direction == \"left\") or (last_direction == \"left\" and other_npc.last_direction == \"top\"):
-			dodge_type = \"top and left\"
+		
+			dodge_type = \"front and left\"
 		
 		start_dodge()
-		if is_dodging:
-			return
 		
 		
 	var distance = global_position.distance_to(near_pt.global_position)
@@ -207,7 +201,7 @@ func _physics_process(delta: float) -> void:
 		return
 	check_signal()
 	evaluvate_waiting_time(delta)
-	if npc_inside == true or stop_signal == true:
+	if npc_inside == true and stop_signal == true:
 		velocity = Vector2.ZERO
 		npc_name.play(\"idle \" + last_direction)
 	else:
@@ -217,8 +211,6 @@ func _physics_process(delta: float) -> void:
 
 
 func process_animation(direction: Vector2):
-	if direction == Vector2.ZERO:
-		return
 
 	if dodge_stage == 1:
 		return
@@ -317,47 +309,21 @@ func check_signal():
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body != self and body.is_in_group(\"npc\"):
-		if not overlapping_npcs.has(body):
-			overlapping_npcs.append(body)
-
+		other_npc = body
+		different_directional_npc = false
 		npc_inside = true
-
-		if not is_instance_valid(other_npc):
-			other_npc = body
-
-		different_directional_npc = (
-			is_instance_valid(other_npc)
-			and last_direction != other_npc.last_direction
-		)
+		if self.last_direction != body.last_direction:
+			different_directional_npc = true
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body != self and body.is_in_group(\"npc\"):
-		overlapping_npcs.erase(body)
-		if overlapping_npcs.is_empty():
-			has_dodged_this_encounter = false
-
-		npc_inside = not overlapping_npcs.is_empty()
-
-		if body == other_npc:
-			other_npc = null
-			different_directional_npc = false
-
-			for npc in overlapping_npcs:
-				if is_instance_valid(npc):
-					other_npc = npc
-					different_directional_npc = (
-						last_direction != npc.last_direction
-					)
-					break
+		npc_inside = false
 
 func start_dodge():
-	if not is_instance_valid(other_npc):
-		return
 	if dodge_type == \"left and right\" and npc_inside:
 		if not is_dodging :
 			is_dodging = true
-			has_dodged_this_encounter = true
 			dodge_stage = 1
 			print(dodge_stage)
 			other_npc.being_dodged = true
@@ -366,7 +332,6 @@ func start_dodge():
 	elif dodge_type == \"front and down\" and npc_inside:
 		if not is_dodging :
 			is_dodging = true
-			has_dodged_this_encounter = true
 			dodge_stage = 1
 			print(dodge_stage)
 			other_npc.being_dodged = true
@@ -375,7 +340,6 @@ func start_dodge():
 	elif (dodge_type == \"top and right\" or dodge_type == \"front and right\") and npc_inside:
 		if not is_dodging :
 			is_dodging = true
-			has_dodged_this_encounter = true
 			dodge_stage = 1
 			print(dodge_stage)
 			other_npc.being_dodged = true
@@ -384,7 +348,6 @@ func start_dodge():
 	elif (dodge_type == \"top and left\" or dodge_type == \"front and left\") and npc_inside:
 		if not is_dodging :
 			is_dodging = true
-			has_dodged_this_encounter = true
 			dodge_stage = 1
 			print(dodge_stage)
 			other_npc.being_dodged = true
@@ -411,11 +374,6 @@ func evaluvate_waiting_time (delta:float):
 		if stop_signal or npc_inside:
 			npc_waiting_time += delta
 			GameData.npc_waiting_time += delta
-		
-		
-		
-
-		
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mvjtp"]

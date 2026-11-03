@@ -58,8 +58,6 @@ func _process(delta: float) -> void:
 	check_daycycle_changes()
 	clock_time()
 
-	if is_cycle_changing:
-		manage_traffic()
 
 	if GameData.daycycle == "morning":
 		target_color = morning_color
@@ -106,30 +104,6 @@ func clock_time() -> void:
 	min = total_min % 60
 
 	clock.text = "%02d:%02d" % [hour, min]
-func manage_traffic() -> void:
-	if GameData.daycycle == "morning" and is_cycle_changing:
-		spawner_1.spawner_time(25)
-		spawner_2.spawner_time(35)
-		spawner_3.spawner_time(30)
-		spawner_4.spawner_time(20)
-
-	elif GameData.daycycle == "afternoon" and is_cycle_changing:
-		spawner_1.spawner_time(20)
-		spawner_2.spawner_time(25)
-		spawner_3.spawner_time(15)
-		spawner_4.spawner_time(30)
-
-	elif GameData.daycycle == "evening" and is_cycle_changing:
-		spawner_1.spawner_time(10)
-		spawner_2.spawner_time(15)
-		spawner_3.spawner_time(8)
-		spawner_4.spawner_time(10)
-
-	elif GameData.daycycle == "night" and is_cycle_changing:
-		spawner_1.spawner_time(30)
-		spawner_2.spawner_time(35)
-		spawner_3.spawner_time(40)
-		spawner_4.spawner_time(30)
 
 
 func check_daycycle_changes() -> void:
@@ -140,6 +114,7 @@ func check_daycycle_changes() -> void:
 		is_cycle_changing = false
 func end_day_report() -> void:
 	if day_timer.time_left <= 300 and not report_generated:
+		day_ended = true
 		report_generated = true
 		day_completed += 1
 

@@ -36,6 +36,7 @@ var is_waiting: bool = false
 var collision_shape_base_position: Vector2
 var collision_range_base_position: Vector2
 var car_wait : int = 0
+var stop_signal = false
 
 
 func _ready() -> void:
@@ -101,15 +102,18 @@ func _process(_delta: float) -> void:
 
 		if GameData.traffic_right_left and (last_direction == "right" or last_direction == "left"):
 			target = cross_point
+			stop_signal = true
 
 		elif GameData.traffic_front_down and (last_direction == "top" or last_direction == "down"):
 			target = cross_point
+			stop_signal = true
 
 		else:
 			target = stop_point
 
 	if has_passed:
 		target = exit_point
+		stop_signal = false
 
 	if cross_point != null and not has_passed:
 		if global_position.distance_to(cross_point.global_position) < 10.0:
@@ -211,8 +215,11 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body != self and not blocking_bodies.has(body):
 		blocking_bodies.append(body)
 
-	if body.is_in_group("npc") and velocity == Vector2.ZERO:
-		body.npc_collided = true
+	if body.is_in_group("npc") :
+		if velocity == Vector2.ZERO and stop_signal == true:
+			pass
+		else:
+			body.npc_collided = true
 
 		if "npc_id" in body:
 			GameData.collided_npc_id = body.npc_id
