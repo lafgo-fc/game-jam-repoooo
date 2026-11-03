@@ -10,6 +10,10 @@ extends Node2D
 @onready var spawner_2: Node2D = $"npc spawners/NpcSpawner2"
 @onready var spawner_3: Node2D = $"npc spawners/NpcSpawner3"
 @onready var spawner_4: Node2D = $"npc spawners/NpcSpawner4"
+@onready var car_spawner_1: Node2D = $"car spawner/west/spawnr thing"
+@onready var car_spawner_2: Node2D = $"car spawner/north/spawnr thing2"
+@onready var car_spawner_3: Node2D = $"car spawner/south/spawnr thing3"
+@onready var car_spawner_4: Node2D = $"car spawner/east/spawnr thing4"
 
 
 # adding the colors
@@ -50,8 +54,6 @@ func _process(delta: float) -> void:
 	time_op()
 	check_daycycle_changes()
 	clock_time()
-	if is_cycle_changing:
-		manage_traffic()
 	if GameData.daycycle == "morning":
 		target_color = morning_color
 	elif GameData.daycycle == "afternoon":
@@ -68,27 +70,6 @@ func clock_time():
 	hour =  total_min / 60
 	min = total_min % 60
 	clock.text = "%02d:%02d" % [hour, min]
-func manage_traffic():
-	if GameData.daycycle == "morning" and is_cycle_changing:
-		spawner_1.spawner_time(25)
-		spawner_2.spawner_time(35)
-		spawner_3.spawner_time(30)
-		spawner_4.spawner_time(20)
-	elif GameData.daycycle == "afternoon" and is_cycle_changing:
-		spawner_1.spawner_time(20)
-		spawner_2.spawner_time(25)
-		spawner_3.spawner_time(15)
-		spawner_4.spawner_time(30)
-	elif GameData.daycycle == "evening" and is_cycle_changing:
-		spawner_1.spawner_time(10)
-		spawner_2.spawner_time(15)
-		spawner_3.spawner_time(8)
-		spawner_4.spawner_time(10)
-	elif GameData.daycycle == "night" and is_cycle_changing:
-		spawner_1.spawner_time(30)
-		spawner_2.spawner_time(35)
-		spawner_3.spawner_time(40)
-		spawner_4.spawner_time(30)
 
 func check_daycycle_changes():
 	if GameData.daycycle != last_daycycle:

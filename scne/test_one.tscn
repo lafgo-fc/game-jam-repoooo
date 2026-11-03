@@ -1901,9 +1901,8 @@ position = Vector2(-729, 189)
 near_pt = NodePath("../waypoints/p1")
 
 [node name="NpcSpawner3" parent="npc spawners" unique_id=1458077235 node_paths=PackedStringArray("near_pt") instance=ExtResource("5_uaidk")]
-position = Vector2(-637, -70)
+position = Vector2(-632, -80)
 near_pt = NodePath("../waypoints/p23")
-spawn_time = 6.0
 
 [node name="NpcSpawner4" parent="npc spawners" unique_id=1979739054 node_paths=PackedStringArray("near_pt") instance=ExtResource("5_uaidk")]
 position = Vector2(510, 141)
@@ -1920,13 +1919,13 @@ position = Vector2(-273, 189)
 position = Vector2(-265, 468)
 
 [node name="p9" type="Marker2D" parent="npc spawners/waypoints" unique_id=87506571]
-position = Vector2(576, -59)
+position = Vector2(577, -81)
 
 [node name="p19" type="Marker2D" parent="npc spawners/waypoints" unique_id=2038831045]
 position = Vector2(575, -120)
 
 [node name="p20" type="Marker2D" parent="npc spawners/waypoints" unique_id=423898545]
-position = Vector2(49, -111)
+position = Vector2(52, -125)
 
 [node name="p5" type="Marker2D" parent="npc spawners/waypoints" unique_id=973808347]
 position = Vector2(46, -454)
@@ -1938,10 +1937,10 @@ position = Vector2(-194, -441)
 position = Vector2(-273, -445)
 
 [node name="p23" type="Marker2D" parent="npc spawners/waypoints" unique_id=1094046391]
-position = Vector2(-270, -64)
+position = Vector2(-267, -80)
 
 [node name="p24" type="Marker2D" parent="npc spawners/waypoints" unique_id=636406763]
-position = Vector2(-715, -114)
+position = Vector2(-715, -133)
 
 [node name="p7" type="Marker2D" parent="npc spawners/waypoints" unique_id=723676230]
 position = Vector2(720, 189)
@@ -1953,7 +1952,7 @@ position = Vector2(723, 129)
 position = Vector2(-204, 471)
 
 [node name="p2" type="Marker2D" parent="npc spawners/waypoints" unique_id=1944140388]
-position = Vector2(-199, -117)
+position = Vector2(-199, -129)
 
 [node name="p3" type="Marker2D" parent="npc spawners/waypoints" unique_id=1006885710]
 position = Vector2(122, 188)
@@ -1962,7 +1961,7 @@ position = Vector2(122, 188)
 position = Vector2(129, 483)
 
 [node name="p10" type="Marker2D" parent="npc spawners/waypoints" unique_id=522072571]
-position = Vector2(-716, -72)
+position = Vector2(-715, -76)
 
 [node name="p11" type="Marker2D" parent="npc spawners/waypoints" unique_id=1090722304]
 position = Vector2(49, 484)
@@ -1971,7 +1970,7 @@ position = Vector2(49, 484)
 position = Vector2(134, -458)
 
 [node name="p21" type="Marker2D" parent="npc spawners/waypoints" unique_id=811883301]
-position = Vector2(127, -71)
+position = Vector2(130, -80)
 
 [node name="p12" type="Marker2D" parent="npc spawners/waypoints" unique_id=1365234433]
 position = Vector2(46, 134)

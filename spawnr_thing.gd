@@ -7,6 +7,7 @@ extends Node2D
 @export var cross_point: Marker2D
 @export var exit_point: Marker2D
 @export var fuckoff: Marker2D
+@export var spawn_time : float = 3
 
 var can_spawn = true
 
