@@ -39,14 +39,13 @@ func _ready() -> void:
 	day_timer.wait_time = 1440
 	day_timer.one_shot = true
 
-	if not day_timer.timeout.is_connected(end_day):
-		day_timer.timeout.connect(end_day)
+
 
 	day_timer.start()
 
 
 	day_timer.wait_time = 1140
-	day_timer.start(1000)
+	day_timer.start(310)
 
 
 func _process(delta: float) -> void:
@@ -114,9 +113,12 @@ func check_daycycle_changes() -> void:
 		is_cycle_changing = false
 func end_day_report() -> void:
 	if day_timer.time_left <= 300 and not report_generated:
-		day_ended = true
 		report_generated = true
 		day_completed += 1
+		day_timer.stop()
+		print("ran")
+
+		get_tree().change_scene_to_file("res://report.tscn")
 
 		print(day_completed, " day completed")
 		print("Total number of npc died ", GameData.no_npc_died)
@@ -126,13 +128,3 @@ func end_day_report() -> void:
 		GameData.no_npc_died = 0
 		GameData.npc_waiting_time = 0
 		GameData.car_waiting_time = 0
-
-
-func end_day() -> void:
-	if day_ended:
-		return
-
-	day_ended = true
-	day_timer.stop()
-
-	get_tree().change_scene_to_file("res://report.tscn")
