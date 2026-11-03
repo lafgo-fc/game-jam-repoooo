@@ -35,6 +35,7 @@ var report_generated: bool = false
 
 
 func _ready() -> void:
+
 	day_timer.wait_time = 1440
 	day_timer.one_shot = true
 
@@ -42,6 +43,10 @@ func _ready() -> void:
 		day_timer.timeout.connect(end_day)
 
 	day_timer.start()
+
+
+	day_timer.wait_time = 1140
+	day_timer.start(1000)
 
 
 func _process(delta: float) -> void:
@@ -69,7 +74,7 @@ func _process(delta: float) -> void:
 		target_color,
 		delta * 0.5
 	)
-	)
+
 
 
 func time_op() -> void:
@@ -101,7 +106,7 @@ func clock_time() -> void:
 	min = total_min % 60
 
 	clock.text = "%02d:%02d" % [hour, min]
-<func manage_traffic() -> void:
+func manage_traffic() -> void:
 	if GameData.daycycle == "morning" and is_cycle_changing:
 		spawner_1.spawner_time(25)
 		spawner_2.spawner_time(35)
