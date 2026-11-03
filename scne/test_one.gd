@@ -26,6 +26,7 @@ var hour : int
 var is_cycle_changing : bool = false
 var last_daycycle = ""
 var day_completed : int = 0
+var report_generated = false
  # this gives us the time we have spent in the day
 func time_op():
 	
@@ -78,10 +79,15 @@ func check_daycycle_changes():
 	else:
 		is_cycle_changing = false
 func end_day_report():
-	if day_timer.time_left <= 300:
+	if day_timer.time_left <= 300 and not report_generated:
+		report_generated = true
 		day_completed += 1
 		day_timer.start()
 		print(day_completed," day completed")
 		print("Total number of npc died ",GameData.no_npc_died)
 		print("Total waiting time of car ",GameData.car_waiting_time)
 		print("Total waiting time of npc ",GameData.npc_waiting_time)
+		GameData.no_npc_died = 0
+		GameData.npc_waiting_time = 0
+		GameData.car_waiting_time = 0
+		report_generated = false
