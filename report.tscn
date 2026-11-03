@@ -1,0 +1,184 @@
+[gd_scene format=3 uid="uid://bm1c0j10oxmim"]
+
+[ext_resource type="Script" uid="uid://df7anwonoe61" path="res://report.gd" id="1_eyihf"]
+[ext_resource type="Texture2D" uid="uid://b23larfow82ql" path="res://assets/HUD n UI/end of the day report.png" id="1_mmd0k"]
+[ext_resource type="FontFile" uid="uid://dq5gvgnoginyl" path="res://assets/AeogoPixellated-Regular.ttf" id="3_wyrx8"]
+[ext_resource type="FontFile" uid="uid://bne8ybfwa0cm2" path="res://assets/PixelOperatorSC.ttf" id="4_tc3ll"]
+[ext_resource type="FontFile" uid="uid://ctfkwb5lc5e3n" path="res://assets/PixelOperatorMono.ttf" id="5_h6cc1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s7wsd"]
+bg_color = Color(0.29411766, 0.4117647, 0.18431373, 1)
+
+[node name="Control" type="Control" unique_id=762555806]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eyihf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1853706575]
+position = Vector2(1.5000095, -1.0967255e-05)
+scale = Vector2(0.4015625, 0.4)
+texture = ExtResource("1_mmd0k")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1676834329]
+zoom = Vector2(1.5, 1.5)
+
+[node name="heding" type="Label" parent="." unique_id=1123664039]
+layout_mode = 0
+offset_left = -328.0
+offset_top = -178.0
+offset_right = -86.0
+offset_bottom = -155.0
+theme_override_colors/font_color = Color(0.01967768, 0.17844635, 0.32611683, 1)
+theme_override_fonts/font = ExtResource("3_wyrx8")
+text = "City Traffic Authority"
+
+[node name="Shift" type="Label" parent="." unique_id=1565081966]
+layout_mode = 0
+offset_left = -82.0
+offset_top = -116.0
+offset_right = 160.0
+offset_bottom = -93.0
+theme_override_colors/font_color = Color(0.01967768, 0.17844635, 0.32611683, 1)
+theme_override_fonts/font = ExtResource("3_wyrx8")
+text = "Shift complete"
+
+[node name="cars passed" type="Label" parent="." unique_id=1796406787]
+layout_mode = 0
+offset_left = -218.0
+offset_top = -8.0
+offset_right = 24.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.01967768, 0.17844635, 0.32611683, 1)
+theme_override_fonts/font = ExtResource("3_wyrx8")
+theme_override_font_sizes/font_size = 30
+text = "8"
+
+[node name="wait time" type="Label" parent="." unique_id=205421587]
+layout_mode = 0
+offset_left = 129.0
+offset_top = -8.0
+offset_right = 371.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(0.01967768, 0.17844635, 0.32611683, 1)
+theme_override_fonts/font = ExtResource("3_wyrx8")
+theme_override_font_sizes/font_size = 25
+text = "22"
+
+[node name="Reputation" type="Label" parent="." unique_id=837710119]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 68.0
+offset_right = 327.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(0.01967768, 0.17844635, 0.32611683, 1)
+theme_override_fonts/font = ExtResource("3_wyrx8")
+theme_override_font_sizes/font_size = 22
+text = "150"
+
+[node name="Accidents" type="Label" parent="." unique_id=229024212]
+layout_mode = 0
+offset_left = -220.0
+offset_top = 69.0
+offset_right = 22.0
+offset_bottom = 94.0
+theme_override_colors/font_color = Color(0.01967768, 0.17844635, 0.32611683, 1)
+theme_override_fonts/font = ExtResource("3_wyrx8")
+theme_override_font_sizes/font_size = 24
+text = "0"
+
+[node name="day" type="Label" parent="." unique_id=850548224]
+layout_mode = 0
+offset_left = 225.0
+offset_top = -183.0
+offset_right = 467.0
+offset_bottom = -141.0
+theme_override_colors/font_color = Color(0.01967768, 0.17844635, 0.32611683, 1)
+theme_override_fonts/font = ExtResource("3_wyrx8")
+theme_override_font_sizes/font_size = 32
+text = "Day 1 "
+
+[node name="Grade" type="Label" parent="." unique_id=10846669]
+layout_mode = 0
+offset_left = 237.0
+offset_top = -91.0
+offset_right = 479.0
+offset_bottom = -44.0
+theme_override_colors/font_color = Color(0.01967768, 0.17844635, 0.32611683, 1)
+theme_override_fonts/font = ExtResource("3_wyrx8")
+theme_override_font_sizes/font_size = 46
+text = "A"
+
+[node name="heading2" type="Label" parent="." unique_id=450420807]
+layout_mode = 0
+offset_left = -323.0
+offset_top = -165.0
+offset_right = -81.0
+offset_bottom = -142.0
+theme_override_colors/font_color = Color(0.97694844, 0.98741764, 0.9990966, 1)
+theme_override_fonts/font = ExtResource("4_tc3ll")
+text = "End of the day report"
+
+[node name="Label" type="Label" parent="." unique_id=1699871100]
+layout_mode = 0
+offset_left = -59.0
+offset_top = -105.0
+offset_right = 183.0
+offset_bottom = -82.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_h6cc1")
+text = "Morning shift"
+
+[node name="Label7" type="Label" parent="." unique_id=141733992]
+layout_mode = 0
+offset_left = -317.0
+offset_top = -27.0
+offset_right = -75.0
+offset_bottom = -4.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_h6cc1")
+text = "Cars Passed:"
+
+[node name="Label8" type="Label" parent="." unique_id=1151749082]
+layout_mode = 0
+offset_left = -321.0
+offset_top = 47.0
+offset_right = -79.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_h6cc1")
+text = "Accidents:"
+
+[node name="Label9" type="Label" parent="." unique_id=38016885]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 48.0
+offset_right = 262.0
+offset_bottom = 71.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_h6cc1")
+text = "Reputation:"
+
+[node name="Label10" type="Label" parent="." unique_id=1120922126]
+layout_mode = 0
+offset_left = 18.0
+offset_top = -25.0
+offset_right = 260.0
+offset_bottom = -2.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_h6cc1")
+text = "Avg Wait Time:"
+
+[node name="ContinueButton" type="Button" parent="." unique_id=1486906318]
+layout_mode = 0
+offset_left = -59.0
+offset_top = 157.0
+offset_right = 60.0
+offset_bottom = 182.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_wyrx8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_s7wsd")
+text = "Continnue"

@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://dtn5s4yoc12d0"]
+
+[ext_resource type="Texture2D" uid="uid://dih7jb61fqnj4" path="res://Sprite-0001.png" id="1_5jxvh"]
+[ext_resource type="FontFile" uid="uid://0vxqmghyr5a2" path="res://assets/HUD n UI/PIXEL-LI.TTF" id="2_5jxvh"]
+[ext_resource type="FontFile" uid="uid://dey5ky0ftfra0" path="res://assets/PixelOperatorHB8.ttf" id="3_agqw0"]
+[ext_resource type="FontFile" uid="uid://dq5gvgnoginyl" path="res://assets/AeogoPixellated-Regular.ttf" id="4_ej85s"]
+[ext_resource type="Script" uid="uid://b68euweg2w7ac" path="res://button_2.gd" id="5_agqw0"]
+
+[node name="Control" type="Control" unique_id=527689295]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1837214822]
+texture_filter = 1
+position = Vector2(689, 337)
+scale = Vector2(0.6666666, 0.6759259)
+texture = ExtResource("1_5jxvh")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1578558965]
+position = Vector2(690, 341)
+zoom = Vector2(1.5, 1.5)
+
+[node name="Label" type="Label" parent="." unique_id=1880192059]
+texture_filter = 1
+layout_mode = 0
+offset_left = 541.0
+offset_top = 199.0
+offset_right = 818.0
+offset_bottom = 236.0
+theme_override_colors/font_color = Color(0.12156863, 0.18431373, 0.28235295, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5jxvh")
+theme_override_font_sizes/font_size = 28
+text = "CITY TRAFFIC AUTHORITY "
+
+[node name="Label3" type="Label" parent="." unique_id=900125930]
+layout_mode = 0
+offset_left = 571.0
+offset_top = 282.0
+offset_right = 907.0
+offset_bottom = 320.0
+theme_override_colors/font_color = Color(0.120805, 0.1854474, 0.2824226, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_5jxvh")
+theme_override_font_sizes/font_size = 37
+text = "Morning Shift"
+
+[node name="Label8" type="Label" parent="." unique_id=648549463]
+layout_mode = 0
+offset_left = 632.0
+offset_top = 460.0
+offset_right = 968.0
+offset_bottom = 498.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5jxvh")
+theme_override_font_sizes/font_size = 29
+text = "start shift"
+
+[node name="Label2" type="Label" parent="." unique_id=1758800829]
+layout_mode = 0
+offset_left = 529.0
+offset_top = 236.0
+offset_right = 828.0
+offset_bottom = 286.0
+theme_override_colors/font_color = Color(0.12156863, 0.18431373, 0.28235295, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5jxvh")
+theme_override_font_sizes/font_size = 50
+text = "Day 1"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="." unique_id=164219375]
+layout_mode = 0
+offset_left = 679.0
+offset_top = 329.0
+offset_right = 978.0
+offset_bottom = 379.0
+theme_override_colors/font_color = Color(0.12156863, 0.18431373, 0.28235295, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_agqw0")
+theme_override_font_sizes/font_size = 23
+text = ": Mid"
+horizontal_alignment = 1
+
+[node name="Label7" type="Label" parent="." unique_id=47476718]
+layout_mode = 0
+offset_left = 667.0
+offset_top = 361.0
+offset_right = 966.0
+offset_bottom = 411.0
+theme_override_colors/font_color = Color(0.12156863, 0.18431373, 0.28235295, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_agqw0")
+theme_override_font_sizes/font_size = 23
+text = ": 7 hrs"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="." unique_id=1836731955]
+layout_mode = 0
+offset_left = 523.0
+offset_top = 332.0
+offset_right = 782.0
+offset_bottom = 382.0
+theme_override_colors/font_color = Color(0.12156863, 0.18431373, 0.28235295, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ej85s")
+theme_override_font_sizes/font_size = 22
+text = "Traffic Intensity "
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="." unique_id=746901331]
+layout_mode = 0
+offset_left = 513.0
+offset_top = 364.0
+offset_right = 772.0
+offset_bottom = 414.0
+theme_override_colors/font_color = Color(0.12156863, 0.18431373, 0.28235295, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ej85s")
+theme_override_font_sizes/font_size = 22
+text = "Shift Duration"
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="." unique_id=617475741]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 619.0
+offset_top = 454.0
+offset_right = 777.0
+offset_bottom = 495.0
+script = ExtResource("5_agqw0")
+
+[connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
