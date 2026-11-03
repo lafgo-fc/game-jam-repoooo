@@ -3,12 +3,25 @@
 [ext_resource type="Script" uid="uid://dj2yooa4jiwaa" path="res://spawnr_thing.gd" id="1_sqo3j"]
 [ext_resource type="PackedScene" uid="uid://bb6hayl4e4h2j" path="res://scne/car.tscn" id="2_35ejr"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_454ae"]
+
 [node name="spawnr thing" type="Node2D" unique_id=1807773249]
 script = ExtResource("1_sqo3j")
 car_scene = ExtResource("2_35ejr")
 
 [node name="Timer" type="Timer" parent="." unique_id=1513139892]
-wait_time = 3.432
+wait_time = 18.883000000000003
 autostart = true
 
+[node name="Area2D" type="Area2D" parent="." unique_id=891598153 groups=["car"]]
+position = Vector2(1, 0)
+scale = Vector2(1.5, 1.5)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1656880896 groups=["car"]]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_454ae")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

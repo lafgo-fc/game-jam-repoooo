@@ -3,12 +3,22 @@
 [ext_resource type="Script" uid="uid://beqhpkqrsjx1p" path="res://scne/npc_spawner.gd" id="1_3ytr4"]
 [ext_resource type="PackedScene" uid="uid://jjrg7q8ffkxn" path="res://scne/pedestians.tscn" id="2_0v4el"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74c84"]
+size = Vector2(94.5, 88)
+
 [node name="NpcSpawner" type="Node2D" unique_id=2056746993]
 script = ExtResource("1_3ytr4")
 npc = ExtResource("2_0v4el")
 
 [node name="spawn_Timer" type="Timer" parent="." unique_id=501301645]
 wait_time = 11.068
-autostart = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1009847330]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1172774635]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_74c84")
 
 [connection signal="timeout" from="spawn_Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

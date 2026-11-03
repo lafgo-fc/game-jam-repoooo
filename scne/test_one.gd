@@ -10,6 +10,10 @@ extends Node2D
 @onready var spawner_2: Node2D = $"npc spawners/NpcSpawner2"
 @onready var spawner_3: Node2D = $"npc spawners/NpcSpawner3"
 @onready var spawner_4: Node2D = $"npc spawners/NpcSpawner4"
+@onready var car_spawner_1: Node2D = $"car spawner/west/spawnr thing"
+@onready var car_spawner_2: Node2D = $"car spawner/north/spawnr thing2"
+@onready var car_spawner_3: Node2D = $"car spawner/south/spawnr thing3"
+@onready var car_spawner_4: Node2D = $"car spawner/east/spawnr thing4"
 
 # Colors
 var morning_color = Color(1, 0.9, 0.8)
@@ -25,6 +29,10 @@ var last_daycycle: String = ""
 
 var day_ended: bool = false
 
+# Friend's report system
+var day_completed: int = 0
+var report_generated: bool = false
+
 
 func _ready() -> void:
 	day_timer.wait_time = 1440
@@ -37,6 +45,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	end_day_report()
+
 	var target_color: Color
 
 	time_op()
@@ -58,6 +68,7 @@ func _process(delta: float) -> void:
 	surroundings.color = surroundings.color.lerp(
 		target_color,
 		delta * 0.5
+	)
 	)
 
 
@@ -90,9 +101,7 @@ func clock_time() -> void:
 	min = total_min % 60
 
 	clock.text = "%02d:%02d" % [hour, min]
-
-
-func manage_traffic() -> void:
+<func manage_traffic() -> void:
 	if GameData.daycycle == "morning" and is_cycle_changing:
 		spawner_1.spawner_time(25)
 		spawner_2.spawner_time(35)
@@ -124,6 +133,19 @@ func check_daycycle_changes() -> void:
 		last_daycycle = GameData.daycycle
 	else:
 		is_cycle_changing = false
+func end_day_report() -> void:
+	if day_timer.time_left <= 300 and not report_generated:
+		report_generated = true
+		day_completed += 1
+
+		print(day_completed, " day completed")
+		print("Total number of npc died ", GameData.no_npc_died)
+		print("Total waiting time of car ", GameData.car_waiting_time)
+		print("Total waiting time of npc ", GameData.npc_waiting_time)
+
+		GameData.no_npc_died = 0
+		GameData.npc_waiting_time = 0
+		GameData.car_waiting_time = 0
 
 
 func end_day() -> void:
@@ -131,8 +153,6 @@ func end_day() -> void:
 		return
 
 	day_ended = true
-
 	day_timer.stop()
 
 	get_tree().change_scene_to_file("res://report.tscn")
-	

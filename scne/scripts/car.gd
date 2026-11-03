@@ -15,6 +15,7 @@ extends CharacterBody2D
 @onready var ambulance = $ambulance
 @onready var collision_shape = $CollisionShape2D
 @onready var collsion_range = $Area2D/collision_range
+@onready var death_label_scene = $death_label_ui
 
 var target: Marker2D
 var stop_point: Marker2D
@@ -32,9 +33,13 @@ var vehicle_move: bool = false
 var blocking_bodies: Array[Node2D] = []
 var waiting_time: float = 0.0
 var is_waiting: bool = false
+var collision_shape_base_position: Vector2
+var collision_range_base_position: Vector2
+var car_wait : int = 0
 
 
 func _ready() -> void:
+	add_to_group("car")
 	var vehicles = [
 		van, taxi, luxury, jeep, civic,
 		truck, bus, polic_car, ambulance
@@ -81,6 +86,8 @@ func _ready() -> void:
 			collision_shape.position = Vector2(0.0, -7.0)
 			collsion_range.scale = Vector2(1.7, 1.6)
 			collsion_range.position = Vector2(0.0, -7.0)
+	collision_shape_base_position = collision_shape.position
+	collision_range_base_position = collsion_range.position
 
 
 func _process(_delta: float) -> void:
@@ -91,17 +98,23 @@ func _process(_delta: float) -> void:
 		return
 
 	if not has_passed:
-		if GameData.traffic_right_left:
+
+		if GameData.traffic_right_left and (last_direction == "right" or last_direction == "left"):
 			target = cross_point
+
+		elif GameData.traffic_front_down and (last_direction == "top" or last_direction == "down"):
+			target = cross_point
+
 		else:
 			target = stop_point
+
+	if has_passed:
+		target = exit_point
 
 	if cross_point != null and not has_passed:
 		if global_position.distance_to(cross_point.global_position) < 10.0:
 			has_passed = true
 
-	if has_passed:
-		target = exit_point
 
 	if fuckoff != null:
 		if global_position.distance_to(fuckoff.global_position) < 25.0:
@@ -123,9 +136,11 @@ func update_waiting_time(delta: float, waiting: bool) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	waiting_time_evaluvation(delta)
 	for i in range(blocking_bodies.size() - 1, -1, -1):
 		if not is_instance_valid(blocking_bodies[i]):
 			blocking_bodies.remove_at(i)
+	update_collision_direction()
 
 	var waiting_for_car = not blocking_bodies.is_empty()
 
@@ -163,6 +178,7 @@ func _physics_process(delta: float) -> void:
 		vehicle_move = true
 
 	process_animation(direction)
+	update_collision_direction()
 	move_and_slide()
 
 
@@ -181,6 +197,7 @@ func process_animation(direction: Vector2) -> void:
 		else:
 			vehicle_opt.play("left")
 			last_direction = "left"
+
 	elif abs(direction.y) >= abs(direction.x):
 		if direction.y > 0:
 			vehicle_opt.play("down")
@@ -194,8 +211,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body != self and not blocking_bodies.has(body):
 		blocking_bodies.append(body)
 
-	if body.is_in_group("npc") and velocity.length() > 0:
-		GameData.npc_collided = true
+	if body.is_in_group("npc") and velocity == Vector2.ZERO:
+		body.npc_collided = true
 
 		if "npc_id" in body:
 			GameData.collided_npc_id = body.npc_id
@@ -210,10 +227,42 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	blocking_bodies.erase(body)
 
 	if body.is_in_group("npc"):
-		GameData.npc_collided = false
+		body.npc_collided = false
 		GameData.collided_npc_id = -1
 
 		for child in body.get_children():
 			if child.has_method("hide_death_label"):
 				child.hide_death_label()
 				break
+func update_collision_direction():
+	var offset = 20.0
+	var angle = 0.0
+	var direction_offset = Vector2.ZERO
+
+	match last_direction:
+		"right":
+			angle = 0.0
+			direction_offset = Vector2(offset, 0)
+
+		"left":
+			angle = PI
+			direction_offset = Vector2(-offset, 0)
+
+		"down":
+			angle = PI / 2
+			direction_offset = Vector2(0, offset)
+
+		"top":
+			angle = -PI / 2
+			direction_offset = Vector2(0, -offset)
+
+	collision_shape.rotation = angle
+	collision_shape.position = collision_shape_base_position
+
+	collsion_range.rotation = angle
+	collsion_range.position = collision_range_base_position + direction_offset
+func waiting_time_evaluvation(delta : float):
+	if velocity == Vector2.ZERO:
+		car_wait += delta
+		GameData.car_waiting_time += delta
+		

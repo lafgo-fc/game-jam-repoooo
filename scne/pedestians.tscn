@@ -31,10 +31,26 @@ script/source = "extends CharacterBody2D
 @onready var pt_9 = $\"../../waypoints/p9\"
 @onready var pt_10 = $\"../../waypoints/p10\"
 @onready var pt_11 = $\"../../waypoints/p11\"
+@onready var pt_12 = $\"../../waypoints/p12\"
+@onready var pt_13 = $\"../../waypoints/p13\"
+@onready var pt_14 = $\"../../waypoints/p14\"
+@onready var pt_15 = $\"../../waypoints/p15\"
+@onready var pt_16 = $\"../../waypoints/p16\"
+@onready var pt_17 = $\"../../waypoints/p17\"
+@onready var pt_18 = $\"../../waypoints/p18\"
+@onready var pt_19 = $\"../../waypoints/p19\"
+@onready var pt_20 = $\"../../waypoints/p20\"
+@onready var pt_21 = $\"../../waypoints/p21\"
+@onready var pt_22 = $\"../../waypoints/p22\"
+@onready var pt_23 = $\"../../waypoints/p23\"
+@onready var pt_24 = $\"../../waypoints/p24\"
 
+
+@onready var npc_light = $PointLight2D
+var death_label_scene = preload(\"res://scne/scripts/death_label_ui.tscn\")
 # essential vars
 var near_pt : Marker2D
-var last_direction : String
+var last_direction: String = \"front\"
 var npc_inside : bool = false
 var npc_name : AnimatedSprite2D
 var npc_list : Array[AnimatedSprite2D]
@@ -48,8 +64,11 @@ var dodge_stage : int = 0
 var is_dodging = false
 var dodge_target : Vector2
 var being_dodged = false
-
+var npc_collided = false
+var npc_waiting_time : float = 0
+var overlapping_npcs: Array[Node2D] = []
 const SPEED = 30.0
+var has_dodged_this_encounter: bool = false
 
 @export var npc_id : int = 0 
 func _ready():
@@ -59,11 +78,15 @@ func _ready():
 	for npc in npc_list:
 		npc.hide()
 	npc_name.show()
-
 func _physics_process(delta: float) -> void:
+	death_label_ui()
 	if near_pt == null:
 		return
 	exit_pt()
+	if GameData.daycycle == \"night\":
+		npc_light.show()
+	else:
+		npc_light.hide()
 	
 	
 	# performing the dodge
@@ -83,7 +106,8 @@ func _physics_process(delta: float) -> void:
 			npc_name.play(\"right\")
 		elif distance < 2.0 and dodge_stage == 2:
 			dodge_stage = 3
-			other_npc.being_dodged = false
+			if is_instance_valid(other_npc):
+				other_npc.being_dodged = false
 			dodge_target = global_position + Vector2(0,40)
 			npc_name.play(\"front\")
 		elif distance < 2.0 and dodge_stage == 3:
@@ -102,7 +126,8 @@ func _physics_process(delta: float) -> void:
 			npc_name.play(\"front\")
 		elif distance < 2.0 and dodge_stage == 2:
 			dodge_stage = 3
-			other_npc.being_dodged = false
+			if is_instance_valid(other_npc):
+				other_npc.being_dodged = false
 			dodge_target = global_position + Vector2(40,0)
 			npc_name.play(\"right\")
 		elif distance < 2.0 and dodge_stage == 3:
@@ -110,7 +135,7 @@ func _physics_process(delta: float) -> void:
 			dodge_stage = 0
 		move_and_slide()
 		return
-	elif is_dodging and dodge_type == \"top and right\" or dodge_type == \"front and right\":
+	elif is_dodging and (dodge_type == \"top and right\" or dodge_type == \"front and right\"):
 		velocity = global_position.direction_to(dodge_target) * SPEED
 		var distance = global_position.distance_to(dodge_target)
 		if dodge_stage == 1:
@@ -121,7 +146,8 @@ func _physics_process(delta: float) -> void:
 			npc_name.play(\"right\")
 		elif distance < 2.0 and dodge_stage == 2:
 			dodge_stage = 3
-			other_npc.being_dodged = false
+			if is_instance_valid(other_npc):
+				other_npc.being_dodged = false
 			dodge_target = global_position + Vector2(0,-40)
 			npc_name.play(\"top\")
 		elif distance < 2.0 and dodge_stage == 3:
@@ -129,7 +155,7 @@ func _physics_process(delta: float) -> void:
 			dodge_stage = 0
 		move_and_slide()
 		return
-	elif is_dodging and dodge_type == \"top and left\" or dodge_type == \"front and left\":
+	elif is_dodging and (dodge_type == \"top and left\" or dodge_type == \"front and left\"):
 		velocity = global_position.direction_to(dodge_target) * SPEED
 		var distance = global_position.distance_to(dodge_target)
 		if dodge_stage == 1:
@@ -140,7 +166,8 @@ func _physics_process(delta: float) -> void:
 			npc_name.play(\"left\")
 		elif distance < 2.0 and dodge_stage == 2:
 			dodge_stage = 3
-			other_npc.being_dodged = false
+			if is_instance_valid(other_npc):
+				other_npc.being_dodged = false
 			dodge_target = global_position + Vector2(0,-40)
 			npc_name.play(\"top\")
 		elif distance < 2.0 and dodge_stage == 3:
@@ -148,29 +175,29 @@ func _physics_process(delta: float) -> void:
 			dodge_stage = 0
 		move_and_slide()
 		return
+	
 
-
-	if different_directional_npc == true:
+	if different_directional_npc and is_instance_valid(other_npc) and not has_dodged_this_encounter:
 		if (last_direction == \"right\" and other_npc.last_direction == \"left\") or (last_direction == \"left\" and other_npc.last_direction == \"right\"):
-			print(\"right left collided\")
 			dodge_type = \"left and right\"
 		elif (last_direction == \"top\" and other_npc.last_direction == \"front\") or (last_direction == \"front\" and other_npc.last_direction == \"top\"):
-			print(\"top front collided\")
+			
 			dodge_type = \"front and down\"
 		elif (last_direction == \"top\" and other_npc.last_direction == \"right\") or (last_direction == \"right\" and other_npc.last_direction == \"top\"):
-			print(\"top right collided\")
+		
 			dodge_type = \"top and right\"
 		elif (last_direction == \"front\" and other_npc.last_direction == \"right\") or (last_direction == \"right\" and other_npc.last_direction == \"front\"):
-			print(\"front right collided\")
+			
 			dodge_type = \"front and right\"
 		elif (last_direction == \"front\" and other_npc.last_direction == \"left\") or (last_direction == \"left\" and other_npc.last_direction == \"front\"):
-			print(\"front left collided\")
+		
 			dodge_type = \"front and left\"
 		elif (last_direction == \"top\" and other_npc.last_direction == \"left\") or (last_direction == \"left\" and other_npc.last_direction == \"top\"):
-			print(\"front left collided\")
-			dodge_type = \"front and left\"
+			dodge_type = \"top and left\"
 		
 		start_dodge()
+		if is_dodging:
+			return
 		
 		
 	var distance = global_position.distance_to(near_pt.global_position)
@@ -179,6 +206,7 @@ func _physics_process(delta: float) -> void:
 		nex_pt()
 		return
 	check_signal()
+	evaluvate_waiting_time(delta)
 	if npc_inside == true or stop_signal == true:
 		velocity = Vector2.ZERO
 		npc_name.play(\"idle \" + last_direction)
@@ -189,6 +217,8 @@ func _physics_process(delta: float) -> void:
 
 
 func process_animation(direction: Vector2):
+	if direction == Vector2.ZERO:
+		return
 
 	if dodge_stage == 1:
 		return
@@ -211,74 +241,123 @@ func process_animation(direction: Vector2):
 func nex_pt():
 	previous_pt = near_pt
 	if near_pt == pt_1:
-		var possible_pt = [pt_3,pt_2,pt_8]
+		var possible_pt = [pt_3,pt_16,pt_7,pt_15]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_2:
-		var possible_pt = [pt_1,pt_4,pt_10,pt_6]
+		var possible_pt = [pt_20,pt_6,pt_13,pt_24]
 		near_pt = possible_pt.pick_random()
 
 	elif near_pt == pt_3:
-		var possible_pt = [pt_1,pt_11,pt_4,pt_7]
+		var possible_pt = [pt_1,pt_7,pt_17]
 		near_pt = possible_pt.pick_random()
-	elif near_pt == pt_4:
-		var possible_pt = [pt_3,pt_2,pt_9,pt_5]
+	elif near_pt == pt_12:
+		var possible_pt = [pt_18,pt_11,pt_13,pt_20]
 		near_pt = possible_pt.pick_random()
-func  check_signal():
+	elif near_pt == pt_13:
+		var possible_pt = [pt_8,pt_12,pt_14]
+		near_pt = possible_pt.pick_random()
+	elif near_pt == pt_20:
+		var possible_pt = [pt_5,pt_12,pt_19,pt_2]
+		near_pt = possible_pt.pick_random()
+	elif near_pt == pt_23:
+		var possible_pt = [pt_21]
+		near_pt = possible_pt.pick_random()
+	elif near_pt == pt_21:
+		var possible_pt = [pt_23,pt_3,pt_9,pt_4]
+		near_pt = possible_pt.pick_random()
+func check_signal():
 	stop_signal = false
 
+	# pt12 → pt20 | pt3 → pt21
+	if (previous_pt == pt_12 and near_pt == pt_20) or \\
+	(previous_pt == pt_3 and near_pt == pt_21):
+		if GameData.light == \"red in front\":
+			stop_signal = true
+
+	# pt1 → pt23 | pt13 → pt2
+	elif (previous_pt == pt_1 and near_pt == pt_23) or \\
+	(previous_pt == pt_13 and near_pt == pt_2):
+		if GameData.light == \"red in front\":
+			stop_signal = true
+
+	# pt2 → pt20 | pt23 → pt21
+	elif (previous_pt == pt_2 and near_pt == pt_20) or \\
+	(previous_pt == pt_23 and near_pt == pt_21):
+		if GameData.light == \"green in front\":
+			stop_signal = true
+			print(stop_signal)
+
+	# pt20 → pt2 | pt21 → pt3
+	elif (previous_pt == pt_20 and near_pt == pt_2) or \\
+	(previous_pt == pt_21 and near_pt == pt_23):
+		if GameData.light == \"green in front\":
+			stop_signal = true
+
+	# pt12 → pt13 | pt3 → pt1
+	elif (previous_pt == pt_12 and near_pt == pt_13) or \\
+	(previous_pt == pt_3 and near_pt == pt_1):
+		if GameData.light == \"green in front\":
+			stop_signal = true
+
+	# pt23 → pt1 | pt13 → pt12
+	elif (previous_pt == pt_23 and near_pt == pt_1) or \\
+	(previous_pt == pt_2 and near_pt == pt_13):
+		if GameData.light == \"red in front\":
+			stop_signal = true
+
 	# pt1 → pt3
-	if previous_pt == pt_1 and near_pt == pt_3:
-		if GameData.light == \"red in right\" or GameData.light == \"green in front\":
+	elif (previous_pt == pt_1 and near_pt == pt_3) or \\
+	(previous_pt == pt_13 and near_pt == pt_12):
+		if GameData.light == \"green in front\":
 			stop_signal = true
-
-	# pt2 → pt4
-	elif previous_pt == pt_2 and near_pt == pt_4:
-		if GameData.light == \"red in right\" or GameData.light == \"green in front\":
-			stop_signal = true
-
-	# pt3 → pt1
-	elif previous_pt == pt_3 and near_pt == pt_1:
-		if GameData.light == \"red in right\" or GameData.light == \"green in front\":
-			stop_signal = true
-
-	# pt4 → pt2
-	elif previous_pt == pt_4 and near_pt == pt_2:
-		if GameData.light == \"red in right\" or GameData.light == \"green in front\":
-			stop_signal = true
-	# pt2 → pt1
-	elif previous_pt == pt_2 and near_pt == pt_1:
-		if GameData.light == \"red in front\" or GameData.light == \"green in right\":
-			stop_signal = true
-	# pt1 → pt2
-	elif previous_pt == pt_1 and near_pt == pt_2:
-		if GameData.light == \"red in front\" or GameData.light == \"green in right\":
-			stop_signal = true
-	# pt4 → pt3
-	elif previous_pt == pt_4 and near_pt == pt_3:
-		if GameData.light == \"red in front\" or GameData.light == \"green in right\":
-			stop_signal = true
-	# pt3 → pt4
-	elif previous_pt == pt_3 and near_pt == pt_4:
-		if GameData.light == \"red in front\" or GameData.light == \"green in right\":
+	elif (previous_pt == pt_20 and near_pt == pt_12) or \\
+	(previous_pt == pt_21 and near_pt == pt_3):
+		if GameData.light == \"red in front\":
 			stop_signal = true
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body != self and body.is_in_group(\"npc\"):
-		other_npc = body
-		different_directional_npc = false
+		if not overlapping_npcs.has(body):
+			overlapping_npcs.append(body)
+
 		npc_inside = true
-		if self.last_direction != body.last_direction:
-			different_directional_npc = true
+
+		if not is_instance_valid(other_npc):
+			other_npc = body
+
+		different_directional_npc = (
+			is_instance_valid(other_npc)
+			and last_direction != other_npc.last_direction
+		)
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body != self and body.is_in_group(\"npc\"):
-		npc_inside = false
+		overlapping_npcs.erase(body)
+		if overlapping_npcs.is_empty():
+			has_dodged_this_encounter = false
+
+		npc_inside = not overlapping_npcs.is_empty()
+
+		if body == other_npc:
+			other_npc = null
+			different_directional_npc = false
+
+			for npc in overlapping_npcs:
+				if is_instance_valid(npc):
+					other_npc = npc
+					different_directional_npc = (
+						last_direction != npc.last_direction
+					)
+					break
 
 func start_dodge():
+	if not is_instance_valid(other_npc):
+		return
 	if dodge_type == \"left and right\" and npc_inside:
 		if not is_dodging :
 			is_dodging = true
+			has_dodged_this_encounter = true
 			dodge_stage = 1
 			print(dodge_stage)
 			other_npc.being_dodged = true
@@ -287,34 +366,56 @@ func start_dodge():
 	elif dodge_type == \"front and down\" and npc_inside:
 		if not is_dodging :
 			is_dodging = true
+			has_dodged_this_encounter = true
 			dodge_stage = 1
 			print(dodge_stage)
 			other_npc.being_dodged = true
 			dodge_target = global_position + Vector2(-40 , 0)
 			return
-	elif dodge_type == \"top and right\" or dodge_type == \"front and right\" and npc_inside:
+	elif (dodge_type == \"top and right\" or dodge_type == \"front and right\") and npc_inside:
 		if not is_dodging :
 			is_dodging = true
+			has_dodged_this_encounter = true
 			dodge_stage = 1
 			print(dodge_stage)
 			other_npc.being_dodged = true
 			dodge_target = global_position + Vector2(0 , -40)
 			return
-	elif dodge_type == \"top and left\" or dodge_type == \"front and left\" and npc_inside:
+	elif (dodge_type == \"top and left\" or dodge_type == \"front and left\") and npc_inside:
 		if not is_dodging :
 			is_dodging = true
+			has_dodged_this_encounter = true
 			dodge_stage = 1
 			print(dodge_stage)
 			other_npc.being_dodged = true
 			dodge_target = global_position + Vector2(0 , -40)
 			return
 func exit_pt():
-	var points = [pt_5,pt_6,pt_7,pt_8,pt_9,pt_10,pt_11]
+	var points = [pt_5,pt_6,pt_7,pt_8,pt_9,pt_10,pt_11,pt_17,pt_16,pt_15,pt_14,pt_18,pt_22,pt_4,pt_19,pt_24]
 	for point in points:
 		if global_position.distance_to(point.global_position) < 5:
 			queue_free()
 			print(\"npc exited\")
 			GameData.reputation += 100
+func death_label_ui():
+	if not npc_collided:
+		return
+	var death_label = death_label_scene.instantiate()
+	get_tree().current_scene.add_child(death_label)
+	death_label.global_position = global_position
+	death_label.death_label_show()
+	GameData.no_npc_died += 1
+	queue_free()
+func evaluvate_waiting_time (delta:float):
+	if not is_dodging and not being_dodged:
+		if stop_signal or npc_inside:
+			npc_waiting_time += delta
+			GameData.npc_waiting_time += delta
+		
+		
+		
+
+		
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mvjtp"]
@@ -1983,6 +2084,7 @@ scale = Vector2(2.6666667, 2.2931035)
 shape = SubResource("CapsuleShape2D_gdw26")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=748906987]
+visible = false
 position = Vector2(-1, -5.000001)
 scale = Vector2(1.9583334, 1.7559267)
 texture = SubResource("GradientTexture2D_74c84")
