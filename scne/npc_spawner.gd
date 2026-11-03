@@ -25,11 +25,11 @@ func spawn_npc() -> void:
 	npc_spawn.near_pt = near_pt
 func manage_npc_timer():
 	if GameData.daycycle == "morning":
-		timer.wait_time(20)
+		timer.wait_time(30)
 	elif GameData.daycycle == "afternoon":
-		timer.wait_time(15)
+		timer.wait_time(25)
 	elif GameData.daycycle == "evening":
-		timer.wait_time(10)
+		timer.wait_time(20)
 
 
 func _on_timer_timeout() -> void:

@@ -7,7 +7,7 @@ extends Node2D
 @export var cross_point: Marker2D
 @export var exit_point: Marker2D
 @export var fuckoff: Marker2D
-@export var spawn_time : float = 3
+@onready var timer = $Timer
 
 var can_spawn = true
 
@@ -28,6 +28,14 @@ func spawn_car() -> void:
 	car.fuckoff = fuckoff
 
 	#car.road_direction = road_direction
+func manage_traffic():
+	if GameData.daycycle == "morning":
+		timer.wait_time(20)
+	elif GameData.daycycle == "afternoon":
+		timer.wait_time(15)
+	elif GameData.daycycle == "night":
+		timer.wait_time(10)
+	
 
 
 func _on_timer_timeout() -> void:
