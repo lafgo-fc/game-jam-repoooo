@@ -81,4 +81,7 @@ func end_day_report():
 	if day_timer.time_left <= 300:
 		day_completed += 1
 		day_timer.start()
-		print(day_completed)
+		print(day_completed," day completed")
+		print("Total number of npc died ",GameData.no_npc_died)
+		print("Total waiting time of car ",GameData.car_waiting_time)
+		print("Total waiting time of npc ",GameData.npc_waiting_time)

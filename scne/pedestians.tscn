@@ -65,6 +65,7 @@ var is_dodging = false
 var dodge_target : Vector2
 var being_dodged = false
 var npc_collided = false
+var npc_waiting_time : float = 0
 
 const SPEED = 30.0
 
@@ -77,6 +78,7 @@ func _ready():
 		npc.hide()
 	npc_name.show()
 func _physics_process(delta: float) -> void:
+	evaluvate_waiting_time(delta)
 	death_label_ui()
 	if near_pt == null:
 		return
@@ -365,7 +367,14 @@ func death_label_ui():
 	get_tree().current_scene.add_child(death_label)
 	death_label.global_position = global_position
 	death_label.death_label_show()
+	GameData.no_npc_died += 1
 	queue_free()
+func evaluvate_waiting_time (delta:float):
+	if velocity == Vector2.ZERO:
+		npc_waiting_time += delta
+		GameData.npc_waiting_time += delta
+		
+		
 		
 
 		

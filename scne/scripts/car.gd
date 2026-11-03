@@ -35,6 +35,7 @@ var waiting_time: float = 0.0
 var is_waiting: bool = false
 var collision_shape_base_position: Vector2
 var collision_range_base_position: Vector2
+var car_wait : int = 0
 
 
 func _ready() -> void:
@@ -135,6 +136,7 @@ func update_waiting_time(delta: float, waiting: bool) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	waiting_time_evaluvation(delta)
 	for i in range(blocking_bodies.size() - 1, -1, -1):
 		if not is_instance_valid(blocking_bodies[i]):
 			blocking_bodies.remove_at(i)
@@ -259,3 +261,8 @@ func update_collision_direction():
 
 	collsion_range.rotation = angle
 	collsion_range.position = collision_range_base_position + direction_offset
+func waiting_time_evaluvation(delta : float):
+	if velocity == Vector2.ZERO:
+		car_wait += delta
+		GameData.car_waiting_time += delta
+		
