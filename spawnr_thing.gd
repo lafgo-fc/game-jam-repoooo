@@ -8,11 +8,17 @@ extends Node2D
 @export var exit_point: Marker2D
 @export var fuckoff: Marker2D
 @onready var timer = $Timer
+var previous_shift = ""
 
 var can_spawn = true
 
 func _ready() -> void:
 	spawn_car()
+	manage_traffic()
+
+func _process(delta: float) -> void:
+	if previous_shift != GameData.daycycle:
+		manage_traffic()
 
 
 func spawn_car() -> void:
@@ -29,12 +35,17 @@ func spawn_car() -> void:
 
 	#car.road_direction = road_direction
 func manage_traffic():
+	previous_shift = GameData.daycycle
 	if GameData.daycycle == "morning":
-		timer.wait_time(20)
+		timer.wait_time = 20
 	elif GameData.daycycle == "afternoon":
-		timer.wait_time(15)
-	elif GameData.daycycle == "night":
-		timer.wait_time(10)
+		timer.wait_time = 10
+	elif GameData.daycycle == "evening":
+		print("this working")
+		timer.wait_time = 5
+	timer.start()
+		
+
 	
 
 

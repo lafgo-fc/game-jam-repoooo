@@ -25,6 +25,7 @@ var min : int
 var hour : int 
 var is_cycle_changing : bool = false
 var last_daycycle = ""
+var day_completed : int = 0
  # this gives us the time we have spent in the day
 func time_op():
 	
@@ -33,8 +34,6 @@ func time_op():
 		time_spent = 0
 		hour = 0 
 		min = 0
-	if time_spent <= 360 or  time_spent >=1201 :
-		GameData.daycycle = "night"
 	elif time_spent >= 721 and time_spent <= 1080 :
 		GameData.daycycle = "afternoon"
 	elif time_spent >= 1081 and time_spent <= 1200 :
@@ -45,11 +44,12 @@ func time_op():
 
 
 func _ready() -> void:
-	day_timer.wait_time = 1440
-	day_timer.start(1000)
+	day_timer.wait_time = 1140
+	day_timer.start(310)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	end_day_report()
 	var target_color : Color
 	time_op()
 	check_daycycle_changes()
@@ -77,3 +77,8 @@ func check_daycycle_changes():
 		last_daycycle = GameData.daycycle
 	else:
 		is_cycle_changing = false
+func end_day_report():
+	if day_timer.time_left <= 300:
+		day_completed += 1
+		day_timer.start()
+		print(day_completed)

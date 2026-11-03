@@ -10,7 +10,7 @@ script = ExtResource("1_sqo3j")
 car_scene = ExtResource("2_35ejr")
 
 [node name="Timer" type="Timer" parent="." unique_id=1513139892]
-wait_time = 10.0
+wait_time = 18.883000000000003
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=891598153 groups=["car"]]
