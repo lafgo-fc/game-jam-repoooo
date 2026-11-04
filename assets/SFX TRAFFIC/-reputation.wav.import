@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c38w2nm7n8qjm"
+path="res://.godot/imported/-reputation.wav-924a688c3383b37e02820fb145126f99.sample"
+
+[deps]
+
+source_file="res://assets/SFX TRAFFIC/-reputation.wav"
+dest_files=["res://.godot/imported/-reputation.wav-924a688c3383b37e02820fb145126f99.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

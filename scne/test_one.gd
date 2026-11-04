@@ -14,6 +14,7 @@ extends Node2D
 @onready var car_spawner_2: Node2D = $"car spawner/north/spawnr thing2"
 @onready var car_spawner_3: Node2D = $"car spawner/south/spawnr thing3"
 @onready var car_spawner_4: Node2D = $"car spawner/east/spawnr thing4"
+@onready var siren = $sounds/siren
 
 # Colors
 var morning_color = Color(1, 0.9, 0.8)
@@ -45,7 +46,7 @@ func _ready() -> void:
 
 
 	day_timer.wait_time = 1140
-	day_timer.start(330)
+	day_timer.start(500)
 
 
 func _process(delta: float) -> void:
@@ -130,3 +131,10 @@ func end_day_report() -> void:
 
 		GameData.npc_waiting_time = 0
 		GameData.car_waiting_time = 0
+func control_sound():
+	if GameData.emergency_vehicle > 0 :
+		if not siren.playing:
+			siren.finished.connect(siren.play)
+			siren.play()
+	else:
+		siren.stop()

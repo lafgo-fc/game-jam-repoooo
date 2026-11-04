@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dda80ck62w3oa" path="res://assets/cars/vehicle asset/Black_LUXURY_CLEAN_All_000-sheet.png" id="9_axwye"]
 [ext_resource type="Texture2D" uid="uid://cbpgwcm14bvyu" path="res://assets/cars/vehicle asset/TAXI_CLEAN_ALLD0000-sheet.png" id="10_vfnst"]
 [ext_resource type="PackedScene" uid="uid://c5npysxt2lt1l" path="res://scne/scripts/death_label_ui.tscn" id="11_q6ssp"]
+[ext_resource type="AudioStream" uid="uid://bakueqs5kp03o" path="res://assets/SFX TRAFFIC/siren_loop.wav" id="12_yr6hs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1wpe"]
 atlas = ExtResource("6_xshvc")
@@ -544,6 +545,9 @@ offset_left = -60.0
 offset_top = -80.0
 offset_right = -60.0
 offset_bottom = -80.0
+
+[node name="siren" type="AudioStreamPlayer2D" parent="." unique_id=929692299]
+stream = ExtResource("12_yr6hs")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

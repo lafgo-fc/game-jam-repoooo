@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bakueqs5kp03o"
+path="res://.godot/imported/siren_loop.wav-17a30393a38f6408dbe6696f95fa03a7.sample"
+
+[deps]
+
+source_file="res://assets/SFX TRAFFIC/siren_loop.wav"
+dest_files=["res://.godot/imported/siren_loop.wav-17a30393a38f6408dbe6696f95fa03a7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

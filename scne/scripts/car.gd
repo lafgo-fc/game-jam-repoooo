@@ -16,6 +16,7 @@ extends CharacterBody2D
 @onready var collision_shape = $CollisionShape2D
 @onready var collsion_range = $Area2D/collision_range
 @onready var death_label_scene = $death_label_ui
+@onready var siren = $siren
 
 var target: Marker2D
 var stop_point: Marker2D
@@ -37,6 +38,7 @@ var collision_shape_base_position: Vector2
 var collision_range_base_position: Vector2
 var car_wait : int = 0
 var stop_signal = false
+var is_emergency = false
 
 
 
@@ -90,12 +92,15 @@ func _ready() -> void:
 			collsion_range.position = Vector2(0.0, -7.0)
 	collision_shape_base_position = collision_shape.position
 	collision_range_base_position = collsion_range.position
-
-
+	if selected_vehicle == ambulance or selected_vehicle == polic_car:
+		GameData.emergency_vehicle += 1
+		is_emergency = true
+		get_tree().current_scene.control_sound()
 func _process(_delta: float) -> void:
 	GameData.car_pos = global_position
 
 	if fuckedoff:
+		
 		queue_free()
 		return
 
@@ -123,12 +128,18 @@ func _process(_delta: float) -> void:
 
 	if fuckoff != null:
 		if global_position.distance_to(fuckoff.global_position) < 25.0:
+			print("car leaving")
 			GameData.car_passed += 1
 			GameData.total_waiting_time += waiting_time
 			GameData.total_cars += 1
 			GameData.average_car_waiting_time = (
 				GameData.car_waiting_time/ GameData.total_cars
 			)
+			if is_emergency:
+				print("ran")
+				GameData.emergency_vehicle -= 1
+				is_emergency = false
+				get_tree().current_scene.control_sound()
 			queue_free()
 			GameData.reputation += 100
 

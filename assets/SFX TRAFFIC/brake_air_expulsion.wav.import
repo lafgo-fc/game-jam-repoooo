@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c35qirckyac8j"
+path="res://.godot/imported/brake_air_expulsion.wav-677202be758c4edcf95570a50923c180.sample"
+
+[deps]
+
+source_file="res://assets/SFX TRAFFIC/brake_air_expulsion.wav"
+dest_files=["res://.godot/imported/brake_air_expulsion.wav-677202be758c4edcf95570a50923c180.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

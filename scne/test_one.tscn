@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dchr52884qucn" path="res://assets/HUD n UI/morning ui.png" id="18_fod58"]
 [ext_resource type="Texture2D" uid="uid://d1sj0rwytbqae" path="res://assets/HUD n UI/clock ui.png" id="19_hmssk"]
 [ext_resource type="Texture2D" uid="uid://bv74tyslvuglh" path="res://assets/HUD n UI/buttons ui.png" id="20_6k1k0"]
+[ext_resource type="AudioStream" uid="uid://bakueqs5kp03o" path="res://assets/SFX TRAFFIC/siren_loop.wav" id="22_6k1k0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xptqv"]
 texture = ExtResource("1_rdy3u")
@@ -1861,7 +1862,7 @@ layer_0/tile_data = PackedInt32Array(65535, 196610, 2, 0, 262146, 2, 1, 327682, 
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1613630906]
 position = Vector2(-57, 13)
-zoom = Vector2(1.1, 1.1)
+zoom = Vector2(0.7, 0.7)
 
 [node name="TrafficLighttt" parent="." unique_id=24907968 instance=ExtResource("3_fsm8h")]
 visibility_layer = 513
@@ -2173,3 +2174,12 @@ theme_override_font_sizes/font_size = 7
 text = "Press F"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="sounds" type="Control" parent="." unique_id=2071479846]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="siren" type="AudioStreamPlayer2D" parent="sounds" unique_id=481580946]
+stream = ExtResource("22_6k1k0")
