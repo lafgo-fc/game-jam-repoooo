@@ -14,7 +14,8 @@ extends Node2D
 @onready var car_spawner_2: Node2D = $"car spawner/north/spawnr thing2"
 @onready var car_spawner_3: Node2D = $"car spawner/south/spawnr thing3"
 @onready var car_spawner_4: Node2D = $"car spawner/east/spawnr thing4"
-@onready var siren = $sounds/siren
+@onready var siren: AudioStreamPlayer2D = $sounds/siren
+@onready var bg_music : AudioStreamPlayer2D = $"sounds/bg music"
 
 # Colors
 var morning_color = Color(1, 0.9, 0.8)
@@ -36,6 +37,10 @@ var report_generated: bool = false
 
 
 func _ready() -> void:
+	bg_music.finished.connect(bg_music.play)
+	bg_music.play()
+	print("TEST_ONE READY")
+	print("SIREN: ", siren)
 
 	day_timer.wait_time = 1440
 	day_timer.one_shot = true
@@ -46,7 +51,7 @@ func _ready() -> void:
 
 
 	day_timer.wait_time = 1140
-	day_timer.start(500)
+	day_timer.start(350)
 
 
 func _process(delta: float) -> void:
@@ -132,6 +137,9 @@ func end_day_report() -> void:
 		GameData.npc_waiting_time = 0
 		GameData.car_waiting_time = 0
 func control_sound():
+	if not is_instance_valid(siren):
+		print("Siren node is not ready!")
+		return
 	if GameData.emergency_vehicle > 0 :
 		if not siren.playing:
 			siren.finished.connect(siren.play)

@@ -17,6 +17,7 @@ extends CharacterBody2D
 @onready var collsion_range = $Area2D/collision_range
 @onready var death_label_scene = $death_label_ui
 @onready var siren = $siren
+@onready var bg_music = $"sounds/bg music"
 
 var target: Marker2D
 var stop_point: Marker2D
@@ -95,7 +96,7 @@ func _ready() -> void:
 	if selected_vehicle == ambulance or selected_vehicle == polic_car:
 		GameData.emergency_vehicle += 1
 		is_emergency = true
-		get_tree().current_scene.control_sound()
+		get_tree().current_scene.call_deferred("control_sound")
 func _process(_delta: float) -> void:
 	GameData.car_pos = global_position
 

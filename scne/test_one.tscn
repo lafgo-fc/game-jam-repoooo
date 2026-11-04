@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://d1sj0rwytbqae" path="res://assets/HUD n UI/clock ui.png" id="19_hmssk"]
 [ext_resource type="Texture2D" uid="uid://bv74tyslvuglh" path="res://assets/HUD n UI/buttons ui.png" id="20_6k1k0"]
 [ext_resource type="AudioStream" uid="uid://bakueqs5kp03o" path="res://assets/SFX TRAFFIC/siren_loop.wav" id="22_6k1k0"]
+[ext_resource type="AudioStream" uid="uid://b04kwscxwqjmg" path="res://assets/SFX TRAFFIC/music_background_loop.wav" id="22_uxxyv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xptqv"]
 texture = ExtResource("1_rdy3u")
@@ -2180,6 +2181,9 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="bg music" type="AudioStreamPlayer2D" parent="sounds" unique_id=294079342]
+stream = ExtResource("22_uxxyv")
 
 [node name="siren" type="AudioStreamPlayer2D" parent="sounds" unique_id=481580946]
 stream = ExtResource("22_6k1k0")
