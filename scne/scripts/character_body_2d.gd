@@ -107,9 +107,6 @@ func _physics_process(_delta: float) -> void:
 
 			GameData.total_waiting_time += waiting_time
 			GameData.total_cars += 1
-			GameData.average_waiting_time = (
-				GameData.total_waiting_time / GameData.total_cars
-			)
 
 			queue_free()
 			return

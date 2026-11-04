@@ -126,9 +126,10 @@ func _process(_delta: float) -> void:
 			GameData.total_waiting_time += waiting_time
 			GameData.total_cars += 1
 			GameData.average_waiting_time = (
-				GameData.total_waiting_time / GameData.total_cars
+				GameData.car_waiting_time/ GameData.total_cars
 			)
 			queue_free()
+			GameData.reputation += 100
 
 
 func update_waiting_time(delta: float, waiting: bool) -> void:

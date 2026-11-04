@@ -22,6 +22,7 @@ func update_report() -> void:
 	cars_label.text = str(GameData.car_passed)
 
 	wait_label.text = str(
+		
 		round(GameData.average_waiting_time)
 	) + " sec"
 
@@ -31,7 +32,7 @@ func update_report() -> void:
 
 	day_label.text = "DAY " + str(GameData.day)
 
-	shift_label.text = GameData.current_shift + " shift"
+	shift_label.text = GameData.daycycle + " shift"
 
 	grade_label.text = calculate_grade()
 

@@ -45,7 +45,7 @@ func _ready() -> void:
 
 
 	day_timer.wait_time = 1140
-	day_timer.start(310)
+	day_timer.start(400)
 
 
 func _process(delta: float) -> void:
@@ -124,6 +124,8 @@ func end_day_report() -> void:
 		print("Total number of npc died ", GameData.no_npc_died)
 		print("Total waiting time of car ", GameData.car_waiting_time)
 		print("Total waiting time of npc ", GameData.npc_waiting_time)
+		print("total cars passed ",GameData.total_cars)
+		print("avg waiting time of car ",GameData.average_waiting_time)
 
 		GameData.no_npc_died = 0
 		GameData.npc_waiting_time = 0

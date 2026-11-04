@@ -44,6 +44,8 @@ script/source = "extends CharacterBody2D
 @onready var pt_22 = $\"../../waypoints/p22\"
 @onready var pt_23 = $\"../../waypoints/p23\"
 @onready var pt_24 = $\"../../waypoints/p24\"
+@onready var back_track = $back_npc
+var npc_back = false
 
 
 @onready var npc_light = $PointLight2D
@@ -86,6 +88,7 @@ func _physics_process(delta: float) -> void:
 		npc_light.show()
 	else:
 		npc_light.hide()
+	update_back_track()
 	
 	
 	# performing the dodge
@@ -201,7 +204,7 @@ func _physics_process(delta: float) -> void:
 		return
 	check_signal()
 	evaluvate_waiting_time(delta)
-	if npc_inside == true and stop_signal == true:
+	if  stop_signal == true or npc_back:
 		velocity = Vector2.ZERO
 		npc_name.play(\"idle \" + last_direction)
 	else:
@@ -249,10 +252,10 @@ func nex_pt():
 		var possible_pt = [pt_8,pt_12,pt_14]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_20:
-		var possible_pt = [pt_5,pt_12,pt_19,pt_2]
+		var possible_pt = [pt_12]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_23:
-		var possible_pt = [pt_21]
+		var possible_pt = [pt_1]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_21:
 		var possible_pt = [pt_23,pt_3,pt_9,pt_4]
@@ -277,13 +280,13 @@ func check_signal():
 	(previous_pt == pt_23 and near_pt == pt_21):
 		if GameData.light == \"green in front\":
 			stop_signal = true
-			print(stop_signal)
 
 	# pt20 → pt2 | pt21 → pt3
 	elif (previous_pt == pt_20 and near_pt == pt_2) or \\
 	(previous_pt == pt_21 and near_pt == pt_23):
-		if GameData.light == \"green in front\":
+		if GameData.light == \"red in front\":
 			stop_signal = true
+			
 
 	# pt12 → pt13 | pt3 → pt1
 	elif (previous_pt == pt_12 and near_pt == pt_13) or \\
@@ -374,6 +377,27 @@ func evaluvate_waiting_time (delta:float):
 		if stop_signal or npc_inside:
 			npc_waiting_time += delta
 			GameData.npc_waiting_time += delta
+func update_back_track():
+	if last_direction == \"front\":
+		back_track.position = Vector2(0 , 26)
+	elif last_direction == \"top\":
+		back_track.position = Vector2(0 , -26)
+	elif last_direction == \"right\":
+		back_track.position = Vector2(27 , 7)
+	elif last_direction == \"left\":
+		back_track.position = Vector2(-27 , 7)
+
+
+func _on_back_npc_body_entered(body: Node2D) -> void:
+	if body.is_in_group(\"npc\") and body != self:
+		npc_back = true
+		print(\"npc back \",npc_back)
+
+
+func _on_back_npc_body_exited(body: Node2D) -> void:
+	if body.is_in_group(\"npc\") and body != self:
+		npc_back = false
+		print(npc_back)
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mvjtp"]
@@ -1979,11 +2003,11 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_74c84"]
-radius = 24.020824
+radius = 23.021729
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gdw26"]
-radius = 6.75
-height = 18.31579
+radius = 5.233083
+height = 16.571428
 
 [sub_resource type="Gradient" id="Gradient_12oeb"]
 offsets = PackedFloat32Array(0, 0.5120482)
@@ -1995,38 +2019,41 @@ fill = 1
 fill_from = Vector2(0.47826087, 0.5565217)
 fill_to = Vector2(0.9956522, 0)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74c84"]
+size = Vector2(28, 26)
+
 [node name="Pedestians" type="CharacterBody2D" unique_id=907237046 groups=["npc"]]
 script = SubResource("GDScript_8ja1e")
 
 [node name="npc 1" type="AnimatedSprite2D" parent="." unique_id=650339071]
 position = Vector2(0, -7)
-scale = Vector2(2.6666667, 2.2931035)
+scale = Vector2(2, 1.72)
 sprite_frames = SubResource("SpriteFrames_74c84")
 animation = &"idle front"
 
 [node name="npc 2" type="AnimatedSprite2D" parent="." unique_id=1958349776]
 position = Vector2(0.25000072, -5.2500005)
-scale = Vector2(2.34375, 2.40625)
+scale = Vector2(2, 2.053)
 sprite_frames = SubResource("SpriteFrames_454ae")
 animation = &"idle front"
 
 [node name="npc 3" type="AnimatedSprite2D" parent="." unique_id=1103112919]
-scale = Vector2(2.5, 2.5)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_xnp0m")
 animation = &"idle front"
 
 [node name="npc 4" type="AnimatedSprite2D" parent="." unique_id=518088500]
-scale = Vector2(2.5, 2.5)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_xi4lh")
 animation = &"idle front"
 
 [node name="npc 5" type="AnimatedSprite2D" parent="." unique_id=1794136208]
-scale = Vector2(2.4, 2.4)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_wmd7k")
 animation = &"idle front"
 
 [node name="npc 6" type="AnimatedSprite2D" parent="." unique_id=1197517645]
-scale = Vector2(2.4, 2.4)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_n1mkj")
 animation = &"idle front"
 
@@ -2037,7 +2064,7 @@ position = Vector2(1, -4)
 shape = SubResource("CircleShape2D_74c84")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=741942514]
-position = Vector2(0, -4)
+position = Vector2(2, -1.0000038)
 scale = Vector2(2.6666667, 2.2931035)
 shape = SubResource("CapsuleShape2D_gdw26")
 
@@ -2047,5 +2074,15 @@ position = Vector2(-1, -5.000001)
 scale = Vector2(1.9583334, 1.7559267)
 texture = SubResource("GradientTexture2D_74c84")
 
+[node name="back_npc" type="Area2D" parent="." unique_id=2016145158]
+position = Vector2(5, 26)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="back_npc" unique_id=994830287]
+position = Vector2(-6, -12)
+shape = SubResource("RectangleShape2D_74c84")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="back_npc" to="." method="_on_back_npc_body_entered"]
+[connection signal="body_exited" from="back_npc" to="." method="_on_back_npc_body_exited"]
