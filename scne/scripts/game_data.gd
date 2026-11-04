@@ -37,7 +37,10 @@ var accidents: int = 0
 
 
 func _ready() -> void:
-	pass
+	if total_waiting_time >= 2500000:
+		reputation = reputation - 500
+	else:
+		reputation = reputation + 500
 
 func _process(_delta: float) -> void:
 	total_waiting_time = average_car_waiting_time + avg_npc_waiting
