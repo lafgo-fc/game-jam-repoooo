@@ -37,7 +37,7 @@ var accidents: int = 0
 
 
 func _ready() -> void:
-	if total_waiting_time <= 2500000:
+	if total_waiting_time >= 2500000:
 		reputation = reputation - 500
 	else:
 		reputation = reputation + 500

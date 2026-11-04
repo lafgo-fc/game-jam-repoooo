@@ -18,11 +18,14 @@
 [ext_resource type="PackedScene" uid="uid://ct0gj1v2ph1a2" path="res://scne/building_6.tscn" id="16_2fwml"]
 [ext_resource type="PackedScene" uid="uid://jhaj3tvuowm2" path="res://scne/building_7.tscn" id="17_mb0g2"]
 [ext_resource type="PackedScene" uid="uid://c5npysxt2lt1l" path="res://scne/scripts/death_label_ui.tscn" id="18_2fwml"]
-[ext_resource type="Texture2D" uid="uid://dchr52884qucn" path="res://assets/HUD n UI/morning ui.png" id="18_fod58"]
 [ext_resource type="Texture2D" uid="uid://d1sj0rwytbqae" path="res://assets/HUD n UI/clock ui.png" id="19_hmssk"]
 [ext_resource type="Texture2D" uid="uid://bv74tyslvuglh" path="res://assets/HUD n UI/buttons ui.png" id="20_6k1k0"]
 [ext_resource type="AudioStream" uid="uid://bakueqs5kp03o" path="res://assets/SFX TRAFFIC/siren_loop.wav" id="22_6k1k0"]
 [ext_resource type="AudioStream" uid="uid://b04kwscxwqjmg" path="res://assets/SFX TRAFFIC/music_background_loop.wav" id="22_uxxyv"]
+[ext_resource type="Texture2D" uid="uid://cd3ryso62vb6l" path="res://assets/shifting.png" id="23_uxxyv"]
+[ext_resource type="Texture2D" uid="uid://be26mxbsimk25" path="res://assets/morning.png" id="24_1hdju"]
+[ext_resource type="Texture2D" uid="uid://djvqaw0kmrqto" path="res://assets/afternon.png" id="25_jvyd0"]
+[ext_resource type="Texture2D" uid="uid://dq533x8bvvwdl" path="res://assets/evening.png" id="26_i3fs3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xptqv"]
 texture = ExtResource("1_rdy3u")
@@ -1863,7 +1866,7 @@ layer_0/tile_data = PackedInt32Array(65535, 196610, 2, 0, 262146, 2, 1, 327682, 
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1613630906]
 position = Vector2(-57, 13)
-zoom = Vector2(0.7, 0.7)
+zoom = Vector2(1.1, 1.1)
 
 [node name="TrafficLighttt" parent="." unique_id=24907968 instance=ExtResource("3_fsm8h")]
 visibility_layer = 513
@@ -2134,13 +2137,6 @@ offset_bottom = 227.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1719308695]
-visibility_layer = 512
-z_index = 2
-position = Vector2(-391, -192)
-scale = Vector2(1.24, 1.5133333)
-texture = ExtResource("18_fod58")
-
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1203814692]
 z_index = 1
 position = Vector2(-46, -225)
@@ -2186,3 +2182,30 @@ stream = ExtResource("22_uxxyv")
 
 [node name="siren" type="AudioStreamPlayer2D" parent="sounds" unique_id=481580946]
 stream = ExtResource("22_6k1k0")
+
+[node name="shift label" type="Sprite2D" parent="." unique_id=3440792]
+z_index = 1
+position = Vector2(-408, -242)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("23_uxxyv")
+
+[node name="morning" type="Sprite2D" parent="." unique_id=1738785427]
+visible = false
+z_index = 1
+position = Vector2(-453.99997, -246.99998)
+scale = Vector2(0.13392031, 0.16527775)
+texture = ExtResource("24_1hdju")
+
+[node name="afternoon" type="Sprite2D" parent="." unique_id=1367343726]
+visible = false
+z_index = 1
+position = Vector2(-456.99997, -245.39998)
+scale = Vector2(0.13392031, 0.16944441)
+texture = ExtResource("25_jvyd0")
+
+[node name="evening" type="Sprite2D" parent="." unique_id=793350783]
+visible = false
+z_index = 1
+position = Vector2(-457.73013, -245.4)
+scale = Vector2(0.16122569, 0.1833333)
+texture = ExtResource("26_i3fs3")

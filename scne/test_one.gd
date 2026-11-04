@@ -15,6 +15,9 @@ extends Node2D
 @onready var car_spawner_2: Node2D = $"car spawner/north/spawnr thing2"
 @onready var car_spawner_3: Node2D = $"car spawner/south/spawnr thing3"
 @onready var car_spawner_4: Node2D = $"car spawner/east/spawnr thing4"
+@onready var morning_label = $morning
+@onready var afternoon_label = $afternoon
+@onready var evening_label = $evening
 
 @onready var siren: AudioStreamPlayer2D = $sounds/siren
 @onready var bg_music: AudioStreamPlayer2D = $"sounds/bg music"
@@ -51,7 +54,7 @@ func _ready() -> void:
 
 	# Friend's timer setting
 	day_timer.wait_time = 1140
-	day_timer.start(330)
+	day_timer.start(1000)
 
 
 func _process(delta: float) -> void:
@@ -67,10 +70,19 @@ func _process(delta: float) -> void:
 
 	if GameData.daycycle == "morning":
 		target_color = morning_color
+		morning_label.show()
+		afternoon_label.hide()
+		evening_label.hide()
 	elif GameData.daycycle == "afternoon":
 		target_color = afternoon_color
+		morning_label.hide()
+		afternoon_label.show()
+		evening_label.hide()
 	elif GameData.daycycle == "evening":
 		target_color = evening_color
+		morning_label.hide()
+		afternoon_label.hide()
+		evening_label.show()
 	else:
 		target_color = night_color
 
@@ -172,5 +184,3 @@ func control_sound() -> void:
 			siren.play()
 	else:
 		siren.stop()
-
-
