@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://bqlt6ua4hi0bk"]
+
+[ext_resource type="Texture2D" uid="uid://dtavdf804mqnj" path="res://scne/Untitled Design.png" id="1_fu7sn"]
+[ext_resource type="FontFile" uid="uid://dq5gvgnoginyl" path="res://assets/AeogoPixellated-Regular.ttf" id="2_jix8l"]
+[ext_resource type="Texture2D" uid="uid://cw64ybf6dpjb8" path="res://scne/MenuShitong.webp" id="3_glbon"]
+[ext_resource type="FontFile" uid="uid://0vxqmghyr5a2" path="res://assets/HUD n UI/PIXEL-LI.TTF" id="4_jix8l"]
+[ext_resource type="Script" uid="uid://dgyd38j6ydn0n" path="res://start.gd" id="4_nlkkf"]
+[ext_resource type="Script" uid="uid://bnvfpfd5aqo15" path="res://button_4.gd" id="6_qe12f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s7rlf"]
+bg_color = Color(0.29411766, 0.4117647, 0.18431373, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0cvp5"]
+bg_color = Color(0.21670365, 0.3089424, 0.13037276, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s7wsd"]
+bg_color = Color(0.7536575, 0.5659496, 0.15043941, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utshk"]
+bg_color = Color(0.6912933, 0.19293928, 0.19416097, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" unique_id=13187065]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1818668479]
+position = Vector2(3.999949, -3.0000095)
+scale = Vector2(0.6631944, 0.68518525)
+texture = ExtResource("1_fu7sn")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1617068628]
+zoom = Vector2(1.5, 1.5)
+
+[node name="Label" type="Label" parent="." unique_id=790831073]
+layout_mode = 0
+offset_left = -245.0
+offset_top = -169.0
+offset_right = 259.0
+offset_bottom = -124.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("2_jix8l")
+theme_override_font_sizes/font_size = 44
+text = "Traffic Rush Sim"
+
+[node name="Label" type="Label" parent="Label" unique_id=1871440938]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Button2" type="Button" parent="." unique_id=230991691]
+layout_mode = 0
+offset_left = -135.0
+offset_top = -8.0
+offset_right = 93.0
+offset_bottom = 160.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1078770498]
+position = Vector2(-12, 80)
+scale = Vector2(1.9818183, 1.63125)
+texture = ExtResource("3_glbon")
+
+[node name="Button" type="Button" parent="." unique_id=1716380077]
+layout_mode = 0
+offset_left = -102.0
+offset_top = 25.0
+offset_right = 88.0
+offset_bottom = 73.0
+theme_override_fonts/font = ExtResource("2_jix8l")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_s7rlf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0cvp5")
+text = "Play"
+script = ExtResource("4_nlkkf")
+
+[node name="Button3" type="Button" parent="." unique_id=624364576]
+layout_mode = 0
+offset_left = -104.0
+offset_top = 82.0
+offset_right = 88.0
+offset_bottom = 118.0
+theme_override_fonts/font = ExtResource("2_jix8l")
+theme_override_font_sizes/font_size = 29
+theme_override_styles/normal = SubResource("StyleBoxFlat_s7wsd")
+text = " Creditis "
+
+[node name="Button4" type="Button" parent="." unique_id=1670916397]
+layout_mode = 0
+offset_left = -100.0
+offset_top = 121.0
+offset_right = 87.0
+offset_bottom = 158.0
+theme_override_fonts/font = ExtResource("4_jix8l")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_utshk")
+text = " Exit "
+script = ExtResource("6_qe12f")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="pressed" from="Button4" to="Button4" method="_on_pressed"]

@@ -10,10 +10,12 @@ extends Node2D
 @onready var spawner_2: Node2D = $"npc spawners/NpcSpawner2"
 @onready var spawner_3: Node2D = $"npc spawners/NpcSpawner3"
 @onready var spawner_4: Node2D = $"npc spawners/NpcSpawner4"
+
 @onready var car_spawner_1: Node2D = $"car spawner/west/spawnr thing"
 @onready var car_spawner_2: Node2D = $"car spawner/north/spawnr thing2"
 @onready var car_spawner_3: Node2D = $"car spawner/south/spawnr thing3"
 @onready var car_spawner_4: Node2D = $"car spawner/east/spawnr thing4"
+
 @onready var siren = $sounds/siren
 
 # Colors
@@ -30,23 +32,15 @@ var last_daycycle: String = ""
 
 var day_ended: bool = false
 
-# Friend's report system
+# Report system
 var day_completed: int = 0
 var report_generated: bool = false
 
 
 func _ready() -> void:
-
 	day_timer.wait_time = 1440
 	day_timer.one_shot = true
-
-
-
 	day_timer.start()
-
-
-	day_timer.wait_time = 1140
-	day_timer.start(500)
 
 
 func _process(delta: float) -> void:
@@ -56,8 +50,9 @@ func _process(delta: float) -> void:
 
 	time_op()
 	check_daycycle_changes()
+	manage_traffic()
 	clock_time()
-
+	control_sound()
 
 	if GameData.daycycle == "morning":
 		target_color = morning_color
@@ -72,7 +67,6 @@ func _process(delta: float) -> void:
 		target_color,
 		delta * 0.5
 	)
-
 
 
 func time_op() -> void:
@@ -106,12 +100,40 @@ func clock_time() -> void:
 	clock.text = "%02d:%02d" % [hour, min]
 
 
+func manage_traffic() -> void:
+	if GameData.daycycle == "morning" and is_cycle_changing:
+		spawner_1.spawner_time(25)
+		spawner_2.spawner_time(35)
+		spawner_3.spawner_time(30)
+		spawner_4.spawner_time(20)
+
+	elif GameData.daycycle == "afternoon" and is_cycle_changing:
+		spawner_1.spawner_time(20)
+		spawner_2.spawner_time(25)
+		spawner_3.spawner_time(15)
+		spawner_4.spawner_time(30)
+
+	elif GameData.daycycle == "evening" and is_cycle_changing:
+		spawner_1.spawner_time(10)
+		spawner_2.spawner_time(15)
+		spawner_3.spawner_time(8)
+		spawner_4.spawner_time(10)
+
+	elif GameData.daycycle == "night" and is_cycle_changing:
+		spawner_1.spawner_time(30)
+		spawner_2.spawner_time(35)
+		spawner_3.spawner_time(40)
+		spawner_4.spawner_time(30)
+
+
 func check_daycycle_changes() -> void:
 	if GameData.daycycle != last_daycycle:
 		is_cycle_changing = true
 		last_daycycle = GameData.daycycle
 	else:
 		is_cycle_changing = false
+
+
 func end_day_report() -> void:
 	if day_timer.time_left <= 300 and not report_generated:
 		report_generated = true
@@ -119,22 +141,24 @@ func end_day_report() -> void:
 		day_timer.stop()
 		print("ran")
 
-		get_tree().change_scene_to_file("res://report.tscn")
-
 		print(day_completed, " day completed")
 		print("Total number of npc died ", GameData.accidents)
 		print("Total waiting time of car ", GameData.average_car_waiting_time)
 		print("Total waiting time of npc ", GameData.avg_npc_waiting)
-		print("total cars passed ",GameData.total_cars)
-		print("avg waiting time of car ",GameData.total_waiting_time)
-
+		print("total cars passed ", GameData.total_cars)
+		print("avg waiting time of car ", GameData.total_waiting_time)
 
 		GameData.npc_waiting_time = 0
 		GameData.car_waiting_time = 0
-func control_sound():
-	if GameData.emergency_vehicle > 0 :
+
+		get_tree().change_scene_to_file("res://report.tscn")
+
+
+func control_sound() -> void:
+	if GameData.emergency_vehicle > 0:
 		if not siren.playing:
 			siren.finished.connect(siren.play)
 			siren.play()
 	else:
 		siren.stop()
+
