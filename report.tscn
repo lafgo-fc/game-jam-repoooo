@@ -87,6 +87,7 @@ offset_bottom = 94.0
 theme_override_colors/font_color = Color(0.01967768, 0.17844635, 0.32611683, 1)
 theme_override_fonts/font = ExtResource("3_wyrx8")
 theme_override_font_sizes/font_size = 24
+text = "5"
 
 [node name="day" type="Label" parent="." unique_id=850548224]
 layout_mode = 0

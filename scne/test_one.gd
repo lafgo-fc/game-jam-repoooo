@@ -127,6 +127,6 @@ func end_day_report() -> void:
 		print("total cars passed ",GameData.total_cars)
 		print("avg waiting time of car ",GameData.total_waiting_time)
 
-		GameData.accidents = 0
+
 		GameData.npc_waiting_time = 0
 		GameData.car_waiting_time = 0

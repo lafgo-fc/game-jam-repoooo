@@ -236,7 +236,7 @@ func process_animation(direction: Vector2):
 func nex_pt():
 	previous_pt = near_pt
 	if near_pt == pt_1:
-		var possible_pt = [pt_16,pt_7,pt_15]
+		var possible_pt = [pt_16,pt_23,pt_15]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_2:
 		var possible_pt = [pt_20,pt_6,pt_13,pt_24]
@@ -246,7 +246,7 @@ func nex_pt():
 		var possible_pt = [pt_1,pt_7,pt_17]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_12:
-		var possible_pt = [pt_18,pt_11,pt_13,pt_20]
+		var possible_pt = [pt_20]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_13:
 		var possible_pt = [pt_12]
@@ -371,6 +371,7 @@ func death_label_ui():
 
 	var death_label = death_label_scene.instantiate()
 	GameData.accidents += 1
+	print(GameData.accidents)
 	get_tree().current_scene.add_child(death_label)
 	death_label.global_position = global_position
 	death_label.death_label_show()
