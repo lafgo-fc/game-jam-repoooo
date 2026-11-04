@@ -217,7 +217,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		blocking_bodies.append(body)
 
 	if body.is_in_group("npc") :
-		if velocity == Vector2.ZERO and stop_signal == true:
+		if velocity == Vector2.ZERO or stop_signal == true:
 			pass
 		else:
 			body.npc_collided = true

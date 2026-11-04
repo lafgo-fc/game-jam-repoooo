@@ -1909,7 +1909,7 @@ position = Vector2(-729, 189)
 near_pt = NodePath("../waypoints/p1")
 
 [node name="NpcSpawner3" parent="npc spawners" unique_id=1458077235 node_paths=PackedStringArray("near_pt") instance=ExtResource("5_uaidk")]
-position = Vector2(-631, -95)
+position = Vector2(-631, -77)
 near_pt = NodePath("../waypoints/p23")
 
 [node name="NpcSpawner4" parent="npc spawners" unique_id=1979739054 node_paths=PackedStringArray("near_pt") instance=ExtResource("5_uaidk")]
@@ -1927,7 +1927,7 @@ position = Vector2(-273, 189)
 position = Vector2(-265, 468)
 
 [node name="p9" type="Marker2D" parent="npc spawners/waypoints" unique_id=87506571]
-position = Vector2(586, -111)
+position = Vector2(586, -91)
 
 [node name="p19" type="Marker2D" parent="npc spawners/waypoints" unique_id=2038831045]
 position = Vector2(582, -139)
@@ -1945,7 +1945,7 @@ position = Vector2(-194, -441)
 position = Vector2(-273, -445)
 
 [node name="p23" type="Marker2D" parent="npc spawners/waypoints" unique_id=1094046391]
-position = Vector2(-266, -97)
+position = Vector2(-265, -81)
 
 [node name="p24" type="Marker2D" parent="npc spawners/waypoints" unique_id=636406763]
 position = Vector2(-709, -163)
@@ -1969,7 +1969,7 @@ position = Vector2(122, 188)
 position = Vector2(129, 483)
 
 [node name="p10" type="Marker2D" parent="npc spawners/waypoints" unique_id=522072571]
-position = Vector2(-711, -98)
+position = Vector2(-708, -87)
 
 [node name="p11" type="Marker2D" parent="npc spawners/waypoints" unique_id=1090722304]
 position = Vector2(49, 484)
@@ -1978,7 +1978,7 @@ position = Vector2(49, 484)
 position = Vector2(134, -458)
 
 [node name="p21" type="Marker2D" parent="npc spawners/waypoints" unique_id=811883301]
-position = Vector2(133, -102)
+position = Vector2(134, -87)
 
 [node name="p12" type="Marker2D" parent="npc spawners/waypoints" unique_id=1365234433]
 position = Vector2(46, 134)
@@ -2060,19 +2060,19 @@ position = Vector2(-32, -453)
 [node name="east" type="Node" parent="car spawner" unique_id=762653353]
 
 [node name="target 5" type="Marker2D" parent="car spawner/east" unique_id=883962345]
-position = Vector2(-777, -20)
+position = Vector2(-775, -8)
 
 [node name="CrossPoint2" type="Marker2D" parent="car spawner/east" unique_id=1263542847]
-position = Vector2(190, -30)
+position = Vector2(183, -12)
 
 [node name="Marker2D3" type="Marker2D" parent="car spawner/east" unique_id=1998593533]
-position = Vector2(210, -21)
+position = Vector2(213, -7)
 
 [node name="fuckoffpoint4" type="Marker2D" parent="car spawner/east" unique_id=2107660550]
-position = Vector2(-722, -24)
+position = Vector2(-720, -16)
 
 [node name="spawnr thing4" parent="car spawner/east" unique_id=1709820598 node_paths=PackedStringArray("stop_point", "cross_point", "exit_point", "fuckoff") instance=ExtResource("4_f5p5n")]
-position = Vector2(526, -13)
+position = Vector2(526, 2)
 stop_point = NodePath("../Marker2D3")
 cross_point = NodePath("../CrossPoint2")
 exit_point = NodePath("../target 5")
@@ -2126,17 +2126,17 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -503.0
-offset_top = -142.0
-offset_right = -767.0
-offset_bottom = -288.0
+offset_left = -553.0
+offset_top = -106.0
+offset_right = -817.0
+offset_bottom = -252.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1719308695]
 visibility_layer = 512
 z_index = 2
-position = Vector2(-394, -142)
+position = Vector2(-391, -192)
 scale = Vector2(1.24, 1.5133333)
 texture = ExtResource("18_fod58")
 
