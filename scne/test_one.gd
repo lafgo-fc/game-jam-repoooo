@@ -172,5 +172,3 @@ func control_sound() -> void:
 			siren.play()
 	else:
 		siren.stop()
-
-

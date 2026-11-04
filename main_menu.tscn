@@ -43,8 +43,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1818668479]
-position = Vector2(3.999949, -3.0000095)
-scale = Vector2(0.6631944, 0.68518525)
+position = Vector2(-2.0000153, 2.000019)
+scale = Vector2(0.6875, 0.6820988)
 texture = ExtResource("1_fu7sn")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1617068628]
@@ -52,10 +52,10 @@ zoom = Vector2(1.5, 1.5)
 
 [node name="Label" type="Label" parent="." unique_id=790831073]
 layout_mode = 0
-offset_left = -245.0
+offset_left = -248.0
 offset_top = -169.0
-offset_right = 259.0
-offset_bottom = -124.0
+offset_right = 486.0
+offset_bottom = -104.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 7
@@ -63,29 +63,17 @@ theme_override_fonts/font = ExtResource("2_jix8l")
 theme_override_font_sizes/font_size = 44
 text = "Traffic Rush Sim"
 
-[node name="Label" type="Label" parent="Label" unique_id=1871440938]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="Button2" type="Button" parent="." unique_id=230991691]
-layout_mode = 0
-offset_left = -135.0
-offset_top = -8.0
-offset_right = 93.0
-offset_bottom = 160.0
-
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1078770498]
-position = Vector2(-12, 80)
-scale = Vector2(1.9818183, 1.63125)
+position = Vector2(4.7683716e-06, 114.96876)
+scale = Vector2(1.4818181, 1.0996093)
 texture = ExtResource("3_glbon")
 
 [node name="Button" type="Button" parent="." unique_id=1716380077]
 layout_mode = 0
-offset_left = -102.0
-offset_top = 25.0
-offset_right = 88.0
-offset_bottom = 73.0
+offset_left = -97.0
+offset_top = 46.0
+offset_right = 76.0
+offset_bottom = 88.0
 theme_override_fonts/font = ExtResource("2_jix8l")
 theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxFlat_s7rlf")
@@ -95,10 +83,10 @@ script = ExtResource("4_nlkkf")
 
 [node name="Button3" type="Button" parent="." unique_id=624364576]
 layout_mode = 0
-offset_left = -104.0
-offset_top = 82.0
-offset_right = 88.0
-offset_bottom = 118.0
+offset_left = -98.0
+offset_top = 106.0
+offset_right = 80.0
+offset_bottom = 142.0
 theme_override_fonts/font = ExtResource("2_jix8l")
 theme_override_font_sizes/font_size = 29
 theme_override_styles/normal = SubResource("StyleBoxFlat_s7wsd")
@@ -106,10 +94,10 @@ text = " Creditis "
 
 [node name="Button4" type="Button" parent="." unique_id=1670916397]
 layout_mode = 0
-offset_left = -100.0
-offset_top = 121.0
-offset_right = 87.0
-offset_bottom = 158.0
+offset_left = -91.0
+offset_top = 149.0
+offset_right = 79.0
+offset_bottom = 192.0
 theme_override_fonts/font = ExtResource("4_jix8l")
 theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = SubResource("StyleBoxFlat_utshk")

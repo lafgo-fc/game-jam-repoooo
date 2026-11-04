@@ -68,6 +68,6 @@ func _on_continue_button_pressed() -> void:
 
 	GameData.reset_shift_stats()
 
-	get_tree().change_scene_to_file(
+	Loading.change_scene_to(
         "res://scne/test_one.tscn"
 	)
