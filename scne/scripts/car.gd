@@ -125,7 +125,7 @@ func _process(_delta: float) -> void:
 			GameData.car_passed += 1
 			GameData.total_waiting_time += waiting_time
 			GameData.total_cars += 1
-			GameData.average_waiting_time = (
+			GameData.average_car_waiting_time = (
 				GameData.car_waiting_time/ GameData.total_cars
 			)
 			queue_free()

@@ -1861,7 +1861,7 @@ layer_0/tile_data = PackedInt32Array(65535, 196610, 2, 0, 262146, 2, 1, 327682, 
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1613630906]
 position = Vector2(-57, 13)
-zoom = Vector2(1.3, 1.3)
+zoom = Vector2(1.1, 1.1)
 
 [node name="TrafficLighttt" parent="." unique_id=24907968 instance=ExtResource("3_fsm8h")]
 visibility_layer = 513
@@ -2028,13 +2028,13 @@ exit_point = NodePath("../target 3")
 fuckoff = NodePath("../fuckoffpoint2")
 
 [node name="Marker2D2" type="Marker2D" parent="car spawner/north" unique_id=1296893127]
-position = Vector2(-110, -187)
+position = Vector2(-103, -239)
 
 [node name="fuckoffpoint2" type="Marker2D" parent="car spawner/north" unique_id=1201667808]
 position = Vector2(-110, 322)
 
 [node name="CrossPoint2" type="Marker2D" parent="car spawner/north" unique_id=1993360179]
-position = Vector2(-110, -175)
+position = Vector2(-104, -213)
 
 [node name="south" type="Node" parent="car spawner" unique_id=519026179]
 
@@ -2063,10 +2063,10 @@ position = Vector2(-32, -453)
 position = Vector2(-777, -20)
 
 [node name="CrossPoint2" type="Marker2D" parent="car spawner/east" unique_id=1263542847]
-position = Vector2(170, -26)
+position = Vector2(190, -30)
 
 [node name="Marker2D3" type="Marker2D" parent="car spawner/east" unique_id=1998593533]
-position = Vector2(203, -21)
+position = Vector2(210, -21)
 
 [node name="fuckoffpoint4" type="Marker2D" parent="car spawner/east" unique_id=2107660550]
 position = Vector2(-722, -24)
@@ -2112,7 +2112,7 @@ position = Vector2(-289, 203)
 position = Vector2(383, 309)
 
 [node name="building8" parent="map" unique_id=1261646951 instance=ExtResource("16_2fwml")]
-position = Vector2(282, -241)
+position = Vector2(284, -259)
 
 [node name="building9" parent="map" unique_id=1318647360 instance=ExtResource("17_mb0g2")]
 position = Vector2(209, 304)
@@ -2126,10 +2126,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -504.0
-offset_top = -136.0
-offset_right = -768.0
-offset_bottom = -282.0
+offset_left = -503.0
+offset_top = -142.0
+offset_right = -767.0
+offset_bottom = -288.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -2142,7 +2142,7 @@ texture = ExtResource("18_fod58")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1203814692]
 z_index = 1
-position = Vector2(-49.5, -209.75)
+position = Vector2(-46, -225)
 scale = Vector2(1.2384615, 1.3)
 texture = ExtResource("19_hmssk")
 
