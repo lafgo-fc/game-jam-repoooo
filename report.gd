@@ -2,7 +2,7 @@
 extends Control
 
 @onready var cars_label: Label = $"cars passed"
-@onready var wait_label: Label = $"wait time"
+@onready var wait_label : Label =  $"wait time"
 @onready var accidents_label: Label = $Label8
 @onready var reputation_label: Label = $Reputation
 @onready var grade_label: Label = $Grade
@@ -23,8 +23,9 @@ func update_report() -> void:
 
 	wait_label.text = str(
 		
-		round(GameData.average_waiting_time)
+		(GameData.total_waiting_time)
 	) + " sec"
+	print("waiting time ", GameData.total_waiting_time)
 
 	accidents_label.text = str(GameData.accidents)
 
@@ -43,10 +44,10 @@ func update_report() -> void:
 
 
 func calculate_grade() -> String:
-	if GameData.accidents == 0 and GameData.average_waiting_time < 15:
+	if GameData.accidents == 0 and GameData.total_waiting_time < 15:
 		return "A"
 
-	elif GameData.accidents <= 2 and GameData.average_waiting_time < 30:
+	elif GameData.accidents <= 2 and GameData.total_waiting_time < 30:
 		return "B"
 
 	elif GameData.accidents <= 4:

@@ -18,7 +18,7 @@ var next_npc_id: int = 1
 
 # Car and waiting-time statistics
 var car_passed: int = 0
-var total_waiting_time: float = 0.0
+var total_waiting_time: int = 0.0
 var total_cars: int = 0
 var average_car_waiting_time: float = 0.0
 var day_ended = false
