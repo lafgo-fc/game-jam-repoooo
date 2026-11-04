@@ -42,6 +42,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	total_waiting_time = average_car_waiting_time + avg_npc_waiting
 
+
 func get_next_npc_id() -> int:
 	var id: int = next_npc_id
 	next_npc_id += 1

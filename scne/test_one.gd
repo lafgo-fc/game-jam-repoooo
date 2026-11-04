@@ -51,7 +51,7 @@ func _ready() -> void:
 
 
 	day_timer.wait_time = 1140
-	day_timer.start(350)
+	day_timer.start(330)
 
 
 func _process(delta: float) -> void:
@@ -134,8 +134,7 @@ func end_day_report() -> void:
 		print("avg waiting time of car ",GameData.total_waiting_time)
 
 
-		GameData.npc_waiting_time = 0
-		GameData.car_waiting_time = 0
+
 func control_sound():
 	if not is_instance_valid(siren):
 		print("Siren node is not ready!")

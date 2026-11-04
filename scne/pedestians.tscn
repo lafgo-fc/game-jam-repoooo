@@ -373,8 +373,9 @@ func death_label_ui():
 
 	var death_label = death_label_scene.instantiate()
 	GameData.accidents += 1
-	rep_sub.play()
 	print(GameData.accidents)
+	GameData.reputation = GameData.reputation - 200
+	print(GameData.reputation)
 	get_tree().current_scene.add_child(death_label)
 	death_label.global_position = global_position
 	death_label.death_label_show()
