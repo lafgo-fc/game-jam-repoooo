@@ -16,7 +16,8 @@ extends Node2D
 @onready var car_spawner_3: Node2D = $"car spawner/south/spawnr thing3"
 @onready var car_spawner_4: Node2D = $"car spawner/east/spawnr thing4"
 
-@onready var siren = $sounds/siren
+@onready var siren: AudioStreamPlayer2D = $sounds/siren
+@onready var bg_music: AudioStreamPlayer2D = $"sounds/bg music"
 
 # Colors
 var morning_color = Color(1, 0.9, 0.8)
@@ -38,9 +39,19 @@ var report_generated: bool = false
 
 
 func _ready() -> void:
+	bg_music.finished.connect(bg_music.play)
+	bg_music.play()
+
+	print("TEST_ONE READY")
+	print("SIREN: ", siren)
+
 	day_timer.wait_time = 1440
 	day_timer.one_shot = true
 	day_timer.start()
+
+	# Friend's timer setting
+	day_timer.wait_time = 1140
+	day_timer.start(330)
 
 
 func _process(delta: float) -> void:
@@ -79,13 +90,10 @@ func time_op() -> void:
 
 	if time_spent <= 360 or time_spent >= 1201:
 		GameData.daycycle = "night"
-
 	elif time_spent >= 721 and time_spent <= 1080:
 		GameData.daycycle = "afternoon"
-
 	elif time_spent >= 1081 and time_spent <= 1200:
 		GameData.daycycle = "evening"
-
 	elif time_spent >= 361 and time_spent <= 720:
 		GameData.daycycle = "morning"
 
@@ -139,8 +147,8 @@ func end_day_report() -> void:
 		report_generated = true
 		day_completed += 1
 		day_timer.stop()
-		print("ran")
 
+		print("ran")
 		print(day_completed, " day completed")
 		print("Total number of npc died ", GameData.accidents)
 		print("Total waiting time of car ", GameData.average_car_waiting_time)
@@ -155,10 +163,14 @@ func end_day_report() -> void:
 
 
 func control_sound() -> void:
+	if not is_instance_valid(siren):
+		print("Siren node is not ready!")
+		return
+
 	if GameData.emergency_vehicle > 0:
 		if not siren.playing:
-			siren.finished.connect(siren.play)
 			siren.play()
 	else:
 		siren.stop()
+
 

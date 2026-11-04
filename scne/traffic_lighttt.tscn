@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c55xptn1fkd0x" path="res://scne/scripts/traffic.gd" id="1_0o7pd"]
 [ext_resource type="Texture2D" uid="uid://bbim6tsly17kp" path="res://assets/map assets/CP_V1.1.0_nyknck/CP_V1.0.4_nyknck/CP_V1.0.4.png" id="2_0o7pd"]
+[ext_resource type="AudioStream" uid="uid://dixdgaxr36bb3" path="res://assets/SFX TRAFFIC/traffic_light_red.wav" id="3_ad1rp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ad1rp"]
 texture = ExtResource("2_0o7pd")
@@ -1306,3 +1307,6 @@ scale = Vector2(0.070312545, 0.07812501)
 color = Color(1, 0, 0, 1)
 energy = 9.97
 texture = SubResource("GradientTexture2D_74c84")
+
+[node name="traffic switch" type="AudioStreamPlayer2D" parent="." unique_id=1136514632]
+stream = ExtResource("3_ad1rp")

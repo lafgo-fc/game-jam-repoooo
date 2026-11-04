@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var green_light_left = $"traffic light left/green left"
 @onready var red_light_left = $"traffic light left/red left"
 @onready var green_light_right = $"traffic light left/green right"
+@onready var switch : AudioStreamPlayer2D = $"traffic switch"
 
 
 
@@ -23,18 +24,21 @@ func car_pass():
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("traffic control front and back"):
+		switch.play()
 		if GameData.light == "red in front":
 			GameData.light = "green in front"
 		else:
 			GameData.light = "red in front"
 
 	if Input.is_action_just_pressed("traffic control right and left"):
+		switch.play()
 		if GameData.light == "red in right":
 			GameData.light = "green in right"
 		else:
 			GameData.light = "red in right"
 
 	if Input.is_action_just_pressed("stop all"):
+		switch.play()
 		GameData.light = "all red"
 
 	_light_color()
