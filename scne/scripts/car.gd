@@ -39,6 +39,7 @@ var car_wait : int = 0
 var stop_signal = false
 
 
+
 func _ready() -> void:
 	add_to_group("car")
 	var vehicles = [

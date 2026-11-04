@@ -45,7 +45,7 @@ func _ready() -> void:
 
 
 	day_timer.wait_time = 1140
-	day_timer.start(320)
+	day_timer.start(330)
 
 
 func _process(delta: float) -> void:
@@ -121,12 +121,12 @@ func end_day_report() -> void:
 		get_tree().change_scene_to_file("res://report.tscn")
 
 		print(day_completed, " day completed")
-		print("Total number of npc died ", GameData.no_npc_died)
+		print("Total number of npc died ", GameData.accidents)
 		print("Total waiting time of car ", GameData.average_car_waiting_time)
 		print("Total waiting time of npc ", GameData.avg_npc_waiting)
 		print("total cars passed ",GameData.total_cars)
 		print("avg waiting time of car ",GameData.total_waiting_time)
 
-		GameData.no_npc_died = 0
+		GameData.accidents = 0
 		GameData.npc_waiting_time = 0
 		GameData.car_waiting_time = 0

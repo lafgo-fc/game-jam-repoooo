@@ -22,11 +22,12 @@ var total_waiting_time: int = 0.0
 var total_cars: int = 0
 var average_car_waiting_time: float = 0.0
 var day_ended = false
-var no_npc_died : int = 0
 var npc_waiting_time = 0.0
 var car_waiting_time = 0.0
 var npc_passed : int = 0
 var avg_npc_waiting : float = 0.0
+var car_moving = true
+
 
 # Seven-day progression
 var day: int = 1

@@ -3,12 +3,13 @@ extends Control
 
 @onready var cars_label: Label = $"cars passed"
 @onready var wait_label : Label =  $"wait time"
-@onready var accidents_label: Label = $Label8
+@onready var accidents_label: Label = $Accidents
 @onready var reputation_label: Label = $Reputation
 @onready var grade_label: Label = $Grade
 @onready var day_label: Label = $day
 @onready var shift_label: Label = $Shift
 @onready var continue_button: Button = $ContinueButton
+
 
 func _ready() -> void:
 	update_report()
@@ -25,15 +26,14 @@ func update_report() -> void:
 		
 		(GameData.total_waiting_time)
 	) + " sec"
-	print("waiting time ", GameData.total_waiting_time)
 
 	accidents_label.text = str(GameData.accidents)
+	print("accidents " , GameData.accidents)
 
 	reputation_label.text = str(GameData.reputation)
 
 	day_label.text = "DAY " + str(GameData.day)
 
-	shift_label.text = GameData.daycycle + " shift"
 
 	grade_label.text = calculate_grade()
 

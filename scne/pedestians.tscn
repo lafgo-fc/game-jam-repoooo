@@ -236,7 +236,7 @@ func process_animation(direction: Vector2):
 func nex_pt():
 	previous_pt = near_pt
 	if near_pt == pt_1:
-		var possible_pt = [pt_3,pt_16,pt_7,pt_15]
+		var possible_pt = [pt_16,pt_7,pt_15]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_2:
 		var possible_pt = [pt_20,pt_6,pt_13,pt_24]
@@ -249,7 +249,7 @@ func nex_pt():
 		var possible_pt = [pt_18,pt_11,pt_13,pt_20]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_13:
-		var possible_pt = [pt_8,pt_12,pt_14]
+		var possible_pt = [pt_12]
 		near_pt = possible_pt.pick_random()
 	elif near_pt == pt_20:
 		var possible_pt = [pt_12,pt_5,pt_19,pt_2]
@@ -368,11 +368,12 @@ func exit_pt():
 func death_label_ui():
 	if not npc_collided:
 		return
+
 	var death_label = death_label_scene.instantiate()
+	GameData.accidents += 1
 	get_tree().current_scene.add_child(death_label)
 	death_label.global_position = global_position
 	death_label.death_label_show()
-	GameData.no_npc_died += 1
 	queue_free()
 func evaluvate_waiting_time (delta:float):
 	if not is_dodging and not being_dodged:
