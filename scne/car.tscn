@@ -12,6 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://cbpgwcm14bvyu" path="res://assets/cars/vehicle asset/TAXI_CLEAN_ALLD0000-sheet.png" id="10_vfnst"]
 [ext_resource type="PackedScene" uid="uid://c5npysxt2lt1l" path="res://scne/scripts/death_label_ui.tscn" id="11_q6ssp"]
 [ext_resource type="AudioStream" uid="uid://bakueqs5kp03o" path="res://assets/SFX TRAFFIC/siren_loop.wav" id="12_yr6hs"]
+[ext_resource type="AudioStream" uid="uid://dsidy2w4jsjpr" path="res://assets/SFX TRAFFIC/car_horn.wav" id="13_xshvc"]
+[ext_resource type="AudioStream" uid="uid://c3w7fdcnny5vb" path="res://assets/SFX TRAFFIC/npc_death.wav" id="14_307ky"]
+[ext_resource type="AudioStream" uid="uid://c38w2nm7n8qjm" path="res://assets/SFX TRAFFIC/-reputation.wav" id="15_axwye"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1wpe"]
 atlas = ExtResource("6_xshvc")
@@ -548,6 +551,19 @@ offset_bottom = -80.0
 
 [node name="siren" type="AudioStreamPlayer2D" parent="." unique_id=929692299]
 stream = ExtResource("12_yr6hs")
+
+[node name="horn" type="AudioStreamPlayer2D" parent="." unique_id=2057481378]
+stream = ExtResource("13_xshvc")
+
+[node name="Timer" type="Timer" parent="horn" unique_id=1891852479]
+wait_time = 3.0
+one_shot = true
+
+[node name="death_sound" type="AudioStreamPlayer2D" parent="." unique_id=868047796]
+stream = ExtResource("14_307ky")
+
+[node name="rep -" type="AudioStreamPlayer2D" parent="." unique_id=1010593866]
+stream = ExtResource("15_axwye")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

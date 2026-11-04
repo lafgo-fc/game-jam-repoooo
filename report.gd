@@ -44,13 +44,13 @@ func update_report() -> void:
 
 
 func calculate_grade() -> String:
-	if GameData.accidents == 0 and GameData.total_waiting_time < 15:
+	if GameData.reputation > 10000:
 		return "A"
 
-	elif GameData.accidents <= 2 and GameData.total_waiting_time < 30:
+	elif GameData.reputation >= 5000 and GameData.reputation < 10000:
 		return "B"
 
-	elif GameData.accidents <= 4:
+	elif GameData.reputation >=1000 and GameData.reputation < 5000:
 		return "C"
 
 	else:

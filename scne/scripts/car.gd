@@ -18,6 +18,10 @@ extends CharacterBody2D
 @onready var death_label_scene = $death_label_ui
 @onready var siren = $siren
 @onready var bg_music = $"sounds/bg music"
+@onready var horn : AudioStreamPlayer2D = $horn
+@onready var horn_timer = $horn/Timer
+@onready var death_sound : AudioStreamPlayer2D = $death_sound
+@onready var sub_rep : AudioStreamPlayer2D = $"rep -"
 
 var target: Marker2D
 var stop_point: Marker2D
@@ -228,11 +232,17 @@ func process_animation(direction: Vector2) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body != self and not blocking_bodies.has(body):
 		blocking_bodies.append(body)
+		if horn_timer.is_stopped():
+			horn.play()
+			horn_timer.start()
+		
 
 	if body.is_in_group("npc") :
 		if velocity == Vector2.ZERO or stop_signal == true:
 			pass
 		else:
+			death_sound.play()
+			sub_rep.play()
 			body.npc_collided = true
 
 		if "npc_id" in body:
