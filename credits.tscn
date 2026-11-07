@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://drwgef5q7avwe"]
+
+[ext_resource type="Script" uid="uid://rfgq4di65b15" path="res://credits.gd" id="1_4av4j"]
+[ext_resource type="Texture2D" uid="uid://dih7jb61fqnj4" path="res://Sprite-0001.png" id="1_j6beo"]
+[ext_resource type="FontFile" uid="uid://0vxqmghyr5a2" path="res://assets/HUD n UI/PIXEL-LI.TTF" id="2_4av4j"]
+[ext_resource type="FontFile" uid="uid://dey5ky0ftfra0" path="res://assets/PixelOperatorHB8.ttf" id="3_5em78"]
+[ext_resource type="AudioStream" uid="uid://b04kwscxwqjmg" path="res://assets/SFX TRAFFIC/music_background_loop.wav" id="5_5em78"]
+
+[node name="Control" type="Control" unique_id=527689295]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4av4j")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1837214822]
+texture_filter = 1
+position = Vector2(689, 337)
+scale = Vector2(0.6666666, 0.6759259)
+texture = ExtResource("1_j6beo")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1578558965]
+position = Vector2(690, 341)
+zoom = Vector2(1.5, 1.5)
+
+[node name="Label" type="Label" parent="." unique_id=1880192059]
+texture_filter = 1
+layout_mode = 0
+offset_left = 543.0
+offset_top = 204.0
+offset_right = 820.0
+offset_bottom = 241.0
+theme_override_colors/font_color = Color(0.12156863, 0.18431373, 0.28235295, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_4av4j")
+theme_override_font_sizes/font_size = 28
+text = "GROUP CREDITS"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=1758800829]
+layout_mode = 0
+offset_left = 456.0
+offset_top = 236.0
+offset_right = 1373.0
+offset_bottom = 305.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.12156863, 0.18431373, 0.28235295, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_4av4j")
+theme_override_font_sizes/font_size = 50
+text = "UI , SCENE DESIGNER & ASSIST PROGRAMMER
+Lafgo"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="." unique_id=164219375]
+layout_mode = 0
+offset_left = 551.0
+offset_top = 310.0
+offset_right = 896.0
+offset_bottom = 361.0
+scale = Vector2(0.75, 0.75)
+theme_override_colors/font_color = Color(0.12156863, 0.18431373, 0.28235295, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_5em78")
+theme_override_font_sizes/font_size = 23
+text = "LEAD PROGRAMMER
+Kavy_xd"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="." unique_id=1059698820]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 367.0
+offset_right = 985.0
+offset_bottom = 418.0
+scale = Vector2(0.75, 0.75)
+theme_override_colors/font_color = Color(0.12156863, 0.18431373, 0.28235295, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_5em78")
+theme_override_font_sizes/font_size = 23
+text = "MUSIC & SOUND DESIGNER
+ILW"
+horizontal_alignment = 1
+
+[node name="BG MUSIC" type="AudioStreamPlayer2D" parent="." unique_id=298499569]
+stream = ExtResource("5_5em78")

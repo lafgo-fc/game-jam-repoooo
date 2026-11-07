@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="gamy gauntlet"
-run/main_scene="uid://c8lkwc0gleper"
+run/main_scene="uid://bqlt6ua4hi0bk"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 

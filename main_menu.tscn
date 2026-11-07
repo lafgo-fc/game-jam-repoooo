@@ -1,11 +1,16 @@
 [gd_scene format=3 uid="uid://bqlt6ua4hi0bk"]
 
+[ext_resource type="Script" uid="uid://b61iwg28x7gfs" path="res://main_menu.gd" id="1_8qtwp"]
 [ext_resource type="Texture2D" uid="uid://dtavdf804mqnj" path="res://scne/Untitled Design.png" id="1_fu7sn"]
 [ext_resource type="FontFile" uid="uid://dq5gvgnoginyl" path="res://assets/AeogoPixellated-Regular.ttf" id="2_jix8l"]
 [ext_resource type="Texture2D" uid="uid://cw64ybf6dpjb8" path="res://scne/MenuShitong.webp" id="3_glbon"]
 [ext_resource type="FontFile" uid="uid://0vxqmghyr5a2" path="res://assets/HUD n UI/PIXEL-LI.TTF" id="4_jix8l"]
 [ext_resource type="Script" uid="uid://dgyd38j6ydn0n" path="res://start.gd" id="4_nlkkf"]
 [ext_resource type="Script" uid="uid://bnvfpfd5aqo15" path="res://button_4.gd" id="6_qe12f"]
+[ext_resource type="AudioStream" uid="uid://b04kwscxwqjmg" path="res://assets/SFX TRAFFIC/music_background_loop.wav" id="8_dy7ct"]
+[ext_resource type="AudioStream" uid="uid://40lbewp7ssu2" path="res://assets/SFX TRAFFIC/Button_UI.wav" id="9_dy7ct"]
+[ext_resource type="AudioStream" uid="uid://111t7lh28670" path="res://assets/SFX TRAFFIC/Button_UI_3.wav" id="10_0o4t1"]
+[ext_resource type="AudioStream" uid="uid://b31ipgroyd5yg" path="res://assets/SFX TRAFFIC/Button_UI_2.wav" id="11_0k4wn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s7rlf"]
 bg_color = Color(0.29411766, 0.4117647, 0.18431373, 1)
@@ -41,6 +46,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_8qtwp")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1818668479]
 position = Vector2(-2.0000153, 2.000019)
@@ -52,16 +58,18 @@ zoom = Vector2(1.5, 1.5)
 
 [node name="Label" type="Label" parent="." unique_id=790831073]
 layout_mode = 0
-offset_left = -248.0
-offset_top = -169.0
-offset_right = 486.0
-offset_bottom = -104.0
+offset_left = -368.0
+offset_top = -167.0
+offset_right = 366.0
+offset_bottom = -102.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 7
 theme_override_fonts/font = ExtResource("2_jix8l")
 theme_override_font_sizes/font_size = 44
-text = "Traffic Rush Sim"
+text = "RUSH HOUR"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1078770498]
 position = Vector2(4.7683716e-06, 114.96876)
@@ -104,5 +112,24 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_utshk")
 text = " Exit "
 script = ExtResource("6_qe12f")
 
+[node name="BG MUSIC" type="AudioStreamPlayer2D" parent="." unique_id=1082617174]
+stream = ExtResource("8_dy7ct")
+
+[node name="start click" type="AudioStreamPlayer2D" parent="." unique_id=1978601777]
+stream = ExtResource("9_dy7ct")
+volume_db = 5.0
+
+[node name="exit click" type="AudioStreamPlayer2D" parent="." unique_id=889596183]
+stream = ExtResource("10_0o4t1")
+
+[node name="hover sound" type="AudioStreamPlayer2D" parent="." unique_id=697223518]
+stream = ExtResource("11_0k4wn")
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="mouse_entered" from="Button3" to="." method="_on_button_3_mouse_entered"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
+[connection signal="mouse_entered" from="Button4" to="." method="_on_button_4_mouse_entered"]
+[connection signal="pressed" from="Button4" to="." method="_on_button_4_pressed"]
 [connection signal="pressed" from="Button4" to="Button4" method="_on_pressed"]

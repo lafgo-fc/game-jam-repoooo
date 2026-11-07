@@ -2116,7 +2116,7 @@ position = Vector2(-301, 206)
 position = Vector2(383, 309)
 
 [node name="building8" parent="map" unique_id=1261646951 instance=ExtResource("16_2fwml")]
-position = Vector2(229, -190)
+position = Vector2(335, -223)
 
 [node name="building9" parent="map" unique_id=1318647360 instance=ExtResource("17_mb0g2")]
 position = Vector2(209, 304)
