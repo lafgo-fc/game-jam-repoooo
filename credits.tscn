@@ -87,3 +87,17 @@ horizontal_alignment = 1
 
 [node name="BG MUSIC" type="AudioStreamPlayer2D" parent="." unique_id=298499569]
 stream = ExtResource("5_5em78")
+
+[node name="Button" type="Button" parent="." unique_id=1741851965]
+layout_mode = 0
+offset_left = 632.0
+offset_top = 460.0
+offset_right = 762.0
+offset_bottom = 491.0
+theme_override_colors/font_color = Color(0.9813978, 0, 0.24340993, 1)
+theme_override_colors/font_hover_color = Color(0.4530756, 0, 0.14483485, 1)
+theme_override_colors/icon_normal_color = Color(0.89139795, 0.9999997, 0.9971519, 1)
+text = "CLOSE
+"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
